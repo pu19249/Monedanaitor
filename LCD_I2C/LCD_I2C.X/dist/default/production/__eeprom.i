@@ -1,4 +1,4 @@
-# 1 "i2c_Flex_LCD.c"
+# 1 "C:\\Program Files\\Microchip\\xc8\\v2.31\\pic\\sources\\c90\\pic\\__eeprom.c"
 # 1 "<built-in>" 1
 # 1 "<built-in>" 3
 # 288 "<built-in>" 3
@@ -6,10 +6,7 @@
 # 1 "<built-in>" 2
 # 1 "D:/Program File/MPLabX/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\\pic\\include\\language_support.h" 1 3
 # 2 "<built-in>" 2
-# 1 "i2c_Flex_LCD.c" 2
-# 74 "i2c_Flex_LCD.c"
-# 1 "./i2c_Flex_LCD.h" 1
-# 11 "./i2c_Flex_LCD.h"
+# 1 "C:\\Program Files\\Microchip\\xc8\\v2.31\\pic\\sources\\c90\\pic\\__eeprom.c" 2
 # 1 "D:/Program File/MPLabX/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\\pic\\include\\xc.h" 1 3
 # 18 "D:/Program File/MPLabX/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\\pic\\include\\xc.h" 3
 extern const char __xc8_OPTIM_SPEED;
@@ -2490,344 +2487,176 @@ extern __bank0 unsigned char __resetbits;
 extern __bank0 __bit __powerdown;
 extern __bank0 __bit __timeout;
 # 28 "D:/Program File/MPLabX/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\\pic\\include\\xc.h" 2 3
-# 11 "./i2c_Flex_LCD.h" 2
+# 1 "C:\\Program Files\\Microchip\\xc8\\v2.31\\pic\\sources\\c90\\pic\\__eeprom.c" 2
 
 
-# 1 "C:\\Program Files\\Microchip\\xc8\\v2.31\\pic\\include\\c90\\stdint.h" 1 3
-# 13 "C:\\Program Files\\Microchip\\xc8\\v2.31\\pic\\include\\c90\\stdint.h" 3
-typedef signed char int8_t;
 
 
-
-
-
-
-typedef signed int int16_t;
-
-
-
-
-
-
-
-typedef __int24 int24_t;
-
-
-
-
-
-
-
-typedef signed long int int32_t;
-# 52 "C:\\Program Files\\Microchip\\xc8\\v2.31\\pic\\include\\c90\\stdint.h" 3
-typedef unsigned char uint8_t;
-
-
-
-
-
-typedef unsigned int uint16_t;
-
-
-
-
-
-
-typedef __uint24 uint24_t;
-
-
-
-
-
-
-typedef unsigned long int uint32_t;
-# 88 "C:\\Program Files\\Microchip\\xc8\\v2.31\\pic\\include\\c90\\stdint.h" 3
-typedef signed char int_least8_t;
-
-
-
-
-
-
-
-typedef signed int int_least16_t;
-# 109 "C:\\Program Files\\Microchip\\xc8\\v2.31\\pic\\include\\c90\\stdint.h" 3
-typedef __int24 int_least24_t;
-# 118 "C:\\Program Files\\Microchip\\xc8\\v2.31\\pic\\include\\c90\\stdint.h" 3
-typedef signed long int int_least32_t;
-# 136 "C:\\Program Files\\Microchip\\xc8\\v2.31\\pic\\include\\c90\\stdint.h" 3
-typedef unsigned char uint_least8_t;
-
-
-
-
-
-
-typedef unsigned int uint_least16_t;
-# 154 "C:\\Program Files\\Microchip\\xc8\\v2.31\\pic\\include\\c90\\stdint.h" 3
-typedef __uint24 uint_least24_t;
-
-
-
-
-
-
-
-typedef unsigned long int uint_least32_t;
-# 181 "C:\\Program Files\\Microchip\\xc8\\v2.31\\pic\\include\\c90\\stdint.h" 3
-typedef signed char int_fast8_t;
-
-
-
-
-
-
-typedef signed int int_fast16_t;
-# 200 "C:\\Program Files\\Microchip\\xc8\\v2.31\\pic\\include\\c90\\stdint.h" 3
-typedef __int24 int_fast24_t;
-
-
-
-
-
-
-
-typedef signed long int int_fast32_t;
-# 224 "C:\\Program Files\\Microchip\\xc8\\v2.31\\pic\\include\\c90\\stdint.h" 3
-typedef unsigned char uint_fast8_t;
-
-
-
-
-
-typedef unsigned int uint_fast16_t;
-# 240 "C:\\Program Files\\Microchip\\xc8\\v2.31\\pic\\include\\c90\\stdint.h" 3
-typedef __uint24 uint_fast24_t;
-
-
-
-
-
-
-typedef unsigned long int uint_fast32_t;
-# 268 "C:\\Program Files\\Microchip\\xc8\\v2.31\\pic\\include\\c90\\stdint.h" 3
-typedef int32_t intmax_t;
-# 282 "C:\\Program Files\\Microchip\\xc8\\v2.31\\pic\\include\\c90\\stdint.h" 3
-typedef uint32_t uintmax_t;
-
-
-
-
-
-
-typedef int16_t intptr_t;
-
-
-
-
-typedef uint16_t uintptr_t;
-# 13 "./i2c_Flex_LCD.h" 2
-
-
-
-
-
-
-void lcd_backlight_led(int bl);
-void i2c_send_nibble(char data, int type);
-void lcd_send_byte(int data, int type);
-void lcd_clear();
-void lcd_init(int ADDR, char col, int row);
-void lcd_gotoxy(int x, int y);
-void LCD_PUTC(const char in_data);
-# 74 "i2c_Flex_LCD.c" 2
-
-# 1 "./I2C.h" 1
-# 20 "./I2C.h"
-# 1 "C:\\Program Files\\Microchip\\xc8\\v2.31\\pic\\include\\c90\\stdint.h" 1 3
-# 20 "./I2C.h" 2
-# 29 "./I2C.h"
-void I2C_Master_Init(const unsigned long c);
-
-
-
-
-
-
-
-void I2C_Master_Wait(void);
-
-
-
-void I2C_Master_Start(void);
-
-
-
-void I2C_Master_RepeatedStart(void);
-
-
-
-void I2C_Master_Stop(void);
-
-
-
-
-
-void I2C_Master_Write(unsigned d);
-
-
-
-
-unsigned short I2C_Master_Read(unsigned short a);
-
-
-
-void I2C_Slave_Init(uint8_t address);
-# 75 "i2c_Flex_LCD.c" 2
-
-
-char LCD_ADDR ;
-char lcd_total_rows ;
-char lcd_total_columns ;
-# 95 "i2c_Flex_LCD.c"
-int new_row_request=1, BACKLIGHT_LED=LCD_BACKLIGHT;
-
-void lcd_backlight_led(int bl)
+void
+__eecpymem(volatile unsigned char *to, __eeprom unsigned char * from, unsigned char size)
 {
-      if (bl)
-      {
-          BACKLIGHT_LED=LCD_BACKLIGHT;
-      }
-      else
-      {
-          BACKLIGHT_LED=0;
-      }
+ volatile unsigned char *cp = to;
+
+ while (EECON1bits.WR) continue;
+ EEADR = (unsigned char)from;
+ while(size--) {
+  while (EECON1bits.WR) continue;
+
+  EECON1 &= 0x7F;
+
+  EECON1bits.RD = 1;
+  *cp++ = EEDATA;
+  ++EEADR;
+ }
+# 36 "C:\\Program Files\\Microchip\\xc8\\v2.31\\pic\\sources\\c90\\pic\\__eeprom.c"
 }
 
-void i2c_send_nibble(char data, int type)
+void
+__memcpyee(__eeprom unsigned char * to, const unsigned char *from, unsigned char size)
 {
-   switch (type)
-   {
-      case 0 :
-      I2C_Master_Write(data<<4 | BACKLIGHT_LED);
-      __delay_cycles(1);
-      I2C_Master_Write(data<<4 | 0b00000100 | BACKLIGHT_LED );
-      _delay((unsigned long)((2)*(8000000/4000000.0)));
-      I2C_Master_Write(data<<4 & ~ 0b00000100 | BACKLIGHT_LED);
-      break;
+ const unsigned char *ptr =from;
 
-      case 1 :
-      I2C_Master_Write(data<<4 | 0b00000001 | BACKLIGHT_LED);
-      __delay_cycles(1);
-      I2C_Master_Write(data<<4 | 0b00000001 | 0b00000100 | BACKLIGHT_LED );
-      _delay((unsigned long)((2)*(8000000/4000000.0)));
-      I2C_Master_Write(data<<4 | 0b00000001 | BACKLIGHT_LED);
-      break;
-   }
-}
+ while (EECON1bits.WR) continue;
+ EEADR = (unsigned char)to - 1U;
 
-void lcd_send_byte(int data, int type)
-   {
-        I2C_Master_Start();
-        I2C_Master_Write(LCD_ADDR);
-        i2c_send_nibble(data >> 4 , type);
-        i2c_send_nibble(data & 0xf , type);
-        I2C_Master_Stop();
-   }
+ EECON1 &= 0x7F;
 
-void lcd_clear()
-{
-        lcd_send_byte(0x01,0);
-        _delay((unsigned long)((2)*(8000000/4000.0)));
-        new_row_request=1;
-}
-
-void lcd_init(int ADDR, char col, int row)
-{
-   char i;
-   char lcd_type=2;
-   char LCD_INIT_STRING[4] = {0x20 | (lcd_type << 2), 0xc, 1, 6};
-
-   LCD_ADDR =ADDR;
-   lcd_total_rows =row;
-   lcd_total_columns = col ;
-   INTCONbits.GIE = 0;
-   _delay((unsigned long)((50)*(8000000/4000.0)));
-
-   I2C_Master_Start();
-   I2C_Master_Write(LCD_ADDR);
-      i2c_send_nibble(0x00,0);
-      _delay((unsigned long)((15)*(8000000/4000.0)));
-
-   for (i=1;i<=3;++i)
-   {
-      i2c_send_nibble(0x03,0);
-      _delay((unsigned long)((5)*(8000000/4000.0)));
-   }
-      i2c_send_nibble(0x02,0);
-      _delay((unsigned long)((5)*(8000000/4000.0)));
-   I2C_Master_Stop();
-
-   for (i=0;i<=3;++i) {
-   lcd_send_byte(LCD_INIT_STRING[i],0);
-   _delay((unsigned long)((5)*(8000000/4000.0)));
-   }
-   lcd_clear();
+ while(size--) {
+  while (EECON1bits.WR) {
+   continue;
+  }
+  EEDATA = *ptr++;
+  ++EEADR;
+  STATUSbits.CARRY = 0;
+  if (INTCONbits.GIE) {
+   STATUSbits.CARRY = 1;
+  }
+  INTCONbits.GIE = 0;
+  EECON1bits.WREN = 1;
+  EECON2 = 0x55;
+  EECON2 = 0xAA;
+  EECON1bits.WR = 1;
+  EECON1bits.WREN = 0;
+  if (STATUSbits.CARRY) {
    INTCONbits.GIE = 1;
+  }
+ }
+# 101 "C:\\Program Files\\Microchip\\xc8\\v2.31\\pic\\sources\\c90\\pic\\__eeprom.c"
 }
 
-void lcd_gotoxy(int x, int y)
+unsigned char
+__eetoc(__eeprom void *addr)
 {
-int row,column,row_addr,lcd_address;
-static char data;
-
-   if (y>lcd_total_rows){
-       row = lcd_total_rows;
-   }
-       else{
-           row = y;
-       }
-
-   switch(row)
-   {
-      case 1: row_addr=0x00; break;
-      case 2: row_addr=0x40; break;
-      case 3: row_addr=0x14; break;
-      case 4: row_addr=0x54; break;
-      default: row_addr=0x00; break;
-   }
-
-   if (x>lcd_total_columns){
-       column=lcd_total_columns;
-   }
-       else{
-       column=x;
-       }
-   lcd_address=(row_addr+(column-1));
-   lcd_send_byte(0x80|lcd_address,0);
+ unsigned char data;
+ __eecpymem((unsigned char *) &data,addr,1);
+ return data;
 }
 
-
-void LCD_PUTC(const char in_data)
+unsigned int
+__eetoi(__eeprom void *addr)
 {
-  switch(in_data)
-   {
-     case '\f': lcd_clear();
-     break;
+ unsigned int data;
+ __eecpymem((unsigned char *) &data,addr,2);
+ return data;
+}
 
-     case '\n':
-     new_row_request++;
-     if (new_row_request>lcd_total_rows){
-         new_row_request=1;
-     }
-     lcd_gotoxy(1, new_row_request);
-     break;
+#pragma warning push
+#pragma warning disable 2040
+__uint24
+__eetom(__eeprom void *addr)
+{
+ __uint24 data;
+ __eecpymem((unsigned char *) &data,addr,3);
+ return data;
+}
+#pragma warning pop
 
-     case '\b': lcd_send_byte(0x10,0);
-     break;
+unsigned long
+__eetol(__eeprom void *addr)
+{
+ unsigned long data;
+ __eecpymem((unsigned char *) &data,addr,4);
+ return data;
+}
 
-     default: lcd_send_byte(in_data,1);
-     break;
+#pragma warning push
+#pragma warning disable 1516
+unsigned long long
+__eetoo(__eeprom void *addr)
+{
+ unsigned long long data;
+ __eecpymem((unsigned char *) &data,addr,8);
+ return data;
+}
+#pragma warning pop
 
-   }
+unsigned char
+__ctoee(__eeprom void *addr, unsigned char data)
+{
+ __memcpyee(addr,(unsigned char *) &data,1);
+ return data;
+}
+
+unsigned int
+__itoee(__eeprom void *addr, unsigned int data)
+{
+ __memcpyee(addr,(unsigned char *) &data,2);
+ return data;
+}
+
+#pragma warning push
+#pragma warning disable 2040
+__uint24
+__mtoee(__eeprom void *addr, __uint24 data)
+{
+ __memcpyee(addr,(unsigned char *) &data,3);
+ return data;
+}
+#pragma warning pop
+
+unsigned long
+__ltoee(__eeprom void *addr, unsigned long data)
+{
+ __memcpyee(addr,(unsigned char *) &data,4);
+ return data;
+}
+
+#pragma warning push
+#pragma warning disable 1516
+unsigned long long
+__otoee(__eeprom void *addr, unsigned long long data)
+{
+ __memcpyee(addr,(unsigned char *) &data,8);
+ return data;
+}
+#pragma warning pop
+
+float
+__eetoft(__eeprom void *addr)
+{
+ float data;
+ __eecpymem((unsigned char *) &data,addr,3);
+ return data;
+}
+
+double
+__eetofl(__eeprom void *addr)
+{
+ double data;
+ __eecpymem((unsigned char *) &data,addr,4);
+ return data;
+}
+
+float
+__fttoee(__eeprom void *addr, float data)
+{
+ __memcpyee(addr,(unsigned char *) &data,3);
+ return data;
+}
+
+double
+__fltoee(__eeprom void *addr, double data)
+{
+ __memcpyee(addr,(unsigned char *) &data,4);
+ return data;
 }
