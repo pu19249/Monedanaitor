@@ -40,43 +40,50 @@ uint8_t CONT;//variable para guardar el valor de adresh
 // contrario hay que colocarlos todas las funciones antes del main
 //*****************************************************************************
 void setup(void);
+void infrared(void);
 //*****************************************************************************
 // Código de Interrupción 
 //*****************************************************************************
-void __interrupt() isr(void){
-   if(PIR1bits.SSPIF == 1){ 
-
-        SSPCONbits.CKP = 0;
-       
-        if ((SSPCONbits.SSPOV) || (SSPCONbits.WCOL)){
-            C = SSPBUF;                 // Read the previous value to clear the buffer
-            SSPCONbits.SSPOV = 0;       // Clear the overflow flag
-            SSPCONbits.WCOL = 0;        // Clear the collision bit
-            SSPCONbits.CKP = 1;         // Enables SCL (Clock)
-        }
-
-        if(!SSPSTATbits.D_nA && !SSPSTATbits.R_nW) {
-            __delay_us(7);
-            C = SSPBUF;                 // Lectura del SSBUF para limpiar el buffer y la bandera BF
-            __delay_us(2);
-            PIR1bits.SSPIF = 0;         // Limpia bandera de interrupción recepción/transmisión SSP
-            SSPCONbits.CKP = 1;         // Habilita entrada de pulsos de reloj SCL
-            while(!SSPSTATbits.BF);     // Esperar a que la recepción se complete
-            CONT = SSPBUF;             // Guardar en el PORTD el valor del buffer de recepción
-            __delay_us(250);
-            
-        }else if(!SSPSTATbits.D_nA && SSPSTATbits.R_nW){
-            C = SSPBUF;
-            BF = 0;
-            SSPBUF = CONT;
-            SSPCONbits.CKP = 1;
-            __delay_us(250);
-            while(SSPSTATbits.BF);
-        }
-       
-        PIR1bits.SSPIF = 0;    
-    }
-}
+//void __interrupt() isr(void){
+//   if(PIR1bits.SSPIF == 1){ 
+//
+//        SSPCONbits.CKP = 0;
+//       
+//        if ((SSPCONbits.SSPOV) || (SSPCONbits.WCOL)){
+//            C = SSPBUF;                 // Read the previous value to clear the buffer
+//            SSPCONbits.SSPOV = 0;       // Clear the overflow flag
+//            SSPCONbits.WCOL = 0;        // Clear the collision bit
+//            SSPCONbits.CKP = 1;         // Enables SCL (Clock)
+//        }
+//
+//        if(!SSPSTATbits.D_nA && !SSPSTATbits.R_nW) {
+//            __delay_us(7);
+//            C = SSPBUF;                 // Lectura del SSBUF para limpiar el buffer y la bandera BF
+//            __delay_us(2);
+//            PIR1bits.SSPIF = 0;         // Limpia bandera de interrupción recepción/transmisión SSP
+//            SSPCONbits.CKP = 1;         // Habilita entrada de pulsos de reloj SCL
+//            while(!SSPSTATbits.BF);     // Esperar a que la recepción se complete
+//            CONT = SSPBUF;             // Guardar en el PORTD el valor del buffer de recepción
+//            __delay_us(250);
+//            
+//        }else if(!SSPSTATbits.D_nA && SSPSTATbits.R_nW){
+//            C = SSPBUF;
+//            BF = 0;
+//            SSPBUF = CONT;
+//            SSPCONbits.CKP = 1;
+//            __delay_us(250);
+//            while(SSPSTATbits.BF);
+//        }
+//       
+//        PIR1bits.SSPIF = 0;    
+//    }
+//   if(RBIF){
+//       if(RB0 == 0){
+//           infrared();
+//       }
+//       RBIF = 0;
+//   }
+//}
 //*****************************************************************************
 // Main
 //*****************************************************************************
@@ -86,30 +93,59 @@ void main(void) {
     // Loop infinito
     //*************************************************************************
     while(1){
-        PORTD ++; 
-        CONT = PORTD;
-        __delay_ms(750);
+//        PORTD ++; 
+//        CONT = PORTD;
+//        __delay_ms(750);
+        
+        infrared();
+        
     }
     return;
 }
 //*****************************************************************************
-// Función de Inicialización
+// Funciones
 //*****************************************************************************
+void infrared(void){
+    if(RA0 == 1){
+        RB7 = 1;
+        __delay_ms(500);
+        RB7 = 0;
+    }
+    else{
+        RB7 = 0;
+    }
+    
+   
+}
+
 void setup(void){
     ANSEL = 0;
     ANSELH = 0;
-    
+    TRISA0 = 1; //Entrada digital para el sensor infrarrojo
+//    TRISA1 = 0; //LED indicador que paso algo por el infrarrojo
+    TRISBbits.TRISB7 = 0;
     TRISD = 0;
+    
+    TRISB0 = 1; //Boton para probar paso de infrarrojo
+//    OPTION_REGbits.nRBPU = 0; //internal pull-ups are enabled
+//    WPUB = 0b00000001;
+//    IOCBbits.IOCB0 = 1;     //Boton de inc
     
     // configuracion del oscilador 
     OSCCONbits.IRCF2 = 1;
     OSCCONbits.IRCF1 = 1;
     OSCCONbits.IRCF0 = 1; //Se configura el oscilador a una frecuencia de 8MHz
     OSCCONbits.SCS = 1;
-    I2C_Slave_Init(0x50);  
+//    I2C_Slave_Init(0x50);  
     
     // configuracion de interrupciones
     INTCONbits.GIE = 1;
     
+    INTCONbits.RBIE = 1;
+    INTCONbits.RBIF = 0;    //limpiar bandera de interrupcion
+    INTCONbits.PEIE = 1;    //periferical interrupts
+    
     PORTD = 0x00;
+    PORTA = 0x00;
+    PORTB = 0x00;
 }

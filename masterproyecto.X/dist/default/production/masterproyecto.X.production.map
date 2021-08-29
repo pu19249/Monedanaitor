@@ -5,7 +5,7 @@ Linker command line:
 -W-3 --edf=C:\Program Files\Microchip\xc8\v2.31\pic\dat\en_msgs.txt -cn \
   -h+dist/default/production\masterproyecto.X.production.sym \
   --cmf=dist/default/production\masterproyecto.X.production.cmf -z -Q16F887 \
-  -oC:\Users\duart\AppData\Local\Temp\sjnc.2 --defsym=__MPLAB_BUILD=1 \
+  -oC:\Users\jpu20\AppData\Local\Temp\s7q0.2 --defsym=__MPLAB_BUILD=1 \
   -Mdist/default/production/masterproyecto.X.production.map -E1 \
   -ver=XC8 Compiler --acfsm=1493 -ASTACK=0110h-016Fh -pstack=STACK \
   -ACODE=00h-07FFhx4 -ASTRCODE=00h-01FFFh -ASTRING=00h-0FFhx32 \
@@ -18,7 +18,7 @@ Linker command line:
   -AEEDATA=00h-0FFh/02100h -peeprom_data=EEDATA -DEEDATA=2 -DCODE=2 \
   -DSTRCODE=2 -DSTRING=2 -DCONST=2 -DENTRY=2 \
   -preset_vec=00h,intentry,init,end_init -ppowerup=CODE -pcinit=CODE \
-  -pfunctab=ENTRY -k C:\Users\duart\AppData\Local\Temp\sjnc.o \
+  -pfunctab=ENTRY -k C:\Users\jpu20\AppData\Local\Temp\s7q0.o \
   dist/default/production\masterproyecto.X.production.o 
 
 Object code version is 3.11
@@ -28,7 +28,7 @@ Machine type is 16F887
 
 
                 Name                               Link     Load   Length Selector   Space Scale
-C:\Users\duart\AppData\Local\Temp\sjnc.o
+C:\Users\jpu20\AppData\Local\Temp\s7q0.o
                 end_init                              0        0        3        0       0
                 config                             2007     2007        2        0       4
 dist/default/production\masterproyecto.X.production.o

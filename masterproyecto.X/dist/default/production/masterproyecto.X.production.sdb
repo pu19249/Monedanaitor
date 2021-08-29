@@ -13,7 +13,7 @@
 [v ___eecpymem __eecpymem `(v  1 e 1 0 ]
 "39
 [v ___memcpyee __memcpyee `(v  1 e 1 0 ]
-"11 C:\Users\duart\OneDrive\Escritorio\masterproyecto.X\I2C.c
+"11 C:\Users\jpu20\Documents\GitHub\Monedanaitor\masterproyecto.X\I2C.c
 [v _I2C_Master_Init I2C_Master_Init `(v  1 e 1 0 ]
 "27
 [v _I2C_Master_Wait I2C_Master_Wait `(v  1 e 1 0 ]
@@ -25,7 +25,7 @@
 [v _I2C_Master_Write I2C_Master_Write `(v  1 e 1 0 ]
 "69
 [v _I2C_Master_Read I2C_Master_Read `(us  1 e 2 0 ]
-"52 C:\Users\duart\OneDrive\Escritorio\masterproyecto.X\MASTER_COLECTOR_MONEDAS.c
+"52 C:\Users\jpu20\Documents\GitHub\Monedanaitor\masterproyecto.X\MASTER_COLECTOR_MONEDAS.c
 [v _main main `(v  1 e 1 0 ]
 "84
 [v _setup setup `(v  1 e 1 0 ]
@@ -105,7 +105,7 @@
 [v _TRISC3 TRISC3 `VEb  1 e 0 @1083 ]
 "4460
 [v _TRISC4 TRISC4 `VEb  1 e 0 @1084 ]
-"38 C:\Users\duart\OneDrive\Escritorio\masterproyecto.X\MASTER_COLECTOR_MONEDAS.c
+"38 C:\Users\jpu20\Documents\GitHub\Monedanaitor\masterproyecto.X\MASTER_COLECTOR_MONEDAS.c
 [v _temp temp `ui  1 e 2 0 ]
 "39
 [v _CONT CONT `uc  1 e 1 0 ]
@@ -121,7 +121,7 @@
 {
 "99
 } 0
-"11 C:\Users\duart\OneDrive\Escritorio\masterproyecto.X\I2C.c
+"11 C:\Users\jpu20\Documents\GitHub\Monedanaitor\masterproyecto.X\I2C.c
 [v _I2C_Master_Init I2C_Master_Init `(v  1 e 1 0 ]
 {
 [v I2C_Master_Init@c c `DCul  1 p 4 0 ]
@@ -139,7 +139,7 @@
 [v ___lldiv@dividend dividend `ul  1 p 4 4 ]
 "30
 } 0
-"60 C:\Users\duart\OneDrive\Escritorio\masterproyecto.X\I2C.c
+"60 C:\Users\jpu20\Documents\GitHub\Monedanaitor\masterproyecto.X\I2C.c
 [v _I2C_Master_Write I2C_Master_Write `(v  1 e 1 0 ]
 {
 [v I2C_Master_Write@d d `ui  1 p 2 0 ]

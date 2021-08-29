@@ -2708,76 +2708,67 @@ uint8_t CONT;
 
 
 void setup(void);
-
-
-
-void __attribute__((picinterrupt(("")))) isr(void){
-   if(PIR1bits.SSPIF == 1){
-
-        SSPCONbits.CKP = 0;
-
-        if ((SSPCONbits.SSPOV) || (SSPCONbits.WCOL)){
-            C = SSPBUF;
-            SSPCONbits.SSPOV = 0;
-            SSPCONbits.WCOL = 0;
-            SSPCONbits.CKP = 1;
-        }
-
-        if(!SSPSTATbits.D_nA && !SSPSTATbits.R_nW) {
-            _delay((unsigned long)((7)*(8000000/4000000.0)));
-            C = SSPBUF;
-            _delay((unsigned long)((2)*(8000000/4000000.0)));
-            PIR1bits.SSPIF = 0;
-            SSPCONbits.CKP = 1;
-            while(!SSPSTATbits.BF);
-            CONT = SSPBUF;
-            _delay((unsigned long)((250)*(8000000/4000000.0)));
-
-        }else if(!SSPSTATbits.D_nA && SSPSTATbits.R_nW){
-            C = SSPBUF;
-            BF = 0;
-            SSPBUF = CONT;
-            SSPCONbits.CKP = 1;
-            _delay((unsigned long)((250)*(8000000/4000000.0)));
-            while(SSPSTATbits.BF);
-        }
-
-        PIR1bits.SSPIF = 0;
-    }
-}
-
-
-
+void infrared(void);
+# 90 "ESCLAVO1.c"
 void main(void) {
     setup();
 
 
 
     while(1){
-        PORTD ++;
-        CONT = PORTD;
-        _delay((unsigned long)((750)*(8000000/4000.0)));
+
+
+
+
+        infrared();
+
     }
     return;
 }
 
 
 
+void infrared(void){
+    if(RA0 == 1){
+        RB7 = 1;
+        _delay((unsigned long)((500)*(8000000/4000.0)));
+        RB7 = 0;
+    }
+    else{
+        RB7 = 0;
+    }
+
+
+}
+
 void setup(void){
     ANSEL = 0;
     ANSELH = 0;
+    TRISA0 = 1;
 
+    TRISBbits.TRISB7 = 0;
     TRISD = 0;
+
+    TRISB0 = 1;
+
+
+
 
 
     OSCCONbits.IRCF2 = 1;
     OSCCONbits.IRCF1 = 1;
     OSCCONbits.IRCF0 = 1;
     OSCCONbits.SCS = 1;
-    I2C_Slave_Init(0x50);
+
 
 
     INTCONbits.GIE = 1;
 
+    INTCONbits.RBIE = 1;
+    INTCONbits.RBIF = 0;
+    INTCONbits.PEIE = 1;
+
     PORTD = 0x00;
+    PORTA = 0x00;
+    PORTB = 0x00;
 }

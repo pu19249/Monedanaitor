@@ -11,10 +11,6 @@
 # All addresses and the length are given in unqualified hexadecimal
 # in delta units.  Any other numeric values are decimal.
 %PSECTS
-$C:\Users\duart\AppData\Local\Temp\squs.o
-reset_vec CODE 0 0 0 3 2
-end_init CODE 0 C C 3 2
-config CONFIG 4 2007 2007 2 2
 $dist/default/production\proyectoesclavo3.X.production.o
 cinit CODE 0 F F 5 2
 text1 CODE 0 BC BC 16 2
@@ -25,6 +21,10 @@ maintext CODE 0 82 82 20 2
 cstackCOMMON COMMON 1 70 70 7 1
 intentry CODE 0 4 4 8 2
 bssCOMMON COMMON 1 78 78 1 1
+config CONFIG 4 2007 2007 2 2
+$C:\Users\jpu20\AppData\Local\Temp\sah4.o
+reset_vec CODE 0 0 0 3 2
+end_init CODE 0 C C 3 2
 config CONFIG 4 2007 2007 2 2
 # %UNUSED Section
 # This section enumerates the unused ranges of each CLASS. Each entry
@@ -72,69 +72,69 @@ STRING D2-1FFF 2
 # All other numeric values are in decimal.
 %LINETAB
 $dist/default/production\proyectoesclavo3.X.production.o
-F cinit CODE >638:C:\Users\duart\AppData\Local\Temp\squs.s
-F cinit CODE >641:C:\Users\duart\AppData\Local\Temp\squs.s
-F cinit CODE >652:C:\Users\duart\AppData\Local\Temp\squs.s
-10 cinit CODE >658:C:\Users\duart\AppData\Local\Temp\squs.s
-10 cinit CODE >660:C:\Users\duart\AppData\Local\Temp\squs.s
-11 cinit CODE >661:C:\Users\duart\AppData\Local\Temp\squs.s
-4 intentry CODE >46:C:\Users\duart\OneDrive\Escritorio\proyectoesclavo3.X\ESCLAVO3.c
-14 text3 CODE >46:C:\Users\duart\OneDrive\Escritorio\proyectoesclavo3.X\ESCLAVO3.c
-14 text3 CODE >47:C:\Users\duart\OneDrive\Escritorio\proyectoesclavo3.X\ESCLAVO3.c
-1A text3 CODE >49:C:\Users\duart\OneDrive\Escritorio\proyectoesclavo3.X\ESCLAVO3.c
-1B text3 CODE >51:C:\Users\duart\OneDrive\Escritorio\proyectoesclavo3.X\ESCLAVO3.c
-23 text3 CODE >52:C:\Users\duart\OneDrive\Escritorio\proyectoesclavo3.X\ESCLAVO3.c
-27 text3 CODE >53:C:\Users\duart\OneDrive\Escritorio\proyectoesclavo3.X\ESCLAVO3.c
-28 text3 CODE >54:C:\Users\duart\OneDrive\Escritorio\proyectoesclavo3.X\ESCLAVO3.c
-29 text3 CODE >55:C:\Users\duart\OneDrive\Escritorio\proyectoesclavo3.X\ESCLAVO3.c
-2A text3 CODE >58:C:\Users\duart\OneDrive\Escritorio\proyectoesclavo3.X\ESCLAVO3.c
-34 text3 CODE >59:C:\Users\duart\OneDrive\Escritorio\proyectoesclavo3.X\ESCLAVO3.c
-39 text3 CODE >60:C:\Users\duart\OneDrive\Escritorio\proyectoesclavo3.X\ESCLAVO3.c
-3F text3 CODE >61:C:\Users\duart\OneDrive\Escritorio\proyectoesclavo3.X\ESCLAVO3.c
-41 text3 CODE >62:C:\Users\duart\OneDrive\Escritorio\proyectoesclavo3.X\ESCLAVO3.c
-44 text3 CODE >63:C:\Users\duart\OneDrive\Escritorio\proyectoesclavo3.X\ESCLAVO3.c
-45 text3 CODE >64:C:\Users\duart\OneDrive\Escritorio\proyectoesclavo3.X\ESCLAVO3.c
-4B text3 CODE >65:C:\Users\duart\OneDrive\Escritorio\proyectoesclavo3.X\ESCLAVO3.c
-51 text3 CODE >66:C:\Users\duart\OneDrive\Escritorio\proyectoesclavo3.X\ESCLAVO3.c
-56 text3 CODE >68:C:\Users\duart\OneDrive\Escritorio\proyectoesclavo3.X\ESCLAVO3.c
-5F text3 CODE >69:C:\Users\duart\OneDrive\Escritorio\proyectoesclavo3.X\ESCLAVO3.c
-65 text3 CODE >70:C:\Users\duart\OneDrive\Escritorio\proyectoesclavo3.X\ESCLAVO3.c
-68 text3 CODE >71:C:\Users\duart\OneDrive\Escritorio\proyectoesclavo3.X\ESCLAVO3.c
-6C text3 CODE >72:C:\Users\duart\OneDrive\Escritorio\proyectoesclavo3.X\ESCLAVO3.c
-6D text3 CODE >73:C:\Users\duart\OneDrive\Escritorio\proyectoesclavo3.X\ESCLAVO3.c
-72 text3 CODE >74:C:\Users\duart\OneDrive\Escritorio\proyectoesclavo3.X\ESCLAVO3.c
-78 text3 CODE >75:C:\Users\duart\OneDrive\Escritorio\proyectoesclavo3.X\ESCLAVO3.c
-78 text3 CODE >77:C:\Users\duart\OneDrive\Escritorio\proyectoesclavo3.X\ESCLAVO3.c
-7B text3 CODE >79:C:\Users\duart\OneDrive\Escritorio\proyectoesclavo3.X\ESCLAVO3.c
-A2 text2 CODE >88:C:\Users\duart\OneDrive\Escritorio\proyectoesclavo3.X\I2C.c
-A3 text2 CODE >90:C:\Users\duart\OneDrive\Escritorio\proyectoesclavo3.X\I2C.c
-A7 text2 CODE >91:C:\Users\duart\OneDrive\Escritorio\proyectoesclavo3.X\I2C.c
-AB text2 CODE >92:C:\Users\duart\OneDrive\Escritorio\proyectoesclavo3.X\I2C.c
-AF text2 CODE >93:C:\Users\duart\OneDrive\Escritorio\proyectoesclavo3.X\I2C.c
-B1 text2 CODE >94:C:\Users\duart\OneDrive\Escritorio\proyectoesclavo3.X\I2C.c
-B2 text2 CODE >95:C:\Users\duart\OneDrive\Escritorio\proyectoesclavo3.X\I2C.c
-B3 text2 CODE >96:C:\Users\duart\OneDrive\Escritorio\proyectoesclavo3.X\I2C.c
-B4 text2 CODE >97:C:\Users\duart\OneDrive\Escritorio\proyectoesclavo3.X\I2C.c
-B5 text2 CODE >98:C:\Users\duart\OneDrive\Escritorio\proyectoesclavo3.X\I2C.c
-B8 text2 CODE >99:C:\Users\duart\OneDrive\Escritorio\proyectoesclavo3.X\I2C.c
-BB text2 CODE >100:C:\Users\duart\OneDrive\Escritorio\proyectoesclavo3.X\I2C.c
-BC text1 CODE >98:C:\Users\duart\OneDrive\Escritorio\proyectoesclavo3.X\ESCLAVO3.c
-BC text1 CODE >99:C:\Users\duart\OneDrive\Escritorio\proyectoesclavo3.X\ESCLAVO3.c
-BF text1 CODE >100:C:\Users\duart\OneDrive\Escritorio\proyectoesclavo3.X\ESCLAVO3.c
-C0 text1 CODE >102:C:\Users\duart\OneDrive\Escritorio\proyectoesclavo3.X\ESCLAVO3.c
-C3 text1 CODE >105:C:\Users\duart\OneDrive\Escritorio\proyectoesclavo3.X\ESCLAVO3.c
-C4 text1 CODE >106:C:\Users\duart\OneDrive\Escritorio\proyectoesclavo3.X\ESCLAVO3.c
-C5 text1 CODE >107:C:\Users\duart\OneDrive\Escritorio\proyectoesclavo3.X\ESCLAVO3.c
-C6 text1 CODE >108:C:\Users\duart\OneDrive\Escritorio\proyectoesclavo3.X\ESCLAVO3.c
-C7 text1 CODE >109:C:\Users\duart\OneDrive\Escritorio\proyectoesclavo3.X\ESCLAVO3.c
-CD text1 CODE >112:C:\Users\duart\OneDrive\Escritorio\proyectoesclavo3.X\ESCLAVO3.c
-CE text1 CODE >114:C:\Users\duart\OneDrive\Escritorio\proyectoesclavo3.X\ESCLAVO3.c
-D1 text1 CODE >115:C:\Users\duart\OneDrive\Escritorio\proyectoesclavo3.X\ESCLAVO3.c
-82 maintext CODE >83:C:\Users\duart\OneDrive\Escritorio\proyectoesclavo3.X\ESCLAVO3.c
-82 maintext CODE >84:C:\Users\duart\OneDrive\Escritorio\proyectoesclavo3.X\ESCLAVO3.c
-87 maintext CODE >89:C:\Users\duart\OneDrive\Escritorio\proyectoesclavo3.X\ESCLAVO3.c
-8D maintext CODE >90:C:\Users\duart\OneDrive\Escritorio\proyectoesclavo3.X\ESCLAVO3.c
-91 maintext CODE >91:C:\Users\duart\OneDrive\Escritorio\proyectoesclavo3.X\ESCLAVO3.c
+F cinit CODE >638:C:\Users\jpu20\AppData\Local\Temp\sah4.s
+F cinit CODE >641:C:\Users\jpu20\AppData\Local\Temp\sah4.s
+F cinit CODE >652:C:\Users\jpu20\AppData\Local\Temp\sah4.s
+10 cinit CODE >658:C:\Users\jpu20\AppData\Local\Temp\sah4.s
+10 cinit CODE >660:C:\Users\jpu20\AppData\Local\Temp\sah4.s
+11 cinit CODE >661:C:\Users\jpu20\AppData\Local\Temp\sah4.s
+4 intentry CODE >46:C:\Users\jpu20\Documents\GitHub\Monedanaitor\proyectoesclavo3.X\ESCLAVO3.c
+14 text3 CODE >46:C:\Users\jpu20\Documents\GitHub\Monedanaitor\proyectoesclavo3.X\ESCLAVO3.c
+14 text3 CODE >47:C:\Users\jpu20\Documents\GitHub\Monedanaitor\proyectoesclavo3.X\ESCLAVO3.c
+1A text3 CODE >49:C:\Users\jpu20\Documents\GitHub\Monedanaitor\proyectoesclavo3.X\ESCLAVO3.c
+1B text3 CODE >51:C:\Users\jpu20\Documents\GitHub\Monedanaitor\proyectoesclavo3.X\ESCLAVO3.c
+23 text3 CODE >52:C:\Users\jpu20\Documents\GitHub\Monedanaitor\proyectoesclavo3.X\ESCLAVO3.c
+27 text3 CODE >53:C:\Users\jpu20\Documents\GitHub\Monedanaitor\proyectoesclavo3.X\ESCLAVO3.c
+28 text3 CODE >54:C:\Users\jpu20\Documents\GitHub\Monedanaitor\proyectoesclavo3.X\ESCLAVO3.c
+29 text3 CODE >55:C:\Users\jpu20\Documents\GitHub\Monedanaitor\proyectoesclavo3.X\ESCLAVO3.c
+2A text3 CODE >58:C:\Users\jpu20\Documents\GitHub\Monedanaitor\proyectoesclavo3.X\ESCLAVO3.c
+34 text3 CODE >59:C:\Users\jpu20\Documents\GitHub\Monedanaitor\proyectoesclavo3.X\ESCLAVO3.c
+39 text3 CODE >60:C:\Users\jpu20\Documents\GitHub\Monedanaitor\proyectoesclavo3.X\ESCLAVO3.c
+3F text3 CODE >61:C:\Users\jpu20\Documents\GitHub\Monedanaitor\proyectoesclavo3.X\ESCLAVO3.c
+41 text3 CODE >62:C:\Users\jpu20\Documents\GitHub\Monedanaitor\proyectoesclavo3.X\ESCLAVO3.c
+44 text3 CODE >63:C:\Users\jpu20\Documents\GitHub\Monedanaitor\proyectoesclavo3.X\ESCLAVO3.c
+45 text3 CODE >64:C:\Users\jpu20\Documents\GitHub\Monedanaitor\proyectoesclavo3.X\ESCLAVO3.c
+4B text3 CODE >65:C:\Users\jpu20\Documents\GitHub\Monedanaitor\proyectoesclavo3.X\ESCLAVO3.c
+51 text3 CODE >66:C:\Users\jpu20\Documents\GitHub\Monedanaitor\proyectoesclavo3.X\ESCLAVO3.c
+56 text3 CODE >68:C:\Users\jpu20\Documents\GitHub\Monedanaitor\proyectoesclavo3.X\ESCLAVO3.c
+5F text3 CODE >69:C:\Users\jpu20\Documents\GitHub\Monedanaitor\proyectoesclavo3.X\ESCLAVO3.c
+65 text3 CODE >70:C:\Users\jpu20\Documents\GitHub\Monedanaitor\proyectoesclavo3.X\ESCLAVO3.c
+68 text3 CODE >71:C:\Users\jpu20\Documents\GitHub\Monedanaitor\proyectoesclavo3.X\ESCLAVO3.c
+6C text3 CODE >72:C:\Users\jpu20\Documents\GitHub\Monedanaitor\proyectoesclavo3.X\ESCLAVO3.c
+6D text3 CODE >73:C:\Users\jpu20\Documents\GitHub\Monedanaitor\proyectoesclavo3.X\ESCLAVO3.c
+72 text3 CODE >74:C:\Users\jpu20\Documents\GitHub\Monedanaitor\proyectoesclavo3.X\ESCLAVO3.c
+78 text3 CODE >75:C:\Users\jpu20\Documents\GitHub\Monedanaitor\proyectoesclavo3.X\ESCLAVO3.c
+78 text3 CODE >77:C:\Users\jpu20\Documents\GitHub\Monedanaitor\proyectoesclavo3.X\ESCLAVO3.c
+7B text3 CODE >79:C:\Users\jpu20\Documents\GitHub\Monedanaitor\proyectoesclavo3.X\ESCLAVO3.c
+A2 text2 CODE >88:C:\Users\jpu20\Documents\GitHub\Monedanaitor\proyectoesclavo3.X\I2C.c
+A3 text2 CODE >90:C:\Users\jpu20\Documents\GitHub\Monedanaitor\proyectoesclavo3.X\I2C.c
+A7 text2 CODE >91:C:\Users\jpu20\Documents\GitHub\Monedanaitor\proyectoesclavo3.X\I2C.c
+AB text2 CODE >92:C:\Users\jpu20\Documents\GitHub\Monedanaitor\proyectoesclavo3.X\I2C.c
+AF text2 CODE >93:C:\Users\jpu20\Documents\GitHub\Monedanaitor\proyectoesclavo3.X\I2C.c
+B1 text2 CODE >94:C:\Users\jpu20\Documents\GitHub\Monedanaitor\proyectoesclavo3.X\I2C.c
+B2 text2 CODE >95:C:\Users\jpu20\Documents\GitHub\Monedanaitor\proyectoesclavo3.X\I2C.c
+B3 text2 CODE >96:C:\Users\jpu20\Documents\GitHub\Monedanaitor\proyectoesclavo3.X\I2C.c
+B4 text2 CODE >97:C:\Users\jpu20\Documents\GitHub\Monedanaitor\proyectoesclavo3.X\I2C.c
+B5 text2 CODE >98:C:\Users\jpu20\Documents\GitHub\Monedanaitor\proyectoesclavo3.X\I2C.c
+B8 text2 CODE >99:C:\Users\jpu20\Documents\GitHub\Monedanaitor\proyectoesclavo3.X\I2C.c
+BB text2 CODE >100:C:\Users\jpu20\Documents\GitHub\Monedanaitor\proyectoesclavo3.X\I2C.c
+BC text1 CODE >98:C:\Users\jpu20\Documents\GitHub\Monedanaitor\proyectoesclavo3.X\ESCLAVO3.c
+BC text1 CODE >99:C:\Users\jpu20\Documents\GitHub\Monedanaitor\proyectoesclavo3.X\ESCLAVO3.c
+BF text1 CODE >100:C:\Users\jpu20\Documents\GitHub\Monedanaitor\proyectoesclavo3.X\ESCLAVO3.c
+C0 text1 CODE >102:C:\Users\jpu20\Documents\GitHub\Monedanaitor\proyectoesclavo3.X\ESCLAVO3.c
+C3 text1 CODE >105:C:\Users\jpu20\Documents\GitHub\Monedanaitor\proyectoesclavo3.X\ESCLAVO3.c
+C4 text1 CODE >106:C:\Users\jpu20\Documents\GitHub\Monedanaitor\proyectoesclavo3.X\ESCLAVO3.c
+C5 text1 CODE >107:C:\Users\jpu20\Documents\GitHub\Monedanaitor\proyectoesclavo3.X\ESCLAVO3.c
+C6 text1 CODE >108:C:\Users\jpu20\Documents\GitHub\Monedanaitor\proyectoesclavo3.X\ESCLAVO3.c
+C7 text1 CODE >109:C:\Users\jpu20\Documents\GitHub\Monedanaitor\proyectoesclavo3.X\ESCLAVO3.c
+CD text1 CODE >112:C:\Users\jpu20\Documents\GitHub\Monedanaitor\proyectoesclavo3.X\ESCLAVO3.c
+CE text1 CODE >114:C:\Users\jpu20\Documents\GitHub\Monedanaitor\proyectoesclavo3.X\ESCLAVO3.c
+D1 text1 CODE >115:C:\Users\jpu20\Documents\GitHub\Monedanaitor\proyectoesclavo3.X\ESCLAVO3.c
+82 maintext CODE >83:C:\Users\jpu20\Documents\GitHub\Monedanaitor\proyectoesclavo3.X\ESCLAVO3.c
+82 maintext CODE >84:C:\Users\jpu20\Documents\GitHub\Monedanaitor\proyectoesclavo3.X\ESCLAVO3.c
+87 maintext CODE >89:C:\Users\jpu20\Documents\GitHub\Monedanaitor\proyectoesclavo3.X\ESCLAVO3.c
+8D maintext CODE >90:C:\Users\jpu20\Documents\GitHub\Monedanaitor\proyectoesclavo3.X\ESCLAVO3.c
+91 maintext CODE >91:C:\Users\jpu20\Documents\GitHub\Monedanaitor\proyectoesclavo3.X\ESCLAVO3.c
 # %SYMTAB Section
 # An enumeration of all symbols in the program.
 # The beginning of the section is indicated by %SYMTAB.
@@ -159,20 +159,20 @@ _BF 4A0 0 ABS 0 - dist/default/production\proyectoesclavo3.X.production.o
 __Hstrings 0 0 ABS 0 strings -
 _CONT 77 0 COMMON 1 nvCOMMON dist/default/production\proyectoesclavo3.X.production.o
 _PEIE 5E 0 ABS 0 - dist/default/production\proyectoesclavo3.X.production.o
-___sp 0 0 STACK 2 stack C:\Users\duart\AppData\Local\Temp\squs.o
+___sp 0 0 STACK 2 stack C:\Users\jpu20\AppData\Local\Temp\sah4.o
 _main 104 0 CODE 0 maintext dist/default/production\proyectoesclavo3.X.production.o
 btemp 7E 0 ABS 0 - dist/default/production\proyectoesclavo3.X.production.o
-start 18 0 CODE 0 init C:\Users\duart\AppData\Local\Temp\squs.o
+start 18 0 CODE 0 init C:\Users\jpu20\AppData\Local\Temp\sah4.o
 __size_of_main 0 0 ABS 0 - dist/default/production\proyectoesclavo3.X.production.o
 __HbssCOMMON 0 0 ABS 0 bssCOMMON -
 __Hpowerup 0 0 CODE 0 powerup -
 __LnvCOMMON 0 0 ABS 0 nvCOMMON -
-intlevel0 0 0 ENTRY 0 functab C:\Users\duart\AppData\Local\Temp\squs.o
-intlevel1 0 0 ENTRY 0 functab C:\Users\duart\AppData\Local\Temp\squs.o
-intlevel2 0 0 ENTRY 0 functab C:\Users\duart\AppData\Local\Temp\squs.o
-intlevel3 0 0 ENTRY 0 functab C:\Users\duart\AppData\Local\Temp\squs.o
-intlevel4 0 0 ENTRY 0 functab C:\Users\duart\AppData\Local\Temp\squs.o
-intlevel5 0 0 ENTRY 0 functab C:\Users\duart\AppData\Local\Temp\squs.o
+intlevel0 0 0 ENTRY 0 functab C:\Users\jpu20\AppData\Local\Temp\sah4.o
+intlevel1 0 0 ENTRY 0 functab C:\Users\jpu20\AppData\Local\Temp\sah4.o
+intlevel2 0 0 ENTRY 0 functab C:\Users\jpu20\AppData\Local\Temp\sah4.o
+intlevel3 0 0 ENTRY 0 functab C:\Users\jpu20\AppData\Local\Temp\sah4.o
+intlevel4 0 0 ENTRY 0 functab C:\Users\jpu20\AppData\Local\Temp\sah4.o
+intlevel5 0 0 ENTRY 0 functab C:\Users\jpu20\AppData\Local\Temp\sah4.o
 __LbssCOMMON 0 0 ABS 0 bssCOMMON -
 _OSCCONbits 8F 0 ABS 0 - dist/default/production\proyectoesclavo3.X.production.o
 wtemp0 7E 0 ABS 0 - dist/default/production\proyectoesclavo3.X.production.o
@@ -181,8 +181,8 @@ __Hclrtext 0 0 ABS 0 clrtext -
 _ANSELH 189 0 ABS 0 - dist/default/production\proyectoesclavo3.X.production.o
 _SSPCONbits 14 0 ABS 0 - dist/default/production\proyectoesclavo3.X.production.o
 __Lmaintext 0 0 ABS 0 maintext -
-___stackhi 0 0 ABS 0 - C:\Users\duart\AppData\Local\Temp\squs.o
-___stacklo 0 0 ABS 0 - C:\Users\duart\AppData\Local\Temp\squs.o
+___stackhi 0 0 ABS 0 - C:\Users\jpu20\AppData\Local\Temp\sah4.o
+___stacklo 0 0 ABS 0 - C:\Users\jpu20\AppData\Local\Temp\sah4.o
 _I2C_Slave_Init 144 0 CODE 0 text2 dist/default/production\proyectoesclavo3.X.production.o
 __size_of_setup 0 0 ABS 0 - dist/default/production\proyectoesclavo3.X.production.o
 __HnvCOMMON 0 0 ABS 0 nvCOMMON -
@@ -193,7 +193,7 @@ _SSPBUF 13 0 ABS 0 - dist/default/production\proyectoesclavo3.X.production.o
 _SSPCON 14 0 ABS 0 - dist/default/production\proyectoesclavo3.X.production.o
 _TRISC3 43B 0 ABS 0 - dist/default/production\proyectoesclavo3.X.production.o
 _TRISC4 43C 0 ABS 0 - dist/default/production\proyectoesclavo3.X.production.o
-___int_sp 0 0 STACK 2 stack C:\Users\duart\AppData\Local\Temp\squs.o
+___int_sp 0 0 STACK 2 stack C:\Users\jpu20\AppData\Local\Temp\sah4.o
 __Hbank0 0 0 ABS 0 bank0 -
 __Hbank1 0 0 ABS 0 bank1 -
 __Hbank2 0 0 ABS 0 bank2 -
@@ -238,7 +238,7 @@ __pnvCOMMON 77 0 COMMON 1 nvCOMMON dist/default/production\proyectoesclavo3.X.pr
 saved_w 7E 0 ABS 0 - dist/default/production\proyectoesclavo3.X.production.o
 __end_of_isr 104 0 CODE 0 text3 dist/default/production\proyectoesclavo3.X.production.o
 __Lintentry 8 0 CODE 0 intentry -
-reset_vec 0 0 CODE 0 reset_vec C:\Users\duart\AppData\Local\Temp\squs.o
+reset_vec 0 0 CODE 0 reset_vec C:\Users\jpu20\AppData\Local\Temp\sah4.o
 __pmaintext 104 0 CODE 0 maintext dist/default/production\proyectoesclavo3.X.production.o
 __Lcommon 0 0 ABS 0 common -
 __Lconfig 0 0 CONFIG 4 config -

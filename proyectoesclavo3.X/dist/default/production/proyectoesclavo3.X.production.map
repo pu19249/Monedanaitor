@@ -5,7 +5,7 @@ Linker command line:
 -W-3 --edf=C:\Program Files\Microchip\xc8\v2.31\pic\dat\en_msgs.txt -cn \
   -h+dist/default/production\proyectoesclavo3.X.production.sym \
   --cmf=dist/default/production\proyectoesclavo3.X.production.cmf -z \
-  -Q16F887 -oC:\Users\duart\AppData\Local\Temp\squs.2 \
+  -Q16F887 -oC:\Users\jpu20\AppData\Local\Temp\sah4.2 \
   --defsym=__MPLAB_BUILD=1 \
   -Mdist/default/production/proyectoesclavo3.X.production.map -E1 \
   -ver=XC8 Compiler --acfsm=1493 -ASTACK=0110h-016Fh -pstack=STACK \
@@ -19,7 +19,7 @@ Linker command line:
   -AEEDATA=00h-0FFh/02100h -peeprom_data=EEDATA -DEEDATA=2 -DCODE=2 \
   -DSTRCODE=2 -DSTRING=2 -DCONST=2 -DENTRY=2 \
   -preset_vec=00h,intentry=04h,init,end_init -ppowerup=CODE -pcinit=CODE \
-  -pfunctab=ENTRY -k C:\Users\duart\AppData\Local\Temp\squs.o \
+  -pfunctab=ENTRY -k C:\Users\jpu20\AppData\Local\Temp\sah4.o \
   dist/default/production\proyectoesclavo3.X.production.o 
 
 Object code version is 3.11
@@ -29,7 +29,7 @@ Machine type is 16F887
 
 
                 Name                               Link     Load   Length Selector   Space Scale
-C:\Users\duart\AppData\Local\Temp\squs.o
+C:\Users\jpu20\AppData\Local\Temp\sah4.o
                 end_init                              C        C        3        8       0
                 reset_vec                             0        0        3        0       0
                 config                             2007     2007        2        0       4
