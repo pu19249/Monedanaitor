@@ -47,12 +47,17 @@
 //-----------------------------------------------------------------------------
 //                            Variables 
 //-----------------------------------------------------------------------------
-
+char counter;
+float conv0 = 0;
+char converted;
+char converted02[10];
 //-----------------------------------------------------------------------------
 //                            Prototipos 
 //-----------------------------------------------------------------------------
 
 void setup(void);
+void infrared(void);
+void ADC_convert(char *data,float a, int place);
 
 //-----------------------------------------------------------------------------
 //                            Interrupciones
@@ -73,21 +78,22 @@ void main(void) {
     LCD_Init(0x4E);    // Initialize LCD module with I2C address = 0x4E
  
     LCD_Set_Cursor(1, 1);
-    LCD_Write_String("  Monedanaitor");
+    LCD_Write_String("     Monedanaitor");
     LCD_Set_Cursor(2, 1);  
-    LCD_Write_String("   Digital 2");
+    LCD_Write_String("   Monedas = Q0.00");
+    LCD_Set_Cursor(3, 1);  
+    LCD_Write_String(" 1.00  0.5   0.25");
+    LCD_Set_Cursor(4, 5); 
+    LCD_Write_String("  Quetzales");
     __delay_ms(2500);
     
     while(1)    // Equivale al loop
     {
-    LCD_SR();
-    __delay_ms(350);
-    LCD_SR();
-    __delay_ms(350);
-    LCD_SL();
-    __delay_ms(350);
-    LCD_SL();
-    __delay_ms(350);
+    LCD_Set_Cursor(4, 1);  
+    LCD_Write_String(converted02);
+    infrared();
+    
+    ADC_convert(converted02, counter, 2);
     }
     return;
 }
@@ -102,27 +108,105 @@ void setup(void){
     ANSELH = 0;
     
     // Puerto A
+    TRISA0 = 1;
    
     // Puerto B
+    TRISB0 = 1;
+    TRISBbits.TRISB7 = 0;
     
     // Puerto C
 
     // Puerto D
+    TRISD = 0;
         
     // Puerto E
   
-    //limpiar puertos
-    PORTA = 0x00;
-    PORTB = 0x00;
-    PORTC = 0x00;
-    PORTD = 0x00;
-    PORTE = 0x00;
+    
     
     //Configurar reloj interno
     OSCCONbits.IRCF0 = 1;        //reloj interno de 8mhz
     OSCCONbits.IRCF1 = 1;
     OSCCONbits.IRCF2 = 1;
     OSCCONbits.SCS = 1;  //internal oscillator is used for system clock
+    
+    //limpiar puertos
+    PORTA = 0x00;
+    PORTB = 0x00;
+    PORTC = 0x00;
+    PORTD = 0x00;
+    PORTE = 0x00;
 }
 
+void infrared(void){
+    if(RA0 == 1){
+        RB7 = 1;
+        counter = counter +1;
+        __delay_ms(500);
+        RB7 = 0;
+    }
+    else{
+        RB7 = 0;
+        
+    }
+}
 
+/*******************************************************************************
+ * Funciones para conversión del ADC 
+ ******************************************************************************/
+void ADC_convert(char *data,float a, int place) 
+{
+     int temp=a;
+     float x=0.0;
+     int digits=0;
+     int i=0,mu=1;
+     int j=0;
+     if(a<0)
+     {
+            a=a*-1;
+            data[i]='-';
+            i++;
+      }
+     //exponent component
+     while(temp!=0)
+     {
+         temp=temp/10;
+         digits++;          
+     }
+     while(digits!=0)
+     {
+         if(digits==1)mu=1;
+         else  for(j=2;j<=digits;j++)mu=mu*10;
+         
+         x=a/mu;
+         a=a-((int)x*mu);
+         data[i]=0x30+((int)x);
+         i++;
+         digits--;
+         mu=1;
+     }
+     //mantissa component
+     data[i]='.';
+     i++;
+     digits=0;
+     for(j=1;j<=place;j++)mu=mu*10;
+     x=(a-(int)a)*mu; //shift places
+     a=x;
+     temp=a;
+     x=0.0;
+     mu=1;
+     digits=place;
+     while(digits!=0)
+     {
+         if(digits==1)mu=1;
+         else  for(j=2;j<=digits;j++)mu=mu*10;
+         
+         x=a/mu;
+         a=a-((int)x*mu);
+         data[i]=0x30+((int)x);
+         i++;
+         digits--;
+         mu=1;
+     }   
+     
+    data[i]='\n';
+}

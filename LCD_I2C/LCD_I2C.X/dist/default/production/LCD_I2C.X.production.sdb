@@ -3,11 +3,27 @@
 [d edition pro ]
 [d chip 16F887 ]
 [d frameptr 0 ]
-"10 C:\Program Files\Microchip\xc8\v2.31\pic\sources\c90\common\sprcadd.c
+"5 D:\Program File\MicroChip\xc8\v2.32\pic\sources\c90\common\awdiv.c
+[v ___awdiv __awdiv `(i  1 e 2 0 ]
+"4 D:\Program File\MicroChip\xc8\v2.32\pic\sources\c90\common\flge.c
+[v ___flge __flge `(b  1 e 0 0 ]
+"43 D:\Program File\MicroChip\xc8\v2.32\pic\sources\c90\common\fltol.c
+[v ___fltol __fltol `(l  1 e 4 0 ]
+"10 D:\Program File\MicroChip\xc8\v2.32\pic\sources\c90\common\sprcadd.c
 [v ___fladd __fladd `(d  1 e 4 0 ]
-"4 C:\Program Files\Microchip\xc8\v2.31\pic\sources\c90\common\Umul8_16.c
+"242
+[v ___flsub __flsub `(d  1 e 4 0 ]
+"8 D:\Program File\MicroChip\xc8\v2.32\pic\sources\c90\common\sprcdiv.c
+[v ___fldiv __fldiv `(d  1 e 4 0 ]
+"8 D:\Program File\MicroChip\xc8\v2.32\pic\sources\c90\common\sprcmul.c
+[v ___flmul __flmul `(d  1 e 4 0 ]
+"15 D:\Program File\MicroChip\xc8\v2.32\pic\sources\c90\common\Umul16.c
+[v ___wmul __wmul `(ui  1 e 2 0 ]
+"4 D:\Program File\MicroChip\xc8\v2.32\pic\sources\c90\common\Umul8_16.c
 [v __Umul8_16 _Umul8_16 `(ui  1 e 2 0 ]
-"6 C:\Program Files\Microchip\xc8\v2.31\pic\sources\c90\pic\__eeprom.c
+"10 D:\Program File\MicroChip\xc8\v2.32\pic\sources\c90\common\xxtofl.c
+[v ___xxtofl __xxtofl `(d  1 e 4 0 ]
+"6 D:\Program File\MicroChip\xc8\v2.32\pic\sources\c90\pic\__eeprom.c
 [v ___eecpymem __eecpymem `(v  1 e 1 0 ]
 "39
 [v ___memcpyee __memcpyee `(v  1 e 1 0 ]
@@ -35,17 +51,17 @@
 [v _LCD_Write_String LCD_Write_String `(v  1 e 1 0 ]
 "146
 [v _LCD_Set_Cursor LCD_Set_Cursor `(v  1 e 1 0 ]
-"177
-[v _LCD_SL LCD_SL `(v  1 e 1 0 ]
-"183
-[v _LCD_SR LCD_SR `(v  1 e 1 0 ]
-"61 D:\University\2021\Semestre 2\Digital 2\Monedanaitor\LCD_I2C\LCD_I2C.X\Main.c
+"65 D:\University\2021\Semestre 2\Digital 2\Monedanaitor\LCD_I2C\LCD_I2C.X\Main.c
 [v _isr isr `II(v  1 e 1 0 ]
-"69
+"73
 [v _main main `(v  1 e 1 0 ]
-"100
+"105
 [v _setup setup `(v  1 e 1 0 ]
-"166 D:/Program File/MPLabX/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h
+"140
+[v _infrared infrared `(v  1 e 1 0 ]
+"156
+[v _ADC_convert ADC_convert `(v  1 e 1 0 ]
+"166 D:/Program File/MicroChip/MPLABX/v5.50/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h
 [v _PORTA PORTA `VEuc  1 e 1 @5 ]
 "228
 [v _PORTB PORTB `VEuc  1 e 1 @6 ]
@@ -59,20 +75,34 @@
 [v _SSPBUF SSPBUF `VEuc  1 e 1 @19 ]
 "850
 [v _SSPCON SSPCON `VEuc  1 e 1 @20 ]
-[s S67 . 1 `uc 1 SCS 1 0 :1:0 
+[s S67 . 1 `uc 1 TRISB0 1 0 :1:0 
+`uc 1 TRISB1 1 0 :1:1 
+`uc 1 TRISB2 1 0 :1:2 
+`uc 1 TRISB3 1 0 :1:3 
+`uc 1 TRISB4 1 0 :1:4 
+`uc 1 TRISB5 1 0 :1:5 
+`uc 1 TRISB6 1 0 :1:6 
+`uc 1 TRISB7 1 0 :1:7 
+]
+"1495
+[u S76 . 1 `S67 1 . 1 0 ]
+[v _TRISBbits TRISBbits `VES76  1 e 1 @134 ]
+"1602
+[v _TRISD TRISD `VEuc  1 e 1 @136 ]
+[s S89 . 1 `uc 1 SCS 1 0 :1:0 
 `uc 1 LTS 1 0 :1:1 
 `uc 1 HTS 1 0 :1:2 
 `uc 1 OSTS 1 0 :1:3 
 `uc 1 IRCF 1 0 :3:4 
 ]
 "1882
-[s S73 . 1 `uc 1 . 1 0 :4:0 
+[s S95 . 1 `uc 1 . 1 0 :4:0 
 `uc 1 IRCF0 1 0 :1:4 
 `uc 1 IRCF1 1 0 :1:5 
 `uc 1 IRCF2 1 0 :1:6 
 ]
-[u S78 . 1 `S67 1 . 1 0 `S73 1 . 1 0 ]
-[v _OSCCONbits OSCCONbits `VES78  1 e 1 @143 ]
+[u S100 . 1 `S89 1 . 1 0 `S95 1 . 1 0 ]
+[v _OSCCONbits OSCCONbits `VES100  1 e 1 @143 ]
 "1979
 [v _SSPCON2 SSPCON2 `VEuc  1 e 1 @145 ]
 "2048
@@ -91,6 +121,10 @@
 [v _ACKSTAT ACKSTAT `VEb  1 e 0 @1166 ]
 "4043
 [v _PEN PEN `VEb  1 e 0 @1162 ]
+"4079
+[v _RA0 RA0 `VEb  1 e 0 @40 ]
+"4124
+[v _RB7 RB7 `VEb  1 e 0 @55 ]
 "4166
 [v _RCEN RCEN `VEb  1 e 0 @1163 ]
 "4226
@@ -99,6 +133,10 @@
 [v _SEN SEN `VEb  1 e 0 @1160 ]
 "4277
 [v _SSPIF SSPIF `VEb  1 e 0 @99 ]
+"4400
+[v _TRISA0 TRISA0 `VEb  1 e 0 @1064 ]
+"4424
+[v _TRISB0 TRISB0 `VEb  1 e 0 @1072 ]
 "4457
 [v _TRISC3 TRISC3 `VEb  1 e 0 @1083 ]
 "4460
@@ -107,26 +145,32 @@
 [v _RS RS `uc  1 e 1 0 ]
 [v _i2c_add i2c_add `uc  1 e 1 0 ]
 [v _BackLight_State BackLight_State `uc  1 e 1 0 ]
-"69 D:\University\2021\Semestre 2\Digital 2\Monedanaitor\LCD_I2C\LCD_I2C.X\Main.c
+"50 D:\University\2021\Semestre 2\Digital 2\Monedanaitor\LCD_I2C\LCD_I2C.X\Main.c
+[v _counter counter `uc  1 e 1 0 ]
+"53
+[v _converted02 converted02 `[10]uc  1 e 10 0 ]
+"73
 [v _main main `(v  1 e 1 0 ]
 {
-"94
+"99
 } 0
-"100
+"105
 [v _setup setup `(v  1 e 1 0 ]
 {
-"127
+"138
+} 0
+"140
+[v _infrared infrared `(v  1 e 1 0 ]
+{
+"151
 } 0
 "140 D:\University\2021\Semestre 2\Digital 2\Monedanaitor\LCD_I2C\LCD_I2C.X\I2C_LCD.c
 [v _LCD_Write_String LCD_Write_String `(v  1 e 1 0 ]
 {
-[v LCD_Write_String@Str Str `*.24uc  1 a 1 wreg ]
 "142
-[v LCD_Write_String@i i `i  1 a 2 0 ]
+[v LCD_Write_String@i i `i  1 a 2 3 ]
 "140
-[v LCD_Write_String@Str Str `*.24uc  1 a 1 wreg ]
-"142
-[v LCD_Write_String@Str Str `*.24uc  1 a 1 2 ]
+[v LCD_Write_String@Str Str `*.26uc  1 p 2 8 ]
 "144
 } 0
 "133
@@ -146,16 +190,6 @@
 [v LCD_Set_Cursor@COL COL `uc  1 p 1 8 ]
 [v LCD_Set_Cursor@ROW ROW `uc  1 a 1 9 ]
 "163
-} 0
-"183
-[v _LCD_SR LCD_SR `(v  1 e 1 0 ]
-{
-"187
-} 0
-"177
-[v _LCD_SL LCD_SL `(v  1 e 1 0 ]
-{
-"181
 } 0
 "86
 [v _LCD_Init LCD_Init `(v  1 e 1 0 ]
@@ -222,8 +256,169 @@
 {
 "23
 } 0
-"61 D:\University\2021\Semestre 2\Digital 2\Monedanaitor\LCD_I2C\LCD_I2C.X\Main.c
+"156 D:\University\2021\Semestre 2\Digital 2\Monedanaitor\LCD_I2C\LCD_I2C.X\Main.c
+[v _ADC_convert ADC_convert `(v  1 e 1 0 ]
+{
+[v ADC_convert@data data `*.4uc  1 a 1 wreg ]
+"159
+[v ADC_convert@x x `f  1 a 4 5 ]
+"161
+[v ADC_convert@mu mu `i  1 a 2 13 ]
+"160
+[v ADC_convert@digits digits `i  1 a 2 11 ]
+"161
+[v ADC_convert@i i `i  1 a 2 9 ]
+"162
+[v ADC_convert@j j `i  1 a 2 2 ]
+"158
+[v ADC_convert@temp temp `i  1 a 2 0 ]
+"156
+[v ADC_convert@data data `*.4uc  1 a 1 wreg ]
+[v ADC_convert@a a `f  1 p 4 57 ]
+[v ADC_convert@place place `i  1 p 2 61 ]
+"158
+[v ADC_convert@data data `*.4uc  1 a 1 4 ]
+"212
+} 0
+"10 D:\Program File\MicroChip\xc8\v2.32\pic\sources\c90\common\xxtofl.c
+[v ___xxtofl __xxtofl `(d  1 e 4 0 ]
+{
+[v ___xxtofl@sign sign `uc  1 a 1 wreg ]
+"13
+[v ___xxtofl@arg arg `ul  1 a 4 19 ]
+"12
+[v ___xxtofl@exp exp `uc  1 a 1 18 ]
+"10
+[v ___xxtofl@sign sign `uc  1 a 1 wreg ]
+[v ___xxtofl@val val `l  1 p 4 9 ]
+"15
+[v ___xxtofl@sign sign `uc  1 a 1 17 ]
+"44
+} 0
+"15 D:\Program File\MicroChip\xc8\v2.32\pic\sources\c90\common\Umul16.c
+[v ___wmul __wmul `(ui  1 e 2 0 ]
+{
+"17
+[v ___wmul@product product `ui  1 a 2 8 ]
+"15
+[v ___wmul@multiplier multiplier `ui  1 p 2 5 ]
+[v ___wmul@multiplicand multiplicand `ui  1 p 2 7 ]
+"53
+} 0
+"43 D:\Program File\MicroChip\xc8\v2.32\pic\sources\c90\common\fltol.c
+[v ___fltol __fltol `(l  1 e 4 0 ]
+{
+"45
+[v ___fltol@exp1 exp1 `uc  1 a 1 7 ]
+[v ___fltol@sign1 sign1 `uc  1 a 1 6 ]
+"43
+[v ___fltol@f1 f1 `d  1 p 4 2 ]
+"70
+} 0
+"242 D:\Program File\MicroChip\xc8\v2.32\pic\sources\c90\common\sprcadd.c
+[v ___flsub __flsub `(d  1 e 4 0 ]
+{
+[v ___flsub@a a `d  1 p 4 23 ]
+[v ___flsub@b b `d  1 p 4 27 ]
+"250
+} 0
+"10
+[v ___fladd __fladd `(d  1 e 4 0 ]
+{
+"17
+[v ___fladd@grs grs `uc  1 a 1 11 ]
+"15
+[v ___fladd@bexp bexp `uc  1 a 1 10 ]
+"16
+[v ___fladd@aexp aexp `uc  1 a 1 9 ]
+"13
+[v ___fladd@signs signs `uc  1 a 1 8 ]
+"10
+[v ___fladd@b b `d  1 p 4 2 ]
+[v ___fladd@a a `d  1 p 4 6 ]
+"237
+} 0
+"8 D:\Program File\MicroChip\xc8\v2.32\pic\sources\c90\common\sprcmul.c
+[v ___flmul __flmul `(d  1 e 4 0 ]
+{
+[s S530 . 4 `uc 1 a 1 0 `uc 1 b 1 1 `uc 1 c 1 2 `uc 1 d 1 3 ]
+"13
+[s S535 . 4 `i 1 wordA 2 0 `i 1 wordB 2 2 ]
+[u S538 . 4 `l 1 i 4 0 `d 1 f 4 0 `S530 1 fAsBytes 4 0 `S535 1 fAsWords 4 0 ]
+[v ___flmul@prod prod `S538  1 a 4 51 ]
+"12
+[v ___flmul@grs grs `ul  1 a 4 46 ]
+[s S607 . 2 `uc 1 a 1 0 `uc 1 b 1 1 ]
+"14
+[u S610 . 2 `i 1 i 2 0 `ui 1 n 2 0 `S607 1 nAsBytes 2 0 ]
+[v ___flmul@temp temp `S610  1 a 2 55 ]
+"10
+[v ___flmul@bexp bexp `uc  1 a 1 50 ]
+"11
+[v ___flmul@aexp aexp `uc  1 a 1 45 ]
+"9
+[v ___flmul@sign sign `uc  1 a 1 44 ]
+"8
+[v ___flmul@b b `d  1 p 4 31 ]
+[v ___flmul@a a `d  1 p 4 35 ]
+"205
+} 0
+"4 D:\Program File\MicroChip\xc8\v2.32\pic\sources\c90\common\Umul8_16.c
+[v __Umul8_16 _Umul8_16 `(ui  1 e 2 0 ]
+{
+[v __Umul8_16@multiplier multiplier `uc  1 a 1 wreg ]
+"6
+[v __Umul8_16@word_mpld word_mpld `ui  1 a 2 2 ]
+"5
+[v __Umul8_16@product product `ui  1 a 2 0 ]
+"4
+[v __Umul8_16@multiplier multiplier `uc  1 a 1 wreg ]
+[v __Umul8_16@multiplicand multiplicand `uc  1 p 1 2 ]
+[v __Umul8_16@multiplier multiplier `uc  1 a 1 4 ]
+"60
+} 0
+"4 D:\Program File\MicroChip\xc8\v2.32\pic\sources\c90\common\flge.c
+[v ___flge __flge `(b  1 e 0 0 ]
+{
+[v ___flge@ff1 ff1 `d  1 p 4 2 ]
+[v ___flge@ff2 ff2 `d  1 p 4 6 ]
+"19
+} 0
+"8 D:\Program File\MicroChip\xc8\v2.32\pic\sources\c90\common\sprcdiv.c
+[v ___fldiv __fldiv `(d  1 e 4 0 ]
+{
+"21
+[v ___fldiv@grs grs `ul  1 a 4 43 ]
+"22
+[v ___fldiv@rem rem `ul  1 a 4 36 ]
+"20
+[v ___fldiv@new_exp new_exp `i  1 a 2 41 ]
+"19
+[v ___fldiv@aexp aexp `uc  1 a 1 48 ]
+"18
+[v ___fldiv@bexp bexp `uc  1 a 1 47 ]
+"16
+[v ___fldiv@sign sign `uc  1 a 1 40 ]
+"8
+[v ___fldiv@a a `d  1 p 4 23 ]
+[v ___fldiv@b b `d  1 p 4 27 ]
+"185
+} 0
+"5 D:\Program File\MicroChip\xc8\v2.32\pic\sources\c90\common\awdiv.c
+[v ___awdiv __awdiv `(i  1 e 2 0 ]
+{
+"10
+[v ___awdiv@quotient quotient `i  1 a 2 2 ]
+"11
+[v ___awdiv@sign sign `uc  1 a 1 1 ]
+[v ___awdiv@counter counter `uc  1 a 1 0 ]
+"5
+[v ___awdiv@divisor divisor `i  1 p 2 2 ]
+[v ___awdiv@dividend dividend `i  1 p 2 4 ]
+"41
+} 0
+"65 D:\University\2021\Semestre 2\Digital 2\Monedanaitor\LCD_I2C\LCD_I2C.X\Main.c
 [v _isr isr `II(v  1 e 1 0 ]
 {
-"64
+"68
 } 0
