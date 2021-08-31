@@ -5,7 +5,8 @@ El clasificador de monedas tiene como objetivo recolectar monedas de Q1.00, Q0.5
 Se utilizá el uC  PIC16F887 con comunicación I2C.
 
 Disseño 3D para Monedanaitor:
---Se incluyen piezas para rampa en diseño únicamente mecánico y tapadera de alcancía para diferente funcionamiento.--
+
+--Se incluyen piezas para rampa en diseño únicamente mecánico y tapadera de alcancía para diferente funcionamiento. Visualizar en *Named views...: Main view* --
 
 [https://cad.onshape.com/documents/e8eb94c321c5a714179d50bd/w/36e7261826905f74df10a220/e/4bf1b7b22272e69007a78a88](https://cad.onshape.com/documents/e8eb94c321c5a714179d50bd/w/36e7261826905f74df10a220/e/4bf1b7b22272e69007a78a88)
 
