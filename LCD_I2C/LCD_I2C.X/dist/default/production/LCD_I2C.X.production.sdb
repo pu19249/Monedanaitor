@@ -59,7 +59,7 @@
 [v _setup setup `(v  1 e 1 0 ]
 "140
 [v _infrared infrared `(v  1 e 1 0 ]
-"156
+"155
 [v _ADC_convert ADC_convert `(v  1 e 1 0 ]
 "166 D:/Program File/MicroChip/MPLABX/v5.50/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h
 [v _PORTA PORTA `VEuc  1 e 1 @5 ]
@@ -162,7 +162,7 @@
 "140
 [v _infrared infrared `(v  1 e 1 0 ]
 {
-"151
+"150
 } 0
 "140 D:\University\2021\Semestre 2\Digital 2\Monedanaitor\LCD_I2C\LCD_I2C.X\I2C_LCD.c
 [v _LCD_Write_String LCD_Write_String `(v  1 e 1 0 ]
@@ -256,29 +256,29 @@
 {
 "23
 } 0
-"156 D:\University\2021\Semestre 2\Digital 2\Monedanaitor\LCD_I2C\LCD_I2C.X\Main.c
+"155 D:\University\2021\Semestre 2\Digital 2\Monedanaitor\LCD_I2C\LCD_I2C.X\Main.c
 [v _ADC_convert ADC_convert `(v  1 e 1 0 ]
 {
 [v ADC_convert@data data `*.4uc  1 a 1 wreg ]
-"159
-[v ADC_convert@x x `f  1 a 4 5 ]
-"161
-[v ADC_convert@mu mu `i  1 a 2 13 ]
-"160
-[v ADC_convert@digits digits `i  1 a 2 11 ]
-"161
-[v ADC_convert@i i `i  1 a 2 9 ]
-"162
-[v ADC_convert@j j `i  1 a 2 2 ]
 "158
+[v ADC_convert@x x `f  1 a 4 5 ]
+"160
+[v ADC_convert@mu mu `i  1 a 2 13 ]
+"159
+[v ADC_convert@digits digits `i  1 a 2 11 ]
+"160
+[v ADC_convert@i i `i  1 a 2 9 ]
+"161
+[v ADC_convert@j j `i  1 a 2 2 ]
+"157
 [v ADC_convert@temp temp `i  1 a 2 0 ]
-"156
+"155
 [v ADC_convert@data data `*.4uc  1 a 1 wreg ]
 [v ADC_convert@a a `f  1 p 4 57 ]
 [v ADC_convert@place place `i  1 p 2 61 ]
-"158
+"157
 [v ADC_convert@data data `*.4uc  1 a 1 4 ]
-"212
+"211
 } 0
 "10 D:\Program File\MicroChip\xc8\v2.32\pic\sources\c90\common\xxtofl.c
 [v ___xxtofl __xxtofl `(d  1 e 4 0 ]
@@ -341,17 +341,17 @@
 "8 D:\Program File\MicroChip\xc8\v2.32\pic\sources\c90\common\sprcmul.c
 [v ___flmul __flmul `(d  1 e 4 0 ]
 {
-[s S530 . 4 `uc 1 a 1 0 `uc 1 b 1 1 `uc 1 c 1 2 `uc 1 d 1 3 ]
+[s S529 . 4 `uc 1 a 1 0 `uc 1 b 1 1 `uc 1 c 1 2 `uc 1 d 1 3 ]
 "13
-[s S535 . 4 `i 1 wordA 2 0 `i 1 wordB 2 2 ]
-[u S538 . 4 `l 1 i 4 0 `d 1 f 4 0 `S530 1 fAsBytes 4 0 `S535 1 fAsWords 4 0 ]
-[v ___flmul@prod prod `S538  1 a 4 51 ]
+[s S534 . 4 `i 1 wordA 2 0 `i 1 wordB 2 2 ]
+[u S537 . 4 `l 1 i 4 0 `d 1 f 4 0 `S529 1 fAsBytes 4 0 `S534 1 fAsWords 4 0 ]
+[v ___flmul@prod prod `S537  1 a 4 51 ]
 "12
 [v ___flmul@grs grs `ul  1 a 4 46 ]
-[s S607 . 2 `uc 1 a 1 0 `uc 1 b 1 1 ]
+[s S606 . 2 `uc 1 a 1 0 `uc 1 b 1 1 ]
 "14
-[u S610 . 2 `i 1 i 2 0 `ui 1 n 2 0 `S607 1 nAsBytes 2 0 ]
-[v ___flmul@temp temp `S610  1 a 2 55 ]
+[u S609 . 2 `i 1 i 2 0 `ui 1 n 2 0 `S606 1 nAsBytes 2 0 ]
+[v ___flmul@temp temp `S609  1 a 2 55 ]
 "10
 [v ___flmul@bexp bexp `uc  1 a 1 50 ]
 "11

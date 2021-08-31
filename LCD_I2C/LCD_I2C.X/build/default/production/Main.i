@@ -2925,7 +2925,7 @@ void __attribute__((picinterrupt(("")))) isr(void)
 void main(void) {
 
     setup();
-
+    counter = 0;
     I2C_Master_Init();
     LCD_Init(0x4E);
 
@@ -2935,13 +2935,13 @@ void main(void) {
     LCD_Write_String("   Monedas = Q0.00");
     LCD_Set_Cursor(3, 1);
     LCD_Write_String(" 1.00  0.5   0.25");
-    LCD_Set_Cursor(4, 5);
-    LCD_Write_String("  Quetzales");
+
+
     _delay((unsigned long)((2500)*(8000000/4000.0)));
 
     while(1)
     {
-    LCD_Set_Cursor(4, 1);
+    LCD_Set_Cursor(4, 2);
     LCD_Write_String(converted02);
     infrared();
 
@@ -2992,13 +2992,12 @@ void setup(void){
 void infrared(void){
     if(RA0 == 1){
         RB7 = 1;
-        counter = counter +1;
+        counter++;
         _delay((unsigned long)((500)*(8000000/4000.0)));
         RB7 = 0;
     }
     else{
         RB7 = 0;
-
     }
 }
 

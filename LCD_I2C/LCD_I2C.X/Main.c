@@ -73,7 +73,7 @@ void __interrupt() isr(void)
 void main(void) {
     
     setup();    // Llamo a mi configuracion
-    
+    counter = 0;
     I2C_Master_Init();  
     LCD_Init(0x4E);    // Initialize LCD module with I2C address = 0x4E
  
@@ -83,13 +83,13 @@ void main(void) {
     LCD_Write_String("   Monedas = Q0.00");
     LCD_Set_Cursor(3, 1);  
     LCD_Write_String(" 1.00  0.5   0.25");
-    LCD_Set_Cursor(4, 5); 
-    LCD_Write_String("  Quetzales");
+//    LCD_Set_Cursor(4, 5); 
+//    LCD_Write_String("  Quetzales");
     __delay_ms(2500);
     
     while(1)    // Equivale al loop
     {
-    LCD_Set_Cursor(4, 1);  
+    LCD_Set_Cursor(4, 2);  
     LCD_Write_String(converted02);
     infrared();
     
@@ -140,13 +140,12 @@ void setup(void){
 void infrared(void){
     if(RA0 == 1){
         RB7 = 1;
-        counter = counter +1;
+        counter++;
         __delay_ms(500);
         RB7 = 0;
     }
     else{
-        RB7 = 0;
-        
+        RB7 = 0;        
     }
 }
 
