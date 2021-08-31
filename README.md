@@ -6,3 +6,4 @@ Se utilizá el uC  PIC16F887 con comunicación I2C.
 
 Links de referencia para diseño:
 Diseño 3D: [https://cults3d.com/es/modelo-3d/artilugios/dispensador-de-monedas](http://https://cults3d.com/es/modelo-3d/artilugios/dispensador-de-monedas)
+Pistón con servo motor: [https://www.youtube.com/watch?v=AVonV7L6eHo](https://www.youtube.com/watch?v=AVonV7L6eHo)
