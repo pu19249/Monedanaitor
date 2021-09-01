@@ -2,8 +2,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 [t ~ __interrupt . k ]
 [t T1 __interrupt ]
 [p mainexit ]
-"58 Main.c
-[; ;Main.c: 58: 
+"59 Main.c
+[; ;Main.c: 59: void setup(void){
 [v _setup `(v ~T0 @X0 0 ef ]
 "40 ./I2C_LCD.h
 [; ;./I2C_LCD.h: 40: void I2C_Master_Init();
@@ -21,11 +21,11 @@ Version 4.0 HI-TECH Software Intermediate Code
 "92 D:/Program File/MicroChip/MPLABX/v5.50/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\pic.h
 [v __delay `JF1256 ~T0 @X0 0 e ]
 [p i __delay ]
-"59 Main.c
-[; ;Main.c: 59: 
-[v _infrared `(v ~T0 @X0 0 ef ]
-"60
+"60 Main.c
 [; ;Main.c: 60: 
+[v _infrared `(v ~T0 @X0 0 ef ]
+"61
+[; ;Main.c: 61:     ANSEL = 0;
 [v _ADC_convert `(v ~T0 @X0 0 ef3`*uc`f`i ]
 "3387 D:/Program File/MicroChip/MPLABX/v5.50/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h
 [; ;D:/Program File/MicroChip/MPLABX/v5.50/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h: 3387: extern volatile unsigned char ANSEL __attribute__((address(0x188)));
@@ -324,16 +324,16 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;D:/Program File/MicroChip/MPLABX/v5.50/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h: 3546: __asm("EECON2 equ 018Dh");
 [; <" EECON2 equ 018Dh ;# ">
 "29 Main.c
-[; ;Main.c: 29: void main(void) {
+[; ;Main.c: 29: 
 [p x FOSC  =  INTRC_NOCLKOUT ]
 "30
-[; ;Main.c: 30: 
+[; ;Main.c: 30: void main(void) {
 [p x WDTE  =  OFF        ]
 "31
-[; ;Main.c: 31:     setup();
+[; ;Main.c: 31: 
 [p x PWRTE  =  OFF       ]
 "32
-[; ;Main.c: 32:     counter = 0;
+[; ;Main.c: 32:     setup();
 [p x MCLRE  =  OFF       ]
 "33
 [; ;Main.c: 33:     I2C_Master_Init();
@@ -357,49 +357,49 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;Main.c: 41:     LCD_Write_String(" 1.00  0.5   0.25");
 [p x BOR4V  =  BOR40V    ]
 "42
-[; ;Main.c: 42: 
+[; ;Main.c: 42:     _delay((unsigned long)((2500)*(8000000/4000.0)));
 [p x WRT  =  OFF         ]
 "50
-[; ;Main.c: 50:     infrared();
+[; ;Main.c: 50:     ADC_convert(converted02, counter, 2);
 [v _counter `uc ~T0 @X0 1 e ]
 "51
-[; ;Main.c: 51: 
+[; ;Main.c: 51:     }
 [v _conv0 `f ~T0 @X0 1 e ]
 [i _conv0
 -> -> 0 `i `f
 ]
 "52
-[; ;Main.c: 52:     ADC_convert(converted02, counter, 2);
+[; ;Main.c: 52:     return;
 [v _converted `uc ~T0 @X0 1 e ]
 "53
-[; ;Main.c: 53:     }
+[; ;Main.c: 53: }
 [v _converted02 `uc ~T0 @X0 -> 10 `i e ]
+"54
+[; ;Main.c: 54: 
+[v _POT `uc ~T0 @X0 1 e ]
 [v $root$_isr `(v ~T0 @X0 0 e ]
-"65
-[; ;Main.c: 65: 
-[v _isr `(v ~T1 @X0 1 ef ]
 "66
 [; ;Main.c: 66: 
+[v _isr `(v ~T1 @X0 1 ef ]
+"67
+[; ;Main.c: 67: 
 {
 [e :U _isr ]
 [f ]
-"68
-[; ;Main.c: 68: 
+"69
+[; ;Main.c: 69:     TRISBbits.TRISB7 = 0;
 [e :UE 143 ]
 }
 [v $root$_main `(v ~T0 @X0 0 e ]
-"73
-[; ;Main.c: 73: 
+"74
+[; ;Main.c: 74:     TRISD = 0;
 [v _main `(v ~T0 @X0 1 ef ]
 {
 [e :U _main ]
 [f ]
-"75
-[; ;Main.c: 75: 
-[e ( _setup ..  ]
 "76
-[; ;Main.c: 76:     TRISD = 0;
-[e = _counter -> -> 0 `i `uc ]
+[; ;Main.c: 76: 
+[e ( _setup ..  ]
 "77
 [; ;Main.c: 77: 
 [e ( _I2C_Master_Init ..  ]
@@ -410,231 +410,231 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;Main.c: 80: 
 [e ( _LCD_Set_Cursor (2 , -> -> 1 `i `uc -> -> 1 `i `uc ]
 "81
-[; ;Main.c: 81: 
+[; ;Main.c: 81:     OSCCONbits.IRCF0 = 1;
 [e ( _LCD_Write_String (1 :s 1C ]
 "82
-[; ;Main.c: 82: 
+[; ;Main.c: 82:     OSCCONbits.IRCF1 = 1;
 [e ( _LCD_Set_Cursor (2 , -> -> 2 `i `uc -> -> 1 `i `uc ]
 "83
-[; ;Main.c: 83:     OSCCONbits.IRCF0 = 1;
+[; ;Main.c: 83:     OSCCONbits.IRCF2 = 1;
 [e ( _LCD_Write_String (1 :s 2C ]
 "84
-[; ;Main.c: 84:     OSCCONbits.IRCF1 = 1;
+[; ;Main.c: 84:     OSCCONbits.SCS = 1;
 [e ( _LCD_Set_Cursor (2 , -> -> 3 `i `uc -> -> 1 `i `uc ]
 "85
-[; ;Main.c: 85:     OSCCONbits.IRCF2 = 1;
+[; ;Main.c: 85: 
 [e ( _LCD_Write_String (1 :s 3C ]
-"88
-[; ;Main.c: 88: 
+"86
+[; ;Main.c: 86: 
 [e ( __delay (1 -> * -> -> 2500 `i `d / -> -> 8000000 `l `d .4000.0 `ul ]
-"90
-[; ;Main.c: 90:     PORTB = 0x00;
+"88
+[; ;Main.c: 88:     PORTB = 0x00;
 [e :U 146 ]
-"91
-[; ;Main.c: 91:     PORTC = 0x00;
+"89
+[; ;Main.c: 89:     PORTC = 0x00;
 {
-"92
-[; ;Main.c: 92:     PORTD = 0x00;
+"90
+[; ;Main.c: 90:     PORTD = 0x00;
 [e ( _LCD_Set_Cursor (2 , -> -> 4 `i `uc -> -> 2 `i `uc ]
-"93
-[; ;Main.c: 93:     PORTE = 0x00;
+"91
+[; ;Main.c: 91:     PORTE = 0x00;
 [e ( _LCD_Write_String (1 &U _converted02 ]
-"94
-[; ;Main.c: 94: }
+"92
+[; ;Main.c: 92: }
 [e ( _infrared ..  ]
-"96
-[; ;Main.c: 96: void infrared(void){
+"94
+[; ;Main.c: 94: void infrared(void){
 [e ( _ADC_convert (3 , , &U _converted02 -> _counter `f -> 2 `i ]
-"97
-[; ;Main.c: 97:     if(RA0 == 1){
+"95
+[; ;Main.c: 95:     if(RA0 == 1){
 }
 [e :U 145 ]
 [e $U 146  ]
 [e :U 147 ]
-"98
-[; ;Main.c: 98:         RB7 = 1;
+"96
+[; ;Main.c: 96:         RB7 = 1;
 [e $UE 144  ]
-"99
-[; ;Main.c: 99:         counter++;
+"97
+[; ;Main.c: 97:         counter++;
 [e :UE 144 ]
 }
-"105
-[; ;Main.c: 105:     }
+"103
+[; ;Main.c: 103:     }
 [v _setup `(v ~T0 @X0 1 ef ]
 {
 [e :U _setup ]
 [f ]
-"107
-[; ;Main.c: 107: 
+"105
+[; ;Main.c: 105: 
 [e = _ANSEL -> -> 0 `i `uc ]
-"108
-[; ;Main.c: 108: 
+"106
+[; ;Main.c: 106: 
 [e = _ANSELH -> -> 0 `i `uc ]
-"111
-[; ;Main.c: 111: void ADC_convert(char *data,float a, int place)
+"109
+[; ;Main.c: 109: void ADC_convert(char *data,float a, int place)
 [e = _TRISA0 -> -> 1 `i `b ]
-"114
-[; ;Main.c: 114:      float x=0.0;
+"112
+[; ;Main.c: 112:      float x=0.0;
 [e = _TRISB0 -> -> 1 `i `b ]
-"115
-[; ;Main.c: 115:      int digits=0;
+"113
+[; ;Main.c: 113:      int digits=0;
 [e = . . _TRISBbits 0 7 -> -> 0 `i `uc ]
-"120
-[; ;Main.c: 120:             a=a*-1;
+"118
+[; ;Main.c: 118:             a=a*-1;
 [e = _TRISD -> -> 0 `i `uc ]
-"127
-[; ;Main.c: 127:          temp=temp/10;
+"125
+[; ;Main.c: 125:          temp=temp/10;
 [e = . . _OSCCONbits 1 1 -> -> 1 `i `uc ]
-"128
-[; ;Main.c: 128:          digits++;
+"126
+[; ;Main.c: 126:          digits++;
 [e = . . _OSCCONbits 1 2 -> -> 1 `i `uc ]
-"129
-[; ;Main.c: 129:      }
+"127
+[; ;Main.c: 127:      }
 [e = . . _OSCCONbits 1 3 -> -> 1 `i `uc ]
-"130
-[; ;Main.c: 130:      while(digits!=0)
+"128
+[; ;Main.c: 128:      while(digits!=0)
 [e = . . _OSCCONbits 0 0 -> -> 1 `i `uc ]
-"133
-[; ;Main.c: 133:          else for(j=2;j<=digits;j++)mu=mu*10;
+"131
+[; ;Main.c: 131:          else for(j=2;j<=digits;j++)mu=mu*10;
 [e = _PORTA -> -> 0 `i `uc ]
-"134
-[; ;Main.c: 134: 
+"132
+[; ;Main.c: 132: 
 [e = _PORTB -> -> 0 `i `uc ]
-"135
-[; ;Main.c: 135:          x=a/mu;
+"133
+[; ;Main.c: 133:          x=a/mu;
 [e = _PORTC -> -> 0 `i `uc ]
-"136
-[; ;Main.c: 136:          a=a-((int)x*mu);
+"134
+[; ;Main.c: 134:          a=a-((int)x*mu);
 [e = _PORTD -> -> 0 `i `uc ]
-"137
-[; ;Main.c: 137:          data[i]=0x30+((int)x);
+"135
+[; ;Main.c: 135:          data[i]=0x30+((int)x);
 [e = _PORTE -> -> 0 `i `uc ]
-"138
-[; ;Main.c: 138:          i++;
+"136
+[; ;Main.c: 136:          i++;
 [e :UE 148 ]
 }
-"140
-[; ;Main.c: 140:          mu=1;
+"138
+[; ;Main.c: 138:          mu=1;
 [v _infrared `(v ~T0 @X0 1 ef ]
 {
 [e :U _infrared ]
 [f ]
-"141
-[; ;Main.c: 141:      }
+"139
+[; ;Main.c: 139:      }
 [e $ ! == -> _RA0 `i -> 1 `i 150  ]
 {
-"142
-[; ;Main.c: 142: 
+"140
+[; ;Main.c: 140: 
 [e = _RB7 -> -> 1 `i `b ]
-"143
-[; ;Main.c: 143:      data[i]='.';
+"141
+[; ;Main.c: 141:      data[i]='.';
 [e ++ _counter -> -> 1 `i `uc ]
-"144
-[; ;Main.c: 144:      i++;
+"142
+[; ;Main.c: 142:      i++;
 [e ( __delay (1 -> * -> -> 500 `i `d / -> -> 8000000 `l `d .4000.0 `ul ]
-"145
-[; ;Main.c: 145:      digits=0;
+"143
+[; ;Main.c: 143:      digits=0;
 [e = _RB7 -> -> 0 `i `b ]
-"146
-[; ;Main.c: 146:      for(j=1;j<=place;j++)mu=mu*10;
+"144
+[; ;Main.c: 144:      for(j=1;j<=place;j++)mu=mu*10;
 }
 [e $U 151  ]
-"147
-[; ;Main.c: 147:      x=(a-(int)a)*mu;
+"145
+[; ;Main.c: 145:      x=(a-(int)a)*mu;
 [e :U 150 ]
 {
-"148
-[; ;Main.c: 148:      a=x;
+"146
+[; ;Main.c: 146:      a=x;
 [e = _RB7 -> -> 0 `i `b ]
-"149
-[; ;Main.c: 149:      temp=a;
+"147
+[; ;Main.c: 147:      temp=a;
 }
 [e :U 151 ]
-"150
-[; ;Main.c: 150:      x=0.0;
+"148
+[; ;Main.c: 148:      x=0.0;
 [e :UE 149 ]
 }
-"155
-[; ;Main.c: 155:          if(digits==1)mu=1;
+"153
+[; ;Main.c: 153:          if(digits==1)mu=1;
 [v _ADC_convert `(v ~T0 @X0 1 ef3`*uc`f`i ]
-"156
-[; ;Main.c: 156:          else for(j=2;j<=digits;j++)mu=mu*10;
+"154
+[; ;Main.c: 154:          else for(j=2;j<=digits;j++)mu=mu*10;
 {
 [e :U _ADC_convert ]
-"155
-[; ;Main.c: 155:          if(digits==1)mu=1;
+"153
+[; ;Main.c: 153:          if(digits==1)mu=1;
 [v _data `*uc ~T0 @X0 1 r1 ]
 [v _a `f ~T0 @X0 1 r2 ]
 [v _place `i ~T0 @X0 1 r3 ]
-"156
-[; ;Main.c: 156:          else for(j=2;j<=digits;j++)mu=mu*10;
+"154
+[; ;Main.c: 154:          else for(j=2;j<=digits;j++)mu=mu*10;
 [f ]
-"157
-[; ;Main.c: 157: 
+"155
+[; ;Main.c: 155: 
 [v _temp `i ~T0 @X0 1 a ]
 [e = _temp -> _a `i ]
-"158
-[; ;Main.c: 158:          x=a/mu;
+"156
+[; ;Main.c: 156:          x=a/mu;
 [v _x `f ~T0 @X0 1 a ]
 [e = _x -> .0.0 `f ]
-"159
-[; ;Main.c: 159:          a=a-((int)x*mu);
+"157
+[; ;Main.c: 157:          a=a-((int)x*mu);
 [v _digits `i ~T0 @X0 1 a ]
 [e = _digits -> 0 `i ]
-"160
-[; ;Main.c: 160:          data[i]=0x30+((int)x);
+"158
+[; ;Main.c: 158:          data[i]=0x30+((int)x);
 [v _i `i ~T0 @X0 1 a ]
 [e = _i -> 0 `i ]
 [v _mu `i ~T0 @X0 1 a ]
 [e = _mu -> 1 `i ]
-"161
-[; ;Main.c: 161:          i++;
+"159
+[; ;Main.c: 159:          i++;
 [v _j `i ~T0 @X0 1 a ]
 [e = _j -> 0 `i ]
-"162
-[; ;Main.c: 162:          digits--;
+"160
+[; ;Main.c: 160:          digits--;
 [e $ ! < _a -> -> 0 `i `f 153  ]
-"163
-[; ;Main.c: 163:          mu=1;
+"161
+[; ;Main.c: 161:          mu=1;
 {
-"164
-[; ;Main.c: 164:      }
+"162
+[; ;Main.c: 162:      }
 [e = _a * _a -> -U -> 1 `i `f ]
-"165
-[; ;Main.c: 165: 
+"163
+[; ;Main.c: 163: 
 [e = *U + _data * -> _i `x -> -> # *U _data `i `x -> -> 45 `ui `uc ]
-"166
-[; ;Main.c: 166:     data[i]='\n';
+"164
+[; ;Main.c: 164:     data[i]='\n';
 [e ++ _i -> 1 `i ]
-"167
-[; ;Main.c: 167: }
+"165
+[; ;Main.c: 165: }
 }
 [e :U 153 ]
-"169
+"167
 [e $U 154  ]
 [e :U 155 ]
-"170
+"168
 {
-"171
+"169
 [e = _temp / _temp -> 10 `i ]
-"172
+"170
 [e ++ _digits -> 1 `i ]
-"173
+"171
 }
 [e :U 154 ]
-"169
+"167
 [e $ != _temp -> 0 `i 155  ]
 [e :U 156 ]
-"174
+"172
 [e $U 157  ]
 [e :U 158 ]
-"175
+"173
 {
-"176
+"174
 [e $ ! == _digits -> 1 `i 160  ]
 [e = _mu -> 1 `i ]
 [e $U 161  ]
-"177
+"175
 [e :U 160 ]
 {
 [e = _j -> 2 `i ]
@@ -647,31 +647,31 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e :U 163 ]
 }
 [e :U 161 ]
-"179
+"177
 [e = _x / _a -> _mu `f ]
-"180
+"178
 [e = _a - _a -> * -> _x `i _mu `f ]
-"181
+"179
 [e = *U + _data * -> _i `x -> -> # *U _data `i `x -> + -> 48 `i -> _x `i `uc ]
-"182
+"180
 [e ++ _i -> 1 `i ]
-"183
+"181
 [e -- _digits -> 1 `i ]
-"184
+"182
 [e = _mu -> 1 `i ]
-"185
+"183
 }
 [e :U 157 ]
-"174
+"172
 [e $ != _digits -> 0 `i 158  ]
 [e :U 159 ]
-"187
+"185
 [e = *U + _data * -> _i `x -> -> # *U _data `i `x -> -> 46 `ui `uc ]
-"188
+"186
 [e ++ _i -> 1 `i ]
-"189
+"187
 [e = _digits -> 0 `i ]
-"190
+"188
 {
 [e = _j -> 1 `i ]
 [e $U 169  ]
@@ -682,28 +682,28 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e $ <= _j _place 166  ]
 [e :U 167 ]
 }
-"191
+"189
 [e = _x * - _a -> -> _a `i `f -> _mu `f ]
-"192
+"190
 [e = _a _x ]
-"193
+"191
 [e = _temp -> _a `i ]
-"194
+"192
 [e = _x -> .0.0 `f ]
-"195
+"193
 [e = _mu -> 1 `i ]
-"196
+"194
 [e = _digits _place ]
-"197
+"195
 [e $U 170  ]
 [e :U 171 ]
-"198
+"196
 {
-"199
+"197
 [e $ ! == _digits -> 1 `i 173  ]
 [e = _mu -> 1 `i ]
 [e $U 174  ]
-"200
+"198
 [e :U 173 ]
 {
 [e = _j -> 2 `i ]
@@ -716,27 +716,27 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e :U 176 ]
 }
 [e :U 174 ]
-"202
+"200
 [e = _x / _a -> _mu `f ]
-"203
+"201
 [e = _a - _a -> * -> _x `i _mu `f ]
-"204
+"202
 [e = *U + _data * -> _i `x -> -> # *U _data `i `x -> + -> 48 `i -> _x `i `uc ]
-"205
+"203
 [e ++ _i -> 1 `i ]
-"206
+"204
 [e -- _digits -> 1 `i ]
-"207
+"205
 [e = _mu -> 1 `i ]
-"208
+"206
 }
 [e :U 170 ]
-"197
+"195
 [e $ != _digits -> 0 `i 171  ]
 [e :U 172 ]
-"210
+"208
 [e = *U + _data * -> _i `x -> -> # *U _data `i `x -> -> 10 `ui `uc ]
-"211
+"209
 [e :UE 152 ]
 }
 [a 1C 32 32 32 32 32 77 111 110 101 100 97 110 97 105 116 111 114 0 ]

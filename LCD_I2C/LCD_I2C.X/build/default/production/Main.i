@@ -2903,6 +2903,7 @@ char counter;
 float conv0 = 0;
 char converted;
 char converted02[10];
+char POT;
 
 
 
@@ -2925,7 +2926,6 @@ void __attribute__((picinterrupt(("")))) isr(void)
 void main(void) {
 
     setup();
-    counter = 0;
     I2C_Master_Init();
     LCD_Init(0x4E);
 
@@ -2935,8 +2935,6 @@ void main(void) {
     LCD_Write_String("   Monedas = Q0.00");
     LCD_Set_Cursor(3, 1);
     LCD_Write_String(" 1.00  0.5   0.25");
-
-
     _delay((unsigned long)((2500)*(8000000/4000.0)));
 
     while(1)
