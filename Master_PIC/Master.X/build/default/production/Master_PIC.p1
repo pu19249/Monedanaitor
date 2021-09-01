@@ -2,31 +2,21 @@ Version 4.0 HI-TECH Software Intermediate Code
 [t ~ __interrupt . k ]
 [t T1 __interrupt ]
 [p mainexit ]
-"59 Main.c
-[; ;Main.c: 59: void setup(void){
+"57 Master_PIC.c
+[; ;Master_PIC.c: 57: }
 [v _setup `(v ~T0 @X0 0 ef ]
-"40 ./I2C_LCD.h
-[; ;./I2C_LCD.h: 40: void I2C_Master_Init();
-[v _I2C_Master_Init `(v ~T0 @X0 0 e? ]
-"52
-[; ;./I2C_LCD.h: 52: void LCD_Init(unsigned char I2C_Add);
-[v _LCD_Init `(v ~T0 @X0 0 ef1`uc ]
-"56
-[; ;./I2C_LCD.h: 56: void LCD_Set_Cursor(unsigned char ROW, unsigned char COL);
-[v _LCD_Set_Cursor `(v ~T0 @X0 0 ef2`uc`uc ]
+"63
+[; ;Master_PIC.c: 63: 
+[v _LCD_Start `(v ~T0 @X0 0 ef ]
+"64
+[; ;Master_PIC.c: 64: void setup(void){
+[v _LCD_Send `(v ~T0 @X0 0 ef ]
 "58
-[; ;./I2C_LCD.h: 58: void LCD_Write_String(char*);
-[v _LCD_Write_String `(v ~T0 @X0 0 ef1`*uc ]
-[v F1256 `(v ~T0 @X0 1 tf1`ul ]
-"92 D:/Program File/MicroChip/MPLABX/v5.50/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\pic.h
-[v __delay `JF1256 ~T0 @X0 0 e ]
-[p i __delay ]
-"60 Main.c
-[; ;Main.c: 60: 
+[; ;Master_PIC.c: 58: 
 [v _infrared `(v ~T0 @X0 0 ef ]
-"61
-[; ;Main.c: 61:     ANSEL = 0;
-[v _ADC_convert `(v ~T0 @X0 0 ef3`*uc`f`i ]
+"60
+[; ;Master_PIC.c: 60: 
+[v _I2C_Comunication `(v ~T0 @X0 0 ef ]
 "3387 D:/Program File/MicroChip/MPLABX/v5.50/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h
 [; ;D:/Program File/MicroChip/MPLABX/v5.50/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h: 3387: extern volatile unsigned char ANSEL __attribute__((address(0x188)));
 [v _ANSEL `Vuc ~T0 @X0 0 e@392 ]
@@ -89,6 +79,57 @@ Version 4.0 HI-TECH Software Intermediate Code
 "4124
 [; ;D:/Program File/MicroChip/MPLABX/v5.50/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h: 4124: extern volatile __bit RB7 __attribute__((address(0x37)));
 [v _RB7 `Vb ~T0 @X0 0 e@55 ]
+[v F1256 `(v ~T0 @X0 1 tf1`ul ]
+"92 D:/Program File/MicroChip/MPLABX/v5.50/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\pic.h
+[v __delay `JF1256 ~T0 @X0 0 e ]
+[p i __delay ]
+"62 Master_PIC.c
+[; ;Master_PIC.c: 62: 
+[v _division `(uc ~T0 @X0 0 ef1`uc ]
+"1140 D:/Program File/MicroChip/MPLABX/v5.50/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h
+[; ;D:/Program File/MicroChip/MPLABX/v5.50/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h: 1140: extern volatile unsigned char RCREG __attribute__((address(0x01A)));
+[v _RCREG `Vuc ~T0 @X0 0 e@26 ]
+"4544
+[; ;D:/Program File/MicroChip/MPLABX/v5.50/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h: 4544: extern volatile __bit TXIF __attribute__((address(0x64)));
+[v _TXIF `Vb ~T0 @X0 0 e@100 ]
+"1133
+[; ;D:/Program File/MicroChip/MPLABX/v5.50/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h: 1133: extern volatile unsigned char TXREG __attribute__((address(0x019)));
+[v _TXREG `Vuc ~T0 @X0 0 e@25 ]
+"47 ./I2C_Master.h
+[; ;./I2C_Master.h: 47: unsigned char I2C_Master_Write(unsigned char data);
+[v _I2C_Master_Write `(uc ~T0 @X0 0 ef1`uc ]
+"48
+[; ;./I2C_Master.h: 48: unsigned char I2C_Read_Byte(void);
+[v _I2C_Read_Byte `(uc ~T0 @X0 0 ef ]
+"44
+[; ;./I2C_Master.h: 44: void I2C_Master_Stop();
+[v _I2C_Master_Stop `(v ~T0 @X0 0 e? ]
+"42
+[; ;./I2C_Master.h: 42: void I2C_Master_Start();
+[v _I2C_Master_Start `(v ~T0 @X0 0 e? ]
+"40
+[; ;./I2C_Master.h: 40: void I2C_Master_Init();
+[v _I2C_Master_Init `(v ~T0 @X0 0 e? ]
+"54
+[; ;./I2C_Master.h: 54: void LCD_Init(unsigned char I2C_Add);
+[v _LCD_Init `(v ~T0 @X0 0 ef1`uc ]
+"58
+[; ;./I2C_Master.h: 58: void LCD_Set_Cursor(unsigned char ROW, unsigned char COL);
+[v _LCD_Set_Cursor `(v ~T0 @X0 0 ef2`uc`uc ]
+"60
+[; ;./I2C_Master.h: 60: void LCD_Write_String(char*);
+[v _LCD_Write_String `(v ~T0 @X0 0 ef1`*uc ]
+"59 Master_PIC.c
+[; ;Master_PIC.c: 59: 
+[v _ADC_convert `(v ~T0 @X0 0 ef3`*uc`f`i ]
+"194 D:\Program File\MicroChip\xc8\v2.32\pic\include\c90\stdio.h
+[v _sprintf `(i ~T0 @X0 0 e1v`*uc`*Cuc ]
+"36 D:\Program File\MicroChip\xc8\v2.32\pic\include\c90\string.h
+[; ;D:\Program File\MicroChip\xc8\v2.32\pic\include\c90\string.h: 36: extern char * strcat(char *, const char *);
+[v _strcat `(*uc ~T0 @X0 0 ef2`*uc`*Cuc ]
+"67 D:\Program File\MicroChip\xc8\v2.32\pic\include\c90\stdlib.h
+[; ;D:\Program File\MicroChip\xc8\v2.32\pic\include\c90\stdlib.h: 67: extern int atoi(const char *);
+[v _atoi `(i ~T0 @X0 0 ef1`*Cuc ]
 "54 D:/Program File/MicroChip/MPLABX/v5.50/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h
 [; ;D:/Program File/MicroChip/MPLABX/v5.50/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h: 54: __asm("INDF equ 00h");
 [; <" INDF equ 00h ;# ">
@@ -323,422 +364,703 @@ Version 4.0 HI-TECH Software Intermediate Code
 "3546
 [; ;D:/Program File/MicroChip/MPLABX/v5.50/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h: 3546: __asm("EECON2 equ 018Dh");
 [; <" EECON2 equ 018Dh ;# ">
-"29 Main.c
-[; ;Main.c: 29: 
+"24 Master_PIC.c
+[; ;Master_PIC.c: 24: void LCD_Start(void);
 [p x FOSC  =  INTRC_NOCLKOUT ]
-"30
-[; ;Main.c: 30: void main(void) {
+"25
+[; ;Master_PIC.c: 25: void LCD_Send(void);
 [p x WDTE  =  OFF        ]
-"31
-[; ;Main.c: 31: 
+"26
+[; ;Master_PIC.c: 26: 
 [p x PWRTE  =  OFF       ]
-"32
-[; ;Main.c: 32:     setup();
+"27
+[; ;Master_PIC.c: 27: 
 [p x MCLRE  =  OFF       ]
-"33
-[; ;Main.c: 33:     I2C_Master_Init();
+"28
+[; ;Master_PIC.c: 28: 
 [p x CP  =  OFF          ]
-"34
-[; ;Main.c: 34:     LCD_Init(0x4E);
+"29
+[; ;Master_PIC.c: 29: 
 [p x CPD  =  OFF         ]
-"35
-[; ;Main.c: 35: 
+"30
+[; ;Master_PIC.c: 30: void __attribute__((picinterrupt(("")))) isr(void)
 [p x BOREN  =  OFF       ]
-"36
-[; ;Main.c: 36:     LCD_Set_Cursor(1, 1);
+"31
+[; ;Master_PIC.c: 31: {
 [p x IESO  =  OFF        ]
-"37
-[; ;Main.c: 37:     LCD_Write_String("     Monedanaitor");
+"32
+[; ;Master_PIC.c: 32: 
 [p x FCMEN  =  OFF       ]
-"38
-[; ;Main.c: 38:     LCD_Set_Cursor(2, 1);
+"33
+[; ;Master_PIC.c: 33: }
 [p x LVP  =  OFF         ]
-"41
-[; ;Main.c: 41:     LCD_Write_String(" 1.00  0.5   0.25");
+"36
+[; ;Master_PIC.c: 36: 
 [p x BOR4V  =  BOR40V    ]
-"42
-[; ;Main.c: 42:     _delay((unsigned long)((2500)*(8000000/4000.0)));
+"37
+[; ;Master_PIC.c: 37: 
 [p x WRT  =  OFF         ]
-"50
-[; ;Main.c: 50:     ADC_convert(converted02, counter, 2);
+"45
+[; ;Master_PIC.c: 45: 
 [v _counter `uc ~T0 @X0 1 e ]
-"51
-[; ;Main.c: 51:     }
+"46
+[; ;Master_PIC.c: 46:         LCD_Send();
 [v _conv0 `f ~T0 @X0 1 e ]
 [i _conv0
 -> -> 0 `i `f
 ]
-"52
-[; ;Main.c: 52:     return;
+"47
+[; ;Master_PIC.c: 47: 
 [v _converted `uc ~T0 @X0 1 e ]
-"53
-[; ;Main.c: 53: }
+"48
+[; ;Master_PIC.c: 48: 
 [v _converted02 `uc ~T0 @X0 -> 10 `i e ]
-"54
-[; ;Main.c: 54: 
+"49
+[; ;Master_PIC.c: 49:         infrared();
+[v _temp `ui ~T0 @X0 1 e ]
+"50
+[; ;Master_PIC.c: 50: 
+[v _CONT `uc ~T0 @X0 1 e ]
+"51
+[; ;Master_PIC.c: 51: 
 [v _POT `uc ~T0 @X0 1 e ]
+"52
+[; ;Master_PIC.c: 52:         I2C_Comunication();
+[v _valor `uc ~T0 @X0 1 e ]
+[v _hundreds `uc ~T0 @X0 1 e ]
+[v _residuo `uc ~T0 @X0 1 e ]
+[v _tens `uc ~T0 @X0 1 e ]
+[v _units `uc ~T0 @X0 1 e ]
 [v $root$_isr `(v ~T0 @X0 0 e ]
-"66
-[; ;Main.c: 66: 
+"69
+[; ;Master_PIC.c: 69: 
 [v _isr `(v ~T1 @X0 1 ef ]
-"67
-[; ;Main.c: 67: 
+"70
+[; ;Master_PIC.c: 70:     TRISA0 = 1;
 {
 [e :U _isr ]
 [f ]
-"69
-[; ;Main.c: 69:     TRISBbits.TRISB7 = 0;
+"72
+[; ;Master_PIC.c: 72: 
 [e :UE 143 ]
 }
 [v $root$_main `(v ~T0 @X0 0 e ]
-"74
-[; ;Main.c: 74:     TRISD = 0;
+"77
+[; ;Master_PIC.c: 77: 
 [v _main `(v ~T0 @X0 1 ef ]
 {
 [e :U _main ]
 [f ]
-"76
-[; ;Main.c: 76: 
+"79
+[; ;Master_PIC.c: 79:     TRISD = 0;
 [e ( _setup ..  ]
-"77
-[; ;Main.c: 77: 
-[e ( _I2C_Master_Init ..  ]
-"78
-[; ;Main.c: 78: 
-[e ( _LCD_Init (1 -> -> 78 `i `uc ]
 "80
-[; ;Main.c: 80: 
-[e ( _LCD_Set_Cursor (2 , -> -> 1 `i `uc -> -> 1 `i `uc ]
-"81
-[; ;Main.c: 81:     OSCCONbits.IRCF0 = 1;
-[e ( _LCD_Write_String (1 :s 1C ]
+[; ;Master_PIC.c: 80: 
+[e ( _LCD_Start ..  ]
 "82
-[; ;Main.c: 82:     OSCCONbits.IRCF1 = 1;
-[e ( _LCD_Set_Cursor (2 , -> -> 2 `i `uc -> -> 1 `i `uc ]
-"83
-[; ;Main.c: 83:     OSCCONbits.IRCF2 = 1;
-[e ( _LCD_Write_String (1 :s 2C ]
-"84
-[; ;Main.c: 84:     OSCCONbits.SCS = 1;
-[e ( _LCD_Set_Cursor (2 , -> -> 3 `i `uc -> -> 1 `i `uc ]
-"85
-[; ;Main.c: 85: 
-[e ( _LCD_Write_String (1 :s 3C ]
-"86
-[; ;Main.c: 86: 
-[e ( __delay (1 -> * -> -> 2500 `i `d / -> -> 8000000 `l `d .4000.0 `ul ]
-"88
-[; ;Main.c: 88:     PORTB = 0x00;
+[; ;Master_PIC.c: 82: 
 [e :U 146 ]
-"89
-[; ;Main.c: 89:     PORTC = 0x00;
+"83
+[; ;Master_PIC.c: 83: 
 {
-"90
-[; ;Main.c: 90:     PORTD = 0x00;
-[e ( _LCD_Set_Cursor (2 , -> -> 4 `i `uc -> -> 2 `i `uc ]
-"91
-[; ;Main.c: 91:     PORTE = 0x00;
-[e ( _LCD_Write_String (1 &U _converted02 ]
-"92
-[; ;Main.c: 92: }
+"85
+[; ;Master_PIC.c: 85: 
+[e ( _LCD_Send ..  ]
+"88
+[; ;Master_PIC.c: 88:     OSCCONbits.IRCF2 = 1;
 [e ( _infrared ..  ]
+"91
+[; ;Master_PIC.c: 91: 
+[e ( _I2C_Comunication ..  ]
 "94
-[; ;Main.c: 94: void infrared(void){
-[e ( _ADC_convert (3 , , &U _converted02 -> _counter `f -> 2 `i ]
-"95
-[; ;Main.c: 95:     if(RA0 == 1){
+[; ;Master_PIC.c: 94:     PORTC = 0x00;
 }
 [e :U 145 ]
 [e $U 146  ]
 [e :U 147 ]
-"96
-[; ;Main.c: 96:         RB7 = 1;
+"95
+[; ;Master_PIC.c: 95:     PORTD = 0x00;
 [e $UE 144  ]
-"97
-[; ;Main.c: 97:         counter++;
+"96
+[; ;Master_PIC.c: 96:     PORTE = 0x00;
 [e :UE 144 ]
 }
 "103
-[; ;Main.c: 103:     }
+[; ;Master_PIC.c: 103:         counter++;
 [v _setup `(v ~T0 @X0 1 ef ]
 {
 [e :U _setup ]
 [f ]
 "105
-[; ;Main.c: 105: 
+[; ;Master_PIC.c: 105:         RB7 = 0;
 [e = _ANSEL -> -> 0 `i `uc ]
 "106
-[; ;Main.c: 106: 
+[; ;Master_PIC.c: 106:     }
 [e = _ANSELH -> -> 0 `i `uc ]
 "109
-[; ;Main.c: 109: void ADC_convert(char *data,float a, int place)
+[; ;Master_PIC.c: 109:     }
 [e = _TRISA0 -> -> 1 `i `b ]
 "112
-[; ;Main.c: 112:      float x=0.0;
+[; ;Master_PIC.c: 112: 
 [e = _TRISB0 -> -> 1 `i `b ]
 "113
-[; ;Main.c: 113:      int digits=0;
+[; ;Master_PIC.c: 113: void Text(void){
 [e = . . _TRISBbits 0 7 -> -> 0 `i `uc ]
 "118
-[; ;Main.c: 118:             a=a*-1;
+[; ;Master_PIC.c: 118:      _delay((unsigned long)((50)*(8000000/4000.0)));
 [e = _TRISD -> -> 0 `i `uc ]
 "125
-[; ;Main.c: 125:          temp=temp/10;
+[; ;Master_PIC.c: 125:        }
 [e = . . _OSCCONbits 1 1 -> -> 1 `i `uc ]
 "126
-[; ;Main.c: 126:          digits++;
+[; ;Master_PIC.c: 126:     _delay((unsigned long)((50)*(8000000/4000.0)));
 [e = . . _OSCCONbits 1 2 -> -> 1 `i `uc ]
 "127
-[; ;Main.c: 127:      }
+[; ;Master_PIC.c: 127:     if(TXIF == 1){
 [e = . . _OSCCONbits 1 3 -> -> 1 `i `uc ]
 "128
-[; ;Main.c: 128:      while(digits!=0)
+[; ;Master_PIC.c: 128:         TXREG = units;
 [e = . . _OSCCONbits 0 0 -> -> 1 `i `uc ]
 "131
-[; ;Main.c: 131:          else for(j=2;j<=digits;j++)mu=mu*10;
+[; ;Master_PIC.c: 131: 
 [e = _PORTA -> -> 0 `i `uc ]
 "132
-[; ;Main.c: 132: 
+[; ;Master_PIC.c: 132:      }
 [e = _PORTB -> -> 0 `i `uc ]
 "133
-[; ;Main.c: 133:          x=a/mu;
+[; ;Master_PIC.c: 133: }
 [e = _PORTC -> -> 0 `i `uc ]
 "134
-[; ;Main.c: 134:          a=a-((int)x*mu);
+[; ;Master_PIC.c: 134: 
 [e = _PORTD -> -> 0 `i `uc ]
 "135
-[; ;Main.c: 135:          data[i]=0x30+((int)x);
+[; ;Master_PIC.c: 135: 
 [e = _PORTE -> -> 0 `i `uc ]
 "136
-[; ;Main.c: 136:          i++;
+[; ;Master_PIC.c: 136: void I2C_Comunication(void){
 [e :UE 148 ]
 }
-"138
-[; ;Main.c: 138:          mu=1;
+"139
+[; ;Master_PIC.c: 139:     POT = I2C_Read_Byte();
 [v _infrared `(v ~T0 @X0 1 ef ]
 {
 [e :U _infrared ]
 [f ]
-"139
-[; ;Main.c: 139:      }
+"140
+[; ;Master_PIC.c: 140:     I2C_Master_Stop();
 [e $ ! == -> _RA0 `i -> 1 `i 150  ]
 {
-"140
-[; ;Main.c: 140: 
-[e = _RB7 -> -> 1 `i `b ]
 "141
-[; ;Main.c: 141:      data[i]='.';
-[e ++ _counter -> -> 1 `i `uc ]
+[; ;Master_PIC.c: 141:     _delay((unsigned long)((200)*(8000000/4000.0)));
+[e = _RB7 -> -> 1 `i `b ]
 "142
-[; ;Main.c: 142:      i++;
-[e ( __delay (1 -> * -> -> 500 `i `d / -> -> 8000000 `l `d .4000.0 `ul ]
+[; ;Master_PIC.c: 142: 
+[e ++ _counter -> -> 1 `i `uc ]
 "143
-[; ;Main.c: 143:      digits=0;
-[e = _RB7 -> -> 0 `i `b ]
+[; ;Master_PIC.c: 143:     I2C_Master_Start();
+[e ( __delay (1 -> * -> -> 500 `i `d / -> -> 8000000 `l `d .4000.0 `ul ]
 "144
-[; ;Main.c: 144:      for(j=1;j<=place;j++)mu=mu*10;
+[; ;Master_PIC.c: 144:     I2C_Master_Write(0x61);
+[e = _RB7 -> -> 0 `i `b ]
+"145
+[; ;Master_PIC.c: 145:     CONT = I2C_Read_Byte();
 }
 [e $U 151  ]
-"145
-[; ;Main.c: 145:      x=(a-(int)a)*mu;
+"146
+[; ;Master_PIC.c: 146:     I2C_Master_Stop();
 [e :U 150 ]
 {
-"146
-[; ;Main.c: 146:      a=x;
-[e = _RB7 -> -> 0 `i `b ]
 "147
-[; ;Main.c: 147:      temp=a;
+[; ;Master_PIC.c: 147:     _delay((unsigned long)((200)*(8000000/4000.0)));
+[e = _RB7 -> -> 0 `i `b ]
+"148
+[; ;Master_PIC.c: 148: 
 }
 [e :U 151 ]
-"148
-[; ;Main.c: 148:      x=0.0;
+"149
+[; ;Master_PIC.c: 149:     I2C_Master_Start();
 [e :UE 149 ]
 }
+"152
+[; ;Master_PIC.c: 152:     I2C_Master_Stop();
+[v _Text `(v ~T0 @X0 1 ef ]
+{
+[e :U _Text ]
+[f ]
 "153
-[; ;Main.c: 153:          if(digits==1)mu=1;
-[v _ADC_convert `(v ~T0 @X0 1 ef3`*uc`f`i ]
+[; ;Master_PIC.c: 153:     _delay((unsigned long)((200)*(8000000/4000.0)));
+[e ( __delay (1 -> * -> -> 250 `i `d / -> -> 8000000 `l `d .4000.0 `ul ]
 "154
-[; ;Main.c: 154:          else for(j=2;j<=digits;j++)mu=mu*10;
+[; ;Master_PIC.c: 154: }
+[e ( _division (1 _counter ]
+"156
+[; ;Master_PIC.c: 156: 
+[e $ ! == -> _RCREG `ui -> 97 `ui 153  ]
+{
+"157
+[; ;Master_PIC.c: 157: void LCD_Start(void){
+[e ( __delay (1 -> * -> -> 50 `i `d / -> -> 8000000 `l `d .4000.0 `ul ]
+"158
+[; ;Master_PIC.c: 158:     I2C_Master_Init();
+[e $ ! == -> _TXIF `i -> 1 `i 154  ]
+{
+"159
+[; ;Master_PIC.c: 159:     LCD_Init(0x4E);
+[e = _TXREG -> _hundreds `uc ]
+"160
+[; ;Master_PIC.c: 160: 
+}
+[e :U 154 ]
+"161
+[; ;Master_PIC.c: 161:     LCD_Set_Cursor(1, 1);
+[e ( __delay (1 -> * -> -> 50 `i `d / -> -> 8000000 `l `d .4000.0 `ul ]
+"162
+[; ;Master_PIC.c: 162:     LCD_Write_String("     Monedanaitor");
+[e $ ! == -> _TXIF `i -> 1 `i 155  ]
+{
+"163
+[; ;Master_PIC.c: 163:     LCD_Set_Cursor(2, 1);
+[e = _TXREG -> _tens `uc ]
+"164
+[; ;Master_PIC.c: 164:     LCD_Write_String("   Monedas = Q0.00");
+}
+[e :U 155 ]
+"165
+[; ;Master_PIC.c: 165:     LCD_Set_Cursor(3, 1);
+[e ( __delay (1 -> * -> -> 50 `i `d / -> -> 8000000 `l `d .4000.0 `ul ]
+"166
+[; ;Master_PIC.c: 166:     LCD_Write_String(" 1.00  0.5   0.25");
+[e $ ! == -> _TXIF `i -> 1 `i 156  ]
+{
+"167
+[; ;Master_PIC.c: 167:     _delay((unsigned long)((2500)*(8000000/4000.0)));
+[e = _TXREG -> _units `uc ]
+"168
+[; ;Master_PIC.c: 168: }
+}
+[e :U 156 ]
+"169
+[; ;Master_PIC.c: 169: 
+[e ( __delay (1 -> * -> -> 50 `i `d / -> -> 8000000 `l `d .4000.0 `ul ]
+"171
+[; ;Master_PIC.c: 171: void LCD_Send(void){
+}
+[e :U 153 ]
+"172
+[; ;Master_PIC.c: 172:     LCD_Set_Cursor(4, 2);
+[e :UE 152 ]
+}
+"175
+[; ;Master_PIC.c: 175: 
+[v _I2C_Comunication `(v ~T0 @X0 1 ef ]
+{
+[e :U _I2C_Comunication ]
+[f ]
+"177
+[; ;Master_PIC.c: 177: }
+[e ( _I2C_Master_Write (1 -> -> 81 `i `uc ]
+"178
+[; ;Master_PIC.c: 178: 
+[e = _POT ( _I2C_Read_Byte ..  ]
+"179
+[; ;Master_PIC.c: 179: 
+[e ( _I2C_Master_Stop ..  ]
+"180
+[; ;Master_PIC.c: 180: 
+[e ( __delay (1 -> * -> -> 200 `i `d / -> -> 8000000 `l `d .4000.0 `ul ]
+"182
+[; ;Master_PIC.c: 182: void ADC_convert(char *data,float a, int place)
+[e ( _I2C_Master_Start ..  ]
+"183
+[; ;Master_PIC.c: 183: {
+[e ( _I2C_Master_Write (1 -> -> 97 `i `uc ]
+"184
+[; ;Master_PIC.c: 184:      int temp=a;
+[e = _CONT ( _I2C_Read_Byte ..  ]
+"185
+[; ;Master_PIC.c: 185:      float x=0.0;
+[e ( _I2C_Master_Stop ..  ]
+"186
+[; ;Master_PIC.c: 186:      int digits=0;
+[e ( __delay (1 -> * -> -> 200 `i `d / -> -> 8000000 `l `d .4000.0 `ul ]
+"188
+[; ;Master_PIC.c: 188:      int j=0;
+[e ( _I2C_Master_Start ..  ]
+"189
+[; ;Master_PIC.c: 189:      if(a<0)
+[e ( _I2C_Master_Write (1 -> -> 113 `i `uc ]
+"190
+[; ;Master_PIC.c: 190:      {
+[e = _temp -> ( _I2C_Read_Byte ..  `ui ]
+"191
+[; ;Master_PIC.c: 191:             a=a*-1;
+[e ( _I2C_Master_Stop ..  ]
+"192
+[; ;Master_PIC.c: 192:             data[i]='-';
+[e ( __delay (1 -> * -> -> 200 `i `d / -> -> 8000000 `l `d .4000.0 `ul ]
+"193
+[; ;Master_PIC.c: 193:             i++;
+[e :UE 157 ]
+}
+"196
+[; ;Master_PIC.c: 196:      while(temp!=0)
+[v _LCD_Start `(v ~T0 @X0 1 ef ]
+{
+[e :U _LCD_Start ]
+[f ]
+"197
+[; ;Master_PIC.c: 197:      {
+[e ( _I2C_Master_Init ..  ]
+"198
+[; ;Master_PIC.c: 198:          temp=temp/10;
+[e ( _LCD_Init (1 -> -> 78 `i `uc ]
+"200
+[; ;Master_PIC.c: 200:      }
+[e ( _LCD_Set_Cursor (2 , -> -> 1 `i `uc -> -> 1 `i `uc ]
+"201
+[; ;Master_PIC.c: 201:      while(digits!=0)
+[e ( _LCD_Write_String (1 :s 1C ]
+"202
+[; ;Master_PIC.c: 202:      {
+[e ( _LCD_Set_Cursor (2 , -> -> 2 `i `uc -> -> 1 `i `uc ]
+"203
+[; ;Master_PIC.c: 203:          if(digits==1)mu=1;
+[e ( _LCD_Write_String (1 :s 2C ]
+"204
+[; ;Master_PIC.c: 204:          else for(j=2;j<=digits;j++)mu=mu*10;
+[e ( _LCD_Set_Cursor (2 , -> -> 3 `i `uc -> -> 1 `i `uc ]
+"205
+[; ;Master_PIC.c: 205: 
+[e ( _LCD_Write_String (1 :s 3C ]
+"206
+[; ;Master_PIC.c: 206:          x=a/mu;
+[e ( __delay (1 -> * -> -> 2500 `i `d / -> -> 8000000 `l `d .4000.0 `ul ]
+"207
+[; ;Master_PIC.c: 207:          a=a-((int)x*mu);
+[e :UE 158 ]
+}
+"210
+[; ;Master_PIC.c: 210:          digits--;
+[v _LCD_Send `(v ~T0 @X0 1 ef ]
+{
+[e :U _LCD_Send ]
+[f ]
+"211
+[; ;Master_PIC.c: 211:          mu=1;
+[e ( _LCD_Set_Cursor (2 , -> -> 4 `i `uc -> -> 2 `i `uc ]
+"212
+[; ;Master_PIC.c: 212:      }
+[e ( _LCD_Write_String (1 &U _converted02 ]
+"215
+[; ;Master_PIC.c: 215:      i++;
+[e ( _ADC_convert (3 , , &U _converted02 -> _counter `f -> 2 `i ]
+"216
+[; ;Master_PIC.c: 216:      digits=0;
+[e :UE 159 ]
+}
+"221
+[; ;Master_PIC.c: 221:      x=0.0;
+[v _ADC_convert `(v ~T0 @X0 1 ef3`*uc`f`i ]
+"222
+[; ;Master_PIC.c: 222:      mu=1;
 {
 [e :U _ADC_convert ]
-"153
-[; ;Main.c: 153:          if(digits==1)mu=1;
+"221
+[; ;Master_PIC.c: 221:      x=0.0;
 [v _data `*uc ~T0 @X0 1 r1 ]
 [v _a `f ~T0 @X0 1 r2 ]
 [v _place `i ~T0 @X0 1 r3 ]
-"154
-[; ;Main.c: 154:          else for(j=2;j<=digits;j++)mu=mu*10;
+"222
+[; ;Master_PIC.c: 222:      mu=1;
 [f ]
-"155
-[; ;Main.c: 155: 
+"223
+[; ;Master_PIC.c: 223:      digits=place;
 [v _temp `i ~T0 @X0 1 a ]
 [e = _temp -> _a `i ]
-"156
-[; ;Main.c: 156:          x=a/mu;
+"224
+[; ;Master_PIC.c: 224:      while(digits!=0)
 [v _x `f ~T0 @X0 1 a ]
 [e = _x -> .0.0 `f ]
-"157
-[; ;Main.c: 157:          a=a-((int)x*mu);
+"225
+[; ;Master_PIC.c: 225:      {
 [v _digits `i ~T0 @X0 1 a ]
 [e = _digits -> 0 `i ]
-"158
-[; ;Main.c: 158:          data[i]=0x30+((int)x);
+"226
+[; ;Master_PIC.c: 226:          if(digits==1)mu=1;
 [v _i `i ~T0 @X0 1 a ]
 [e = _i -> 0 `i ]
 [v _mu `i ~T0 @X0 1 a ]
 [e = _mu -> 1 `i ]
-"159
-[; ;Main.c: 159:          i++;
+"227
+[; ;Master_PIC.c: 227:          else for(j=2;j<=digits;j++)mu=mu*10;
 [v _j `i ~T0 @X0 1 a ]
 [e = _j -> 0 `i ]
-"160
-[; ;Main.c: 160:          digits--;
-[e $ ! < _a -> -> 0 `i `f 153  ]
-"161
-[; ;Main.c: 161:          mu=1;
+"228
+[; ;Master_PIC.c: 228: 
+[e $ ! < _a -> -> 0 `i `f 161  ]
+"229
+[; ;Master_PIC.c: 229:          x=a/mu;
 {
-"162
-[; ;Main.c: 162:      }
+"230
+[; ;Master_PIC.c: 230:          a=a-((int)x*mu);
 [e = _a * _a -> -U -> 1 `i `f ]
-"163
-[; ;Main.c: 163: 
+"231
+[; ;Master_PIC.c: 231:          data[i]=0x30+((int)x);
 [e = *U + _data * -> _i `x -> -> # *U _data `i `x -> -> 45 `ui `uc ]
-"164
-[; ;Main.c: 164:     data[i]='\n';
+"232
+[; ;Master_PIC.c: 232:          i++;
 [e ++ _i -> 1 `i ]
-"165
-[; ;Main.c: 165: }
-}
-[e :U 153 ]
-"167
-[e $U 154  ]
-[e :U 155 ]
-"168
-{
-"169
-[e = _temp / _temp -> 10 `i ]
-"170
-[e ++ _digits -> 1 `i ]
-"171
-}
-[e :U 154 ]
-"167
-[e $ != _temp -> 0 `i 155  ]
-[e :U 156 ]
-"172
-[e $U 157  ]
-[e :U 158 ]
-"173
-{
-"174
-[e $ ! == _digits -> 1 `i 160  ]
-[e = _mu -> 1 `i ]
-[e $U 161  ]
-"175
-[e :U 160 ]
-{
-[e = _j -> 2 `i ]
-[e $U 165  ]
-[e :U 162 ]
-[e = _mu * _mu -> 10 `i ]
-[e ++ _j -> 1 `i ]
-[e :U 165 ]
-[e $ <= _j _digits 162  ]
-[e :U 163 ]
+"233
+[; ;Master_PIC.c: 233:          digits--;
 }
 [e :U 161 ]
-"177
-[e = _x / _a -> _mu `f ]
-"178
-[e = _a - _a -> * -> _x `i _mu `f ]
-"179
-[e = *U + _data * -> _i `x -> -> # *U _data `i `x -> + -> 48 `i -> _x `i `uc ]
-"180
-[e ++ _i -> 1 `i ]
-"181
-[e -- _digits -> 1 `i ]
-"182
-[e = _mu -> 1 `i ]
-"183
-}
-[e :U 157 ]
-"172
-[e $ != _digits -> 0 `i 158  ]
-[e :U 159 ]
-"185
-[e = *U + _data * -> _i `x -> -> # *U _data `i `x -> -> 46 `ui `uc ]
-"186
-[e ++ _i -> 1 `i ]
-"187
-[e = _digits -> 0 `i ]
-"188
+"235
+[; ;Master_PIC.c: 235:      }
+[e $U 162  ]
+[e :U 163 ]
+"236
+[; ;Master_PIC.c: 236: 
 {
-[e = _j -> 1 `i ]
-[e $U 169  ]
+"237
+[; ;Master_PIC.c: 237:     data[i]='\n';
+[e = _temp / _temp -> 10 `i ]
+"238
+[; ;Master_PIC.c: 238: }
+[e ++ _digits -> 1 `i ]
+"239
+[; ;Master_PIC.c: 239: 
+}
+[e :U 162 ]
+"235
+[; ;Master_PIC.c: 235:      }
+[e $ != _temp -> 0 `i 163  ]
+[e :U 164 ]
+"240
+[; ;Master_PIC.c: 240: 
+[e $U 165  ]
 [e :U 166 ]
-[e = _mu * _mu -> 10 `i ]
-[e ++ _j -> 1 `i ]
-[e :U 169 ]
-[e $ <= _j _place 166  ]
-[e :U 167 ]
-}
-"189
-[e = _x * - _a -> -> _a `i `f -> _mu `f ]
-"190
-[e = _a _x ]
-"191
-[e = _temp -> _a `i ]
-"192
-[e = _x -> .0.0 `f ]
-"193
-[e = _mu -> 1 `i ]
-"194
-[e = _digits _place ]
-"195
-[e $U 170  ]
-[e :U 171 ]
-"196
+"241
+[; ;Master_PIC.c: 241: char division (char valor){
 {
-"197
-[e $ ! == _digits -> 1 `i 173  ]
+"242
+[; ;Master_PIC.c: 242:     hundreds = valor/100;
+[e $ ! == _digits -> 1 `i 168  ]
 [e = _mu -> 1 `i ]
-[e $U 174  ]
-"198
-[e :U 173 ]
+[e $U 169  ]
+"243
+[; ;Master_PIC.c: 243:     residuo = valor%100;
+[e :U 168 ]
 {
 [e = _j -> 2 `i ]
-[e $U 178  ]
-[e :U 175 ]
+[e $U 173  ]
+[e :U 170 ]
 [e = _mu * _mu -> 10 `i ]
 [e ++ _j -> 1 `i ]
-[e :U 178 ]
-[e $ <= _j _digits 175  ]
-[e :U 176 ]
+[e :U 173 ]
+[e $ <= _j _digits 170  ]
+[e :U 171 ]
 }
-[e :U 174 ]
-"200
+[e :U 169 ]
+"245
+[; ;Master_PIC.c: 245:     units = residuo%10;
 [e = _x / _a -> _mu `f ]
-"201
+"246
+[; ;Master_PIC.c: 246: 
 [e = _a - _a -> * -> _x `i _mu `f ]
-"202
+"247
+[; ;Master_PIC.c: 247:     hundreds = hundreds + 48;
 [e = *U + _data * -> _i `x -> -> # *U _data `i `x -> + -> 48 `i -> _x `i `uc ]
-"203
+"248
+[; ;Master_PIC.c: 248:     tens = tens + 48;
 [e ++ _i -> 1 `i ]
-"204
+"249
+[; ;Master_PIC.c: 249:     units = units + 48;
 [e -- _digits -> 1 `i ]
-"205
+"250
+[; ;Master_PIC.c: 250: }
 [e = _mu -> 1 `i ]
-"206
+"251
+[; ;Master_PIC.c: 251: 
 }
-[e :U 170 ]
-"195
-[e $ != _digits -> 0 `i 171  ]
-[e :U 172 ]
-"208
+[e :U 165 ]
+"240
+[; ;Master_PIC.c: 240: 
+[e $ != _digits -> 0 `i 166  ]
+[e :U 167 ]
+"253
+[; ;Master_PIC.c: 253: int concat(int a, int b)
+[e = *U + _data * -> _i `x -> -> # *U _data `i `x -> -> 46 `ui `uc ]
+"254
+[; ;Master_PIC.c: 254: {
+[e ++ _i -> 1 `i ]
+"255
+[; ;Master_PIC.c: 255: 
+[e = _digits -> 0 `i ]
+"256
+[; ;Master_PIC.c: 256:     char s1[20];
+{
+[e = _j -> 1 `i ]
+[e $U 177  ]
+[e :U 174 ]
+[e = _mu * _mu -> 10 `i ]
+[e ++ _j -> 1 `i ]
+[e :U 177 ]
+[e $ <= _j _place 174  ]
+[e :U 175 ]
+}
+"257
+[; ;Master_PIC.c: 257:     char s2[20];
+[e = _x * - _a -> -> _a `i `f -> _mu `f ]
+"258
+[; ;Master_PIC.c: 258: 
+[e = _a _x ]
+"259
+[; ;Master_PIC.c: 259: 
+[e = _temp -> _a `i ]
+"260
+[; ;Master_PIC.c: 260: 
+[e = _x -> .0.0 `f ]
+"261
+[; ;Master_PIC.c: 261:     sprintf(s1, "%d", a);
+[e = _mu -> 1 `i ]
+"262
+[; ;Master_PIC.c: 262:     sprintf(s2, "%d", b);
+[e = _digits _place ]
+"263
+[; ;Master_PIC.c: 263: 
+[e $U 178  ]
+[e :U 179 ]
+"264
+[; ;Master_PIC.c: 264: 
+{
+"265
+[; ;Master_PIC.c: 265: 
+[e $ ! == _digits -> 1 `i 181  ]
+[e = _mu -> 1 `i ]
+[e $U 182  ]
+"266
+[; ;Master_PIC.c: 266:     strcat(s1, s2);
+[e :U 181 ]
+{
+[e = _j -> 2 `i ]
+[e $U 186  ]
+[e :U 183 ]
+[e = _mu * _mu -> 10 `i ]
+[e ++ _j -> 1 `i ]
+[e :U 186 ]
+[e $ <= _j _digits 183  ]
+[e :U 184 ]
+}
+[e :U 182 ]
+"268
+[; ;Master_PIC.c: 268: 
+[e = _x / _a -> _mu `f ]
+"269
+[; ;Master_PIC.c: 269: 
+[e = _a - _a -> * -> _x `i _mu `f ]
+"270
+[; ;Master_PIC.c: 270:     int c = atoi(s1);
+[e = *U + _data * -> _i `x -> -> # *U _data `i `x -> + -> 48 `i -> _x `i `uc ]
+"271
+[; ;Master_PIC.c: 271: 
+[e ++ _i -> 1 `i ]
+"272
+[; ;Master_PIC.c: 272: 
+[e -- _digits -> 1 `i ]
+"273
+[; ;Master_PIC.c: 273:     return c;
+[e = _mu -> 1 `i ]
+"274
+[; ;Master_PIC.c: 274: }
+}
+[e :U 178 ]
+"263
+[; ;Master_PIC.c: 263: 
+[e $ != _digits -> 0 `i 179  ]
+[e :U 180 ]
+"276
+[; ;Master_PIC.c: 276: 
 [e = *U + _data * -> _i `x -> -> # *U _data `i `x -> -> 10 `ui `uc ]
-"209
-[e :UE 152 ]
+"277
+[; ;Master_PIC.c: 277: void putch(char data){
+[e :UE 160 ]
 }
+"280
+[; ;Master_PIC.c: 280:     return;
+[v _division `(uc ~T0 @X0 1 ef1`uc ]
+{
+[e :U _division ]
+[v _valor `uc ~T0 @X0 1 r1 ]
+[f ]
+"281
+[; ;Master_PIC.c: 281: }
+[e = _hundreds -> / -> _valor `i -> 100 `i `uc ]
+"282
+[e = _residuo -> % -> _valor `i -> 100 `i `uc ]
+"283
+[e = _tens -> / -> _residuo `i -> 10 `i `uc ]
+"284
+[e = _units -> % -> _residuo `i -> 10 `i `uc ]
+"286
+[e = _hundreds -> + -> _hundreds `i -> 48 `i `uc ]
+"287
+[e = _tens -> + -> _tens `i -> 48 `i `uc ]
+"288
+[e = _units -> + -> _units `i -> 48 `i `uc ]
+"289
+[e :UE 187 ]
+}
+"292
+[v _concat `(i ~T0 @X0 1 ef2`i`i ]
+"293
+{
+[e :U _concat ]
+"292
+[v _a `i ~T0 @X0 1 r1 ]
+[v _b `i ~T0 @X0 1 r2 ]
+"293
+[f ]
+"295
+[v _s1 `uc ~T0 @X0 -> 20 `i a ]
+"296
+[v _s2 `uc ~T0 @X0 -> 20 `i a ]
+"300
+[e ( _sprintf (1 , (. , &U _s1 :s 4C _a ]
+"301
+[e ( _sprintf (1 , (. , &U _s2 :s 5C _b ]
+"305
+[e ( _strcat (2 , &U _s1 -> &U _s2 `*Cuc ]
+"309
+[v _c `i ~T0 @X0 1 a ]
+[e = _c ( _atoi (1 -> &U _s1 `*Cuc ]
+"312
+[e ) _c ]
+[e $UE 188  ]
+"313
+[e :UE 188 ]
+}
+"316
+[v _putch `(v ~T0 @X0 1 ef1`uc ]
+{
+[e :U _putch ]
+[v _data `uc ~T0 @X0 1 r1 ]
+[f ]
+"317
+[e $U 190  ]
+[e :U 191 ]
+[e :U 190 ]
+[e $ == -> _TXIF `i -> 0 `i 191  ]
+[e :U 192 ]
+"318
+[e = _TXREG -> _data `uc ]
+"319
+[e $UE 189  ]
+"320
+[e :UE 189 ]
+}
+[p f _sprintf 8388736 ]
 [a 1C 32 32 32 32 32 77 111 110 101 100 97 110 97 105 116 111 114 0 ]
+[a 4C 37 100 0 ]
+[a 5C 37 100 0 ]
 [a 3C 32 49 46 48 48 32 32 48 46 53 32 32 32 48 46 50 53 0 ]
 [a 2C 32 32 32 77 111 110 101 100 97 115 32 61 32 81 48 46 48 48 0 ]

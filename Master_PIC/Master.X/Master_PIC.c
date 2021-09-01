@@ -1,16 +1,11 @@
-/******************************************************************************
- * Proyecto 1 
- ******************************************************************************
- * File:   Main.c
- * Author: Marco
- * Clasificador de Monedas
- *
+/*
+ * File:   Master_PIC.c
+ * Author: Yamzard
+ * Proyecto 1 - Digital 2
+ *  Clasificador de Monedas
+ *      Configuracion del PIC Maestro
+ * Created on September 1, 2021, 12:20 AM
  */
-
-//-----------------------------------------------------------------------------
-//                            Librerias 
-//-----------------------------------------------------------------------------
-
 #define _XTAL_FREQ 8000000
 #include <xc.h>
 #include <stdint.h>
@@ -19,7 +14,7 @@
 #include <stdlib.h>
 
 // Librerias propias
-#include "I2C_LCD.h"    // Libreria I2C_LCD
+#include "I2C_Master.h"    // Libreria I2C_LCD
 
 
 //-----------------------------------------------------------------------------
@@ -51,7 +46,10 @@ char counter;
 float conv0 = 0;
 char converted;
 char converted02[10];
-char POT;
+uint16_t temp;
+uint8_t CONT;
+uint8_t POT;
+char valor, hundreds, residuo, tens, units;
 //-----------------------------------------------------------------------------
 //                            Prototipos 
 //-----------------------------------------------------------------------------
@@ -59,6 +57,11 @@ char POT;
 void setup(void);
 void infrared(void);
 void ADC_convert(char *data,float a, int place);
+void I2C_Comunication(void);
+void Text(void);
+char division (char valor);
+void LCD_Start(void);
+void LCD_Send(void);
 
 //-----------------------------------------------------------------------------
 //                            Interrupciones
@@ -74,24 +77,20 @@ void __interrupt() isr(void)
 void main(void) {
     
     setup();    // Llamo a mi configuracion
-    I2C_Master_Init();  
-    LCD_Init(0x4E);    // Initialize LCD module with I2C address = 0x4E
- 
-    LCD_Set_Cursor(1, 1);
-    LCD_Write_String("     Monedanaitor");
-    LCD_Set_Cursor(2, 1);  
-    LCD_Write_String("   Monedas = Q0.00");
-    LCD_Set_Cursor(3, 1);  
-    LCD_Write_String(" 1.00  0.5   0.25");
-    __delay_ms(2500);
+    LCD_Start();    // Se inicializa la LCD
     
     while(1)    // Equivale al loop
     {
-    LCD_Set_Cursor(4, 2);  
-    LCD_Write_String(converted02);
-    infrared();
+        // Comunicacion con la LCD
+        LCD_Send();
+        
+        // Sistema de conteo del Infrarojo
+        infrared();
+        
+        // Comunicacion con los esclavos
+        I2C_Comunication();
     
-    ADC_convert(converted02, counter, 2);
+    
     }
     return;
 }
@@ -100,6 +99,7 @@ void main(void) {
 //                            Funciones
 //-----------------------------------------------------------------------------
 
+// Donde se realizan todas las configuraciones de nuestro PIC
 void setup(void){
     
     ANSEL = 0;
@@ -135,6 +135,7 @@ void setup(void){
     PORTE = 0x00;
 }
 
+// Funcion para el contador del Infrarojo
 void infrared(void){
     if(RA0 == 1){
         RB7 = 1;
@@ -145,6 +146,73 @@ void infrared(void){
     else{
         RB7 = 0;        
     }
+}
+
+// Funcion para enviar por USART
+void Text(void){
+     __delay_ms(250); //Tiempos para el despliegue de los caracteres
+     division(counter);
+        
+     if (RCREG == 'a'){              
+     __delay_ms(50);
+    if(TXIF == 1){
+        TXREG = hundreds; 
+    }
+    __delay_ms(50);
+    if(TXIF == 1){
+        TXREG = tens; 
+       }
+    __delay_ms(50);
+    if(TXIF == 1){
+        TXREG = units; 
+       }
+    __delay_ms(50);
+        
+     }
+}
+
+// Se configura la comunicacion I2C
+void I2C_Comunication(void){
+    
+    I2C_Master_Write(0x51); // Direccion del SLAVE 1
+    POT = I2C_Read_Byte();
+    I2C_Master_Stop();
+    __delay_ms(200);
+        
+    I2C_Master_Start();
+    I2C_Master_Write(0x61); // Direccion del SLAVE 2
+    CONT = I2C_Read_Byte();
+    I2C_Master_Stop();
+    __delay_ms(200);
+       
+    I2C_Master_Start();
+    I2C_Master_Write(0x71); // Direccion del SLAVE 3
+    temp = I2C_Read_Byte();
+    I2C_Master_Stop();
+    __delay_ms(200);
+}
+
+// Funcion para inicializar la LCD
+void LCD_Start(void){
+    I2C_Master_Init();  
+    LCD_Init(0x4E);    // Initialize LCD module with I2C address = 0x4E
+ 
+    LCD_Set_Cursor(1, 1);
+    LCD_Write_String("     Monedanaitor");
+    LCD_Set_Cursor(2, 1);  
+    LCD_Write_String("   Monedas = Q0.00");
+    LCD_Set_Cursor(3, 1);  
+    LCD_Write_String(" 1.00  0.5   0.25");
+    __delay_ms(2500);
+}
+
+// Funcion para mandar sensores en tiempo real a la LCD
+void LCD_Send(void){
+    LCD_Set_Cursor(4, 2);  
+    LCD_Write_String(converted02);
+    
+    
+    ADC_convert(converted02, counter, 2);
 }
 
 /*******************************************************************************
@@ -207,3 +275,46 @@ void ADC_convert(char *data,float a, int place)
      
     data[i]='\n';
 }
+
+// Funcion para poder dividir el contador
+char division (char valor){
+    hundreds = valor/100;//esto me divide entre 100 y se queda con el entero
+    residuo = valor%100; //el residuo de lo que estoy operando
+    tens = residuo/10; 
+    units = residuo%10; //se queda con las units de las tens
+    // Se les suma 47 para que me den al valor requerido
+    hundreds = hundreds + 48;
+    tens = tens + 48;
+    units = units + 48;
+} 
+
+// Funcion para poder concatenar
+int concat(int a, int b)
+{
+ 
+    char s1[20];
+    char s2[20];
+
+ 
+    // Convert both the integers to string
+    sprintf(s1, "%d", a);
+    sprintf(s2, "%d", b);
+
+ 
+    // Concatenate both strings
+    strcat(s1, s2);
+ 
+    // Convert the concatenated string
+    // to integer
+    int c = atoi(s1);
+ 
+    // return the formed integer
+    return c;
+}
+
+// Funcion para que funcione el USART
+void putch(char data){      // Funcion especifica de libreria stdio.h
+    while(TXIF == 0);
+    TXREG = data; // lo que se muestra de la cadena
+    return;
+}   

@@ -1,4 +1,4 @@
-# 1 "Main.c"
+# 1 "Master_PIC.c"
 # 1 "<built-in>" 1
 # 1 "<built-in>" 3
 # 288 "<built-in>" 3
@@ -6,8 +6,8 @@
 # 1 "<built-in>" 2
 # 1 "D:/Program File/MicroChip/MPLABX/v5.50/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\\pic\\include\\language_support.h" 1 3
 # 2 "<built-in>" 2
-# 1 "Main.c" 2
-# 15 "Main.c"
+# 1 "Master_PIC.c" 2
+# 10 "Master_PIC.c"
 # 1 "D:/Program File/MicroChip/MPLABX/v5.50/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\\pic\\include\\xc.h" 1 3
 # 18 "D:/Program File/MicroChip/MPLABX/v5.50/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\\pic\\include\\xc.h" 3
 extern const char __xc8_OPTIM_SPEED;
@@ -2488,7 +2488,7 @@ extern __bank0 unsigned char __resetbits;
 extern __bank0 __bit __powerdown;
 extern __bank0 __bit __timeout;
 # 28 "D:/Program File/MicroChip/MPLABX/v5.50/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\\pic\\include\\xc.h" 2 3
-# 15 "Main.c" 2
+# 10 "Master_PIC.c" 2
 
 # 1 "D:\\Program File\\MicroChip\\xc8\\v2.32\\pic\\include\\c90\\stdint.h" 1 3
 # 13 "D:\\Program File\\MicroChip\\xc8\\v2.32\\pic\\include\\c90\\stdint.h" 3
@@ -2623,7 +2623,7 @@ typedef int16_t intptr_t;
 
 
 typedef uint16_t uintptr_t;
-# 16 "Main.c" 2
+# 11 "Master_PIC.c" 2
 
 # 1 "D:\\Program File\\MicroChip\\xc8\\v2.32\\pic\\include\\c90\\stdio.h" 1 3
 
@@ -2722,7 +2722,7 @@ extern int vsscanf(const char *, const char *, va_list) __attribute__((unsupport
 #pragma printf_check(sprintf) const
 extern int sprintf(char *, const char *, ...);
 extern int printf(const char *, ...);
-# 17 "Main.c" 2
+# 12 "Master_PIC.c" 2
 
 # 1 "D:\\Program File\\MicroChip\\xc8\\v2.32\\pic\\include\\c90\\string.h" 1 3
 # 14 "D:\\Program File\\MicroChip\\xc8\\v2.32\\pic\\include\\c90\\string.h" 3
@@ -2755,7 +2755,7 @@ extern char * strchr(const char *, int);
 extern char * strichr(const char *, int);
 extern char * strrchr(const char *, int);
 extern char * strrichr(const char *, int);
-# 18 "Main.c" 2
+# 13 "Master_PIC.c" 2
 
 # 1 "D:\\Program File\\MicroChip\\xc8\\v2.32\\pic\\include\\c90\\stdlib.h" 1 3
 
@@ -2840,12 +2840,12 @@ extern char * ltoa(char * buf, long val, int base);
 extern char * ultoa(char * buf, unsigned long val, int base);
 
 extern char * ftoa(float f, int * status);
-# 19 "Main.c" 2
+# 14 "Master_PIC.c" 2
 
 
 
-# 1 "./I2C_LCD.h" 1
-# 40 "./I2C_LCD.h"
+# 1 "./I2C_Master.h" 1
+# 40 "./I2C_Master.h"
 void I2C_Master_Init();
 void I2C_Master_Wait();
 void I2C_Master_Start();
@@ -2855,6 +2855,8 @@ void I2C_ACK();
 void I2C_NACK();
 unsigned char I2C_Master_Write(unsigned char data);
 unsigned char I2C_Read_Byte(void);
+void I2C_Slave_Init(unsigned char address);
+
 
 
 
@@ -2870,7 +2872,7 @@ void noBacklight();
 void LCD_SR();
 void LCD_SL();
 void LCD_Clear();
-# 22 "Main.c" 2
+# 17 "Master_PIC.c" 2
 
 
 
@@ -2903,7 +2905,10 @@ char counter;
 float conv0 = 0;
 char converted;
 char converted02[10];
-char POT;
+uint16_t temp;
+uint8_t CONT;
+uint8_t POT;
+char valor, hundreds, residuo, tens, units;
 
 
 
@@ -2911,6 +2916,11 @@ char POT;
 void setup(void);
 void infrared(void);
 void ADC_convert(char *data,float a, int place);
+void I2C_Comunication(void);
+void Text(void);
+char division (char valor);
+void LCD_Start(void);
+void LCD_Send(void);
 
 
 
@@ -2926,27 +2936,24 @@ void __attribute__((picinterrupt(("")))) isr(void)
 void main(void) {
 
     setup();
-    I2C_Master_Init();
-    LCD_Init(0x4E);
-
-    LCD_Set_Cursor(1, 1);
-    LCD_Write_String("     Monedanaitor");
-    LCD_Set_Cursor(2, 1);
-    LCD_Write_String("   Monedas = Q0.00");
-    LCD_Set_Cursor(3, 1);
-    LCD_Write_String(" 1.00  0.5   0.25");
-    _delay((unsigned long)((2500)*(8000000/4000.0)));
+    LCD_Start();
 
     while(1)
     {
-    LCD_Set_Cursor(4, 2);
-    LCD_Write_String(converted02);
-    infrared();
 
-    ADC_convert(converted02, counter, 2);
+        LCD_Send();
+
+
+        infrared();
+
+
+        I2C_Comunication();
+
+
     }
     return;
 }
+
 
 
 
@@ -2987,6 +2994,7 @@ void setup(void){
     PORTE = 0x00;
 }
 
+
 void infrared(void){
     if(RA0 == 1){
         RB7 = 1;
@@ -2997,6 +3005,73 @@ void infrared(void){
     else{
         RB7 = 0;
     }
+}
+
+
+void Text(void){
+     _delay((unsigned long)((250)*(8000000/4000.0)));
+     division(counter);
+
+     if (RCREG == 'a'){
+     _delay((unsigned long)((50)*(8000000/4000.0)));
+    if(TXIF == 1){
+        TXREG = hundreds;
+    }
+    _delay((unsigned long)((50)*(8000000/4000.0)));
+    if(TXIF == 1){
+        TXREG = tens;
+       }
+    _delay((unsigned long)((50)*(8000000/4000.0)));
+    if(TXIF == 1){
+        TXREG = units;
+       }
+    _delay((unsigned long)((50)*(8000000/4000.0)));
+
+     }
+}
+
+
+void I2C_Comunication(void){
+
+    I2C_Master_Write(0x51);
+    POT = I2C_Read_Byte();
+    I2C_Master_Stop();
+    _delay((unsigned long)((200)*(8000000/4000.0)));
+
+    I2C_Master_Start();
+    I2C_Master_Write(0x61);
+    CONT = I2C_Read_Byte();
+    I2C_Master_Stop();
+    _delay((unsigned long)((200)*(8000000/4000.0)));
+
+    I2C_Master_Start();
+    I2C_Master_Write(0x71);
+    temp = I2C_Read_Byte();
+    I2C_Master_Stop();
+    _delay((unsigned long)((200)*(8000000/4000.0)));
+}
+
+
+void LCD_Start(void){
+    I2C_Master_Init();
+    LCD_Init(0x4E);
+
+    LCD_Set_Cursor(1, 1);
+    LCD_Write_String("     Monedanaitor");
+    LCD_Set_Cursor(2, 1);
+    LCD_Write_String("   Monedas = Q0.00");
+    LCD_Set_Cursor(3, 1);
+    LCD_Write_String(" 1.00  0.5   0.25");
+    _delay((unsigned long)((2500)*(8000000/4000.0)));
+}
+
+
+void LCD_Send(void){
+    LCD_Set_Cursor(4, 2);
+    LCD_Write_String(converted02);
+
+
+    ADC_convert(converted02, counter, 2);
 }
 
 
@@ -3058,4 +3133,47 @@ void ADC_convert(char *data,float a, int place)
      }
 
     data[i]='\n';
+}
+
+
+char division (char valor){
+    hundreds = valor/100;
+    residuo = valor%100;
+    tens = residuo/10;
+    units = residuo%10;
+
+    hundreds = hundreds + 48;
+    tens = tens + 48;
+    units = units + 48;
+}
+
+
+int concat(int a, int b)
+{
+
+    char s1[20];
+    char s2[20];
+
+
+
+    sprintf(s1, "%d", a);
+    sprintf(s2, "%d", b);
+
+
+
+    strcat(s1, s2);
+
+
+
+    int c = atoi(s1);
+
+
+    return c;
+}
+
+
+void putch(char data){
+    while(TXIF == 0);
+    TXREG = data;
+    return;
 }
