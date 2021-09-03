@@ -44,12 +44,16 @@
 //-----------------------------------------------------------------------------
 char counter;
 float conv0 = 0;
-char converted;
+float conv1 = 0;
+float conv2 = 0;
+char converted01[10];
 char converted02[10];
+char converted03[10];
 uint16_t temp;
 uint8_t CONT;
 uint8_t POT;
 char valor, hundreds, residuo, tens, units;
+char slave01, slave02, slave03;
 //-----------------------------------------------------------------------------
 //                            Prototipos 
 //-----------------------------------------------------------------------------
@@ -81,14 +85,16 @@ void main(void) {
     
     while(1)    // Equivale al loop
     {
-        // Comunicacion con la LCD
-        LCD_Send();
+        
         
         // Sistema de conteo del Infrarojo
-        infrared();
+//        infrared();
         
         // Comunicacion con los esclavos
         I2C_Comunication();
+        
+        // Comunicacion con la LCD
+        LCD_Send();
     
     
     }
@@ -133,11 +139,14 @@ void setup(void){
     PORTC = 0x00;
     PORTD = 0x00;
     PORTE = 0x00;
+    
+    // I2C configuracion Maestro
+    I2C_Master_Init();        // Inicializar Comuncaci�n I2C
 }
 
 // Funcion para el contador del Infrarojo
 void infrared(void){
-    if(RA0 == 1){
+    if(RA0 == 0){
         RB7 = 1;
         counter++;
         __delay_ms(500);
@@ -175,19 +184,19 @@ void Text(void){
 void I2C_Comunication(void){
     
     I2C_Master_Write(0x51); // Direccion del SLAVE 1
-    POT = I2C_Read_Byte();
+    slave01 = I2C_Read_Byte();
     I2C_Master_Stop();
     __delay_ms(200);
         
     I2C_Master_Start();
     I2C_Master_Write(0x61); // Direccion del SLAVE 2
-    CONT = I2C_Read_Byte();
+    slave02 = I2C_Read_Byte();
     I2C_Master_Stop();
     __delay_ms(200);
        
     I2C_Master_Start();
     I2C_Master_Write(0x71); // Direccion del SLAVE 3
-    temp = I2C_Read_Byte();
+    slave03 = I2C_Read_Byte();
     I2C_Master_Stop();
     __delay_ms(200);
 }
@@ -198,21 +207,34 @@ void LCD_Start(void){
     LCD_Init(0x4E);    // Initialize LCD module with I2C address = 0x4E
  
     LCD_Set_Cursor(1, 1);
-    LCD_Write_String("     Monedanaitor");
+    LCD_Write_String(" Monedas de Q1: ");
     LCD_Set_Cursor(2, 1);  
-    LCD_Write_String("   Monedas = Q0.00");
+    LCD_Write_String(" Monedas de Q0.50: ");
     LCD_Set_Cursor(3, 1);  
-    LCD_Write_String(" 1.00  0.5   0.25");
+    LCD_Write_String(" Monedas de Q0.25: ");
+    LCD_Set_Cursor(4, 1);  
+    LCD_Write_String(" El total es de : Q");
     __delay_ms(2500);
 }
 
 // Funcion para mandar sensores en tiempo real a la LCD
 void LCD_Send(void){
-    LCD_Set_Cursor(4, 2);  
+    // Se despliega el sensor de las monedas de 1 quetzal
+    LCD_Set_Cursor(1, 5);  
+    LCD_Write_String(converted01);
+    
+    // Se despliega el sensor de las monedas de 0.5 quetzales
+    LCD_Set_Cursor(2, 5);  
     LCD_Write_String(converted02);
     
+    // Se despliega el sensor de las monedas de 0.25 quetzales
+    LCD_Set_Cursor(3, 5);  
+    LCD_Write_String(converted03);
     
-    ADC_convert(converted02, counter, 2);
+    
+    ADC_convert(converted01, slave01, 2);
+    ADC_convert(converted02, slave02, 2);
+    ADC_convert(converted03, slave03, 2);
 }
 
 /*******************************************************************************
