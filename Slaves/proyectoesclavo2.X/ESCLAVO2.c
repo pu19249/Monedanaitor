@@ -201,7 +201,7 @@ void setup(void){
 }
 // Funcion para el contador del Infrarojo
 void infrared(void){
-    if(RA0 == 0){
+    if(RA1 == 0){
         RB7 = 1;
         counter++;
         __delay_ms(500);

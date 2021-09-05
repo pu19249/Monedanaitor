@@ -11,7 +11,7 @@
 # All addresses and the length are given in unqualified hexadecimal
 # in delta units.  Any other numeric values are decimal.
 %PSECTS
-$C:\Users\marco\AppData\Local\Temp\xcAs1gk.o
+$C:\Users\marco\AppData\Local\Temp\xcAsgjo.o
 reset_vec CODE 0 0 0 3 2
 end_init CODE 0 C C 3 2
 config CONFIG 4 2007 2007 2 2
@@ -75,17 +75,17 @@ STRING 19F-1FFF 2
 # All other numeric values are in decimal.
 %LINETAB
 $dist/default/production\proyectoesclavo2.X.production.o
-F cinit CODE >681:C:\Users\marco\AppData\Local\Temp\xcAs1gk.s
-F cinit CODE >684:C:\Users\marco\AppData\Local\Temp\xcAs1gk.s
-F cinit CODE >707:C:\Users\marco\AppData\Local\Temp\xcAs1gk.s
-10 cinit CODE >708:C:\Users\marco\AppData\Local\Temp\xcAs1gk.s
-11 cinit CODE >709:C:\Users\marco\AppData\Local\Temp\xcAs1gk.s
-12 cinit CODE >710:C:\Users\marco\AppData\Local\Temp\xcAs1gk.s
-13 cinit CODE >711:C:\Users\marco\AppData\Local\Temp\xcAs1gk.s
-14 cinit CODE >712:C:\Users\marco\AppData\Local\Temp\xcAs1gk.s
-15 cinit CODE >718:C:\Users\marco\AppData\Local\Temp\xcAs1gk.s
-15 cinit CODE >720:C:\Users\marco\AppData\Local\Temp\xcAs1gk.s
-16 cinit CODE >721:C:\Users\marco\AppData\Local\Temp\xcAs1gk.s
+F cinit CODE >681:C:\Users\marco\AppData\Local\Temp\xcAsgjo.s
+F cinit CODE >684:C:\Users\marco\AppData\Local\Temp\xcAsgjo.s
+F cinit CODE >707:C:\Users\marco\AppData\Local\Temp\xcAsgjo.s
+10 cinit CODE >708:C:\Users\marco\AppData\Local\Temp\xcAsgjo.s
+11 cinit CODE >709:C:\Users\marco\AppData\Local\Temp\xcAsgjo.s
+12 cinit CODE >710:C:\Users\marco\AppData\Local\Temp\xcAsgjo.s
+13 cinit CODE >711:C:\Users\marco\AppData\Local\Temp\xcAsgjo.s
+14 cinit CODE >712:C:\Users\marco\AppData\Local\Temp\xcAsgjo.s
+15 cinit CODE >718:C:\Users\marco\AppData\Local\Temp\xcAsgjo.s
+15 cinit CODE >720:C:\Users\marco\AppData\Local\Temp\xcAsgjo.s
+16 cinit CODE >721:C:\Users\marco\AppData\Local\Temp\xcAsgjo.s
 4 intentry CODE >55:D:\University\2021\Semestre 2\Digital 2\Monedanaitor\Slaves\proyectoesclavo2.X\ESCLAVO2.c
 16E text6 CODE >215:D:\University\2021\Semestre 2\Digital 2\Monedanaitor\Slaves\proyectoesclavo2.X\ESCLAVO2.c
 16E text6 CODE >216:D:\University\2021\Semestre 2\Digital 2\Monedanaitor\Slaves\proyectoesclavo2.X\ESCLAVO2.c
@@ -242,21 +242,21 @@ _CONT 7B 0 COMMON 1 bssCOMMON dist/default/production\proyectoesclavo2.X.product
 _PEIE 5E 0 ABS 0 - dist/default/production\proyectoesclavo2.X.production.o
 _RBIF 58 0 ABS 0 - dist/default/production\proyectoesclavo2.X.production.o
 _WPUB 95 0 ABS 0 - dist/default/production\proyectoesclavo2.X.production.o
-___sp 0 0 STACK 2 stack C:\Users\marco\AppData\Local\Temp\xcAs1gk.o
+___sp 0 0 STACK 2 stack C:\Users\marco\AppData\Local\Temp\xcAsgjo.o
 _main 30E 0 CODE 0 maintext dist/default/production\proyectoesclavo2.X.production.o
 btemp 7E 0 ABS 0 - dist/default/production\proyectoesclavo2.X.production.o
-start 18 0 CODE 0 init C:\Users\marco\AppData\Local\Temp\xcAs1gk.o
+start 18 0 CODE 0 init C:\Users\marco\AppData\Local\Temp\xcAsgjo.o
 __size_of_main 0 0 ABS 0 - dist/default/production\proyectoesclavo2.X.production.o
 __HbssCOMMON 0 0 ABS 0 bssCOMMON -
 _OPTION_REGbits 81 0 ABS 0 - dist/default/production\proyectoesclavo2.X.production.o
 __Hpowerup 0 0 CODE 0 powerup -
 _infrared 238 0 CODE 0 text3 dist/default/production\proyectoesclavo2.X.production.o
-intlevel0 0 0 ENTRY 0 functab C:\Users\marco\AppData\Local\Temp\xcAs1gk.o
-intlevel1 0 0 ENTRY 0 functab C:\Users\marco\AppData\Local\Temp\xcAs1gk.o
-intlevel2 0 0 ENTRY 0 functab C:\Users\marco\AppData\Local\Temp\xcAs1gk.o
-intlevel3 0 0 ENTRY 0 functab C:\Users\marco\AppData\Local\Temp\xcAs1gk.o
-intlevel4 0 0 ENTRY 0 functab C:\Users\marco\AppData\Local\Temp\xcAs1gk.o
-intlevel5 0 0 ENTRY 0 functab C:\Users\marco\AppData\Local\Temp\xcAs1gk.o
+intlevel0 0 0 ENTRY 0 functab C:\Users\marco\AppData\Local\Temp\xcAsgjo.o
+intlevel1 0 0 ENTRY 0 functab C:\Users\marco\AppData\Local\Temp\xcAsgjo.o
+intlevel2 0 0 ENTRY 0 functab C:\Users\marco\AppData\Local\Temp\xcAsgjo.o
+intlevel3 0 0 ENTRY 0 functab C:\Users\marco\AppData\Local\Temp\xcAsgjo.o
+intlevel4 0 0 ENTRY 0 functab C:\Users\marco\AppData\Local\Temp\xcAsgjo.o
+intlevel5 0 0 ENTRY 0 functab C:\Users\marco\AppData\Local\Temp\xcAsgjo.o
 __LbssCOMMON 0 0 ABS 0 bssCOMMON -
 __end_of_infrared 272 0 CODE 0 text3 dist/default/production\proyectoesclavo2.X.production.o
 _OSCCONbits 8F 0 ABS 0 - dist/default/production\proyectoesclavo2.X.production.o
@@ -268,8 +268,8 @@ _ANSELH 189 0 ABS 0 - dist/default/production\proyectoesclavo2.X.production.o
 _SSPCONbits 14 0 ABS 0 - dist/default/production\proyectoesclavo2.X.production.o
 _quetzal 77 0 COMMON 1 bssCOMMON dist/default/production\proyectoesclavo2.X.production.o
 __Lmaintext 0 0 ABS 0 maintext -
-___stackhi 0 0 ABS 0 - C:\Users\marco\AppData\Local\Temp\xcAs1gk.o
-___stacklo 0 0 ABS 0 - C:\Users\marco\AppData\Local\Temp\xcAs1gk.o
+___stackhi 0 0 ABS 0 - C:\Users\marco\AppData\Local\Temp\xcAsgjo.o
+___stacklo 0 0 ABS 0 - C:\Users\marco\AppData\Local\Temp\xcAsgjo.o
 _I2C_Slave_Init 272 0 CODE 0 text2 dist/default/production\proyectoesclavo2.X.production.o
 __size_of_setup 0 0 ABS 0 - dist/default/production\proyectoesclavo2.X.production.o
 start_initialization 1E 0 CODE 0 cinit dist/default/production\proyectoesclavo2.X.production.o
@@ -283,7 +283,7 @@ _TRISA0 428 0 ABS 0 - dist/default/production\proyectoesclavo2.X.production.o
 _TRISB0 430 0 ABS 0 - dist/default/production\proyectoesclavo2.X.production.o
 _TRISC3 43B 0 ABS 0 - dist/default/production\proyectoesclavo2.X.production.o
 _TRISC4 43C 0 ABS 0 - dist/default/production\proyectoesclavo2.X.production.o
-___int_sp 0 0 STACK 2 stack C:\Users\marco\AppData\Local\Temp\xcAs1gk.o
+___int_sp 0 0 STACK 2 stack C:\Users\marco\AppData\Local\Temp\xcAsgjo.o
 __Hbank0 0 0 ABS 0 bank0 -
 __Hbank1 0 0 ABS 0 bank1 -
 __Hbank2 0 0 ABS 0 bank2 -
@@ -320,7 +320,7 @@ __Ltext 0 0 ABS 0 text -
 __LcstackBANK0 0 0 ABS 0 cstackBANK0 -
 __HcstackCOMMON 0 0 ABS 0 cstackCOMMON -
 _GIE 5F 0 ABS 0 - dist/default/production\proyectoesclavo2.X.production.o
-_RA0 28 0 ABS 0 - dist/default/production\proyectoesclavo2.X.production.o
+_RA1 29 0 ABS 0 - dist/default/production\proyectoesclavo2.X.production.o
 _RB1 31 0 ABS 0 - dist/default/production\proyectoesclavo2.X.production.o
 _RB4 34 0 ABS 0 - dist/default/production\proyectoesclavo2.X.production.o
 _RB5 35 0 ABS 0 - dist/default/production\proyectoesclavo2.X.production.o
@@ -335,7 +335,7 @@ _isr 32 0 CODE 0 text4 dist/default/production\proyectoesclavo2.X.production.o
 saved_w 7E 0 ABS 0 - dist/default/production\proyectoesclavo2.X.production.o
 __end_of_isr 1CC 0 CODE 0 text4 dist/default/production\proyectoesclavo2.X.production.o
 __Lintentry 8 0 CODE 0 intentry -
-reset_vec 0 0 CODE 0 reset_vec C:\Users\marco\AppData\Local\Temp\xcAs1gk.o
+reset_vec 0 0 CODE 0 reset_vec C:\Users\marco\AppData\Local\Temp\xcAsgjo.o
 __end_of_servo_1_1 30E 0 CODE 0 text6 dist/default/production\proyectoesclavo2.X.production.o
 __end_of_servo_1_5 2DC 0 CODE 0 text5 dist/default/production\proyectoesclavo2.X.production.o
 __size_of_servo_1_1 0 0 ABS 0 - dist/default/production\proyectoesclavo2.X.production.o
