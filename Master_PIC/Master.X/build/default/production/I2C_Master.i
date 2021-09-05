@@ -2497,7 +2497,7 @@ extern __bank0 __bit __timeout;
 # 8 "I2C_Master.c" 2
 
 # 1 "./I2C_Master.h" 1
-# 40 "./I2C_Master.h"
+# 41 "./I2C_Master.h"
 void I2C_Master_Init();
 void I2C_Master_Wait();
 void I2C_Master_Start();
@@ -2507,6 +2507,7 @@ void I2C_ACK();
 void I2C_NACK();
 unsigned char I2C_Master_Write(unsigned char data);
 unsigned char I2C_Read_Byte(void);
+unsigned short I2C_Master_Read(unsigned short a);
 void I2C_Slave_Init(unsigned char address);
 
 
@@ -2596,6 +2597,7 @@ unsigned char I2C_Read_Byte(void)
  SSPIF = 0;
     I2C_Master_Wait();
     return SSPBUF;
+
 }
 
 unsigned short I2C_Master_Read(unsigned short a)

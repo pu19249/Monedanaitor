@@ -49,11 +49,13 @@ float conv2 = 0;
 char converted01[10];
 char converted02[10];
 char converted03[10];
+float converted04[10];
 uint16_t temp;
 uint8_t CONT;
 uint8_t POT;
 char valor, hundreds, residuo, tens, units;
-char slave01, slave02, slave03;
+char slave01, slave02, slave03, sum, dec1, dec2, dec3;
+
 //-----------------------------------------------------------------------------
 //                            Prototipos 
 //-----------------------------------------------------------------------------
@@ -72,7 +74,18 @@ void LCD_Send(void);
 //-----------------------------------------------------------------------------
 void __interrupt() isr(void)
 {
-    
+    // Interrupcion ADC
+    if (ADIF == 1){
+        if (ADCON0bits.CHS == 0){
+            CCPR1L = (ADRESH>>1)+124;  //para que tome el rango desde el centro
+            CCP1CONbits.DC1B1 = ADRESH & 0b01; //toma uno de los b que falta
+            CCP1CONbits.DC1B0 = ADRESL>>7; //para el otro bit
+
+            }
+
+        
+            ADIF = 0;           //apaga la bandera
+    }
 }
 
 //-----------------------------------------------------------------------------
@@ -85,18 +98,17 @@ void main(void) {
     
     while(1)    // Equivale al loop
     {
-        
-        
-        // Sistema de conteo del Infrarojo
-//        infrared();
+
+        // Comunicacion con la LCD
+        LCD_Send();
         
         // Comunicacion con los esclavos
         I2C_Comunication();
         
-        // Comunicacion con la LCD
-        LCD_Send();
-    
-    
+        // Reinicio de lector ADC
+         __delay_us(100);
+        ADCON0bits.GO = 1; //inicia la conversion otra vez
+
     }
     return;
 }
@@ -108,7 +120,7 @@ void main(void) {
 // Donde se realizan todas las configuraciones de nuestro PIC
 void setup(void){
     
-    ANSEL = 0;
+    ANSEL = 0b00000001; //RA0 tiene la entrada analogica 
     ANSELH = 0;
     
     // Puerto A
@@ -132,6 +144,44 @@ void setup(void){
     OSCCONbits.IRCF1 = 1;
     OSCCONbits.IRCF2 = 1;
     OSCCONbits.SCS = 1;  //internal oscillator is used for system clock
+    
+    //configurar el modulo ADC
+    ADCON0bits.CHS = 0;     //canal 0
+    __delay_us(100);
+    
+    ADCON0bits.ADCS0 = 0;   //para que el clock select sea FOSC/32
+    ADCON0bits.ADCS1 = 1;   //que tiene el osc int hasta 500kHz maximo
+    ADCON0bits.ADON = 1;    //ADC enable bit
+    ADCON1bits.ADFM = 0;    //left justified
+    ADCON1bits.VCFG1 = 0;   //5 voltios
+    ADCON1bits.VCFG0 = 0;   //tierra
+    
+    //configuracion del PWM junto con el TMR2
+    TRISCbits.TRISC2 = 1;   //habilitar momentaneamente el pin de salida
+    TRISCbits.TRISC1 = 1;
+    PR2 = 250;               //queremos que sea de 20ms por el servo
+    CCP1CONbits.P1M = 0;    //modo PWM single output     
+    CCP2CONbits.CCP2M = 0b1111; //para que sea PWM
+    CCP1CONbits.CCP1M = 0b00001100; //PWM mode, P1A, P1C active-high
+    
+    
+    CCPR1L = 0x0F;          //ciclo de trabajo
+    CCP1CONbits.DC1B = 0;   //los bits menos significativos
+    CCPR2L = 0x0F;
+    CCP2CONbits.DC2B0 = 0; 
+    CCP2CONbits.DC2B1 = 0;
+    
+    
+    PIR1bits.TMR2IF = 0;    //limpiar la interrupcion del timer2
+    T2CONbits.T2CKPS0 = 0;   //configurar el prescaler a 16
+    T2CONbits.T2CKPS1 = 1;        
+    T2CONbits.TMR2ON = 1;   //habilitar el tmr2on
+    while (PIR1bits.TMR2IF == 0);
+    PIR1bits.TMR2IF = 0;    //limpiar nuevamente
+    TRISCbits.TRISC2 = 0;   //regresar el pin a salida
+    TRISCbits.TRISC1 = 0;
+    PIE1bits.ADIE = 1;      //enable de la int del ADC
+    PIR1bits.ADIF = 0;      //limpiar la interrupcion del ADC
     
     //limpiar puertos
     PORTA = 0x00;
@@ -183,19 +233,20 @@ void Text(void){
 // Se configura la comunicacion I2C
 void I2C_Comunication(void){
     
-    I2C_Master_Write(0x51); // Direccion del SLAVE 1
+    I2C_Master_Start();
+    I2C_Master_Write(0x61); // Direccion del SLAVE 1
     slave01 = I2C_Read_Byte();
     I2C_Master_Stop();
     __delay_ms(200);
         
     I2C_Master_Start();
-    I2C_Master_Write(0x61); // Direccion del SLAVE 2
+    I2C_Master_Write(0x71); // Direccion del SLAVE 2
     slave02 = I2C_Read_Byte();
     I2C_Master_Stop();
     __delay_ms(200);
        
     I2C_Master_Start();
-    I2C_Master_Write(0x71); // Direccion del SLAVE 3
+    I2C_Master_Write(0x81); // Direccion del SLAVE 3
     slave03 = I2C_Read_Byte();
     I2C_Master_Stop();
     __delay_ms(200);
@@ -207,34 +258,54 @@ void LCD_Start(void){
     LCD_Init(0x4E);    // Initialize LCD module with I2C address = 0x4E
  
     LCD_Set_Cursor(1, 1);
-    LCD_Write_String(" Monedas de Q1: ");
+    LCD_Write_String(" Q1.00:");
     LCD_Set_Cursor(2, 1);  
-    LCD_Write_String(" Monedas de Q0.50: ");
+    LCD_Write_String(" Q0.50:");
     LCD_Set_Cursor(3, 1);  
-    LCD_Write_String(" Monedas de Q0.25: ");
+    LCD_Write_String(" Q0.25:");
     LCD_Set_Cursor(4, 1);  
-    LCD_Write_String(" El total es de : Q");
+    LCD_Write_String(" Total:Q");
     __delay_ms(2500);
 }
 
 // Funcion para mandar sensores en tiempo real a la LCD
 void LCD_Send(void){
+    __delay_ms(2500);
     // Se despliega el sensor de las monedas de 1 quetzal
-    LCD_Set_Cursor(1, 5);  
+    LCD_Set_Cursor(1, 9);  
     LCD_Write_String(converted01);
     
     // Se despliega el sensor de las monedas de 0.5 quetzales
-    LCD_Set_Cursor(2, 5);  
+    LCD_Set_Cursor(2, 9);  
     LCD_Write_String(converted02);
     
     // Se despliega el sensor de las monedas de 0.25 quetzales
-    LCD_Set_Cursor(3, 5);  
+    LCD_Set_Cursor(3, 9);  
     LCD_Write_String(converted03);
     
+    // Se despliega el total del dinero que se tiene
+//    LCD_Set_Cursor(4, 9);  
+//    LCD_Write_String(converted04);
     
     ADC_convert(converted01, slave01, 2);
     ADC_convert(converted02, slave02, 2);
     ADC_convert(converted03, slave03, 2);
+    
+    dec1 = slave02 * 50;
+    dec2 = slave03 * 25;
+    dec3 = slave01 * 100;
+    sum = dec3 + dec1 + dec2;
+    
+    division(sum);
+    LCD_Set_Cursor(4, 9);
+    LCD_Write_Char(hundreds);
+    LCD_Set_Cursor(4, 10);
+    LCD_Write_Char(46);
+    LCD_Set_Cursor(4, 11);
+    LCD_Write_Char(tens);
+    LCD_Set_Cursor(4, 12);
+    LCD_Write_Char(units);
+   
 }
 
 /*******************************************************************************

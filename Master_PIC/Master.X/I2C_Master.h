@@ -7,7 +7,8 @@
 
 /* File: I2C_LCD.h */
 
-#define _XTAL_FREQ             8000000
+#define _XTAL_FREQ 8000000
+
 
 #define I2C_BaudRate           9600
 #define SCL_D                  TRISC3
@@ -46,6 +47,7 @@ void I2C_ACK();
 void I2C_NACK();
 unsigned char I2C_Master_Write(unsigned char data);
 unsigned char I2C_Read_Byte(void);
+unsigned short I2C_Master_Read(unsigned short a);
 void I2C_Slave_Init(unsigned char address);
 
 

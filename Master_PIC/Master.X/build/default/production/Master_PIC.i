@@ -2845,7 +2845,7 @@ extern char * ftoa(float f, int * status);
 
 
 # 1 "./I2C_Master.h" 1
-# 40 "./I2C_Master.h"
+# 41 "./I2C_Master.h"
 void I2C_Master_Init();
 void I2C_Master_Wait();
 void I2C_Master_Start();
@@ -2855,6 +2855,7 @@ void I2C_ACK();
 void I2C_NACK();
 unsigned char I2C_Master_Write(unsigned char data);
 unsigned char I2C_Read_Byte(void);
+unsigned short I2C_Master_Read(unsigned short a);
 void I2C_Slave_Init(unsigned char address);
 
 
@@ -2908,11 +2909,13 @@ float conv2 = 0;
 char converted01[10];
 char converted02[10];
 char converted03[10];
+float converted04[10];
 uint16_t temp;
 uint8_t CONT;
 uint8_t POT;
 char valor, hundreds, residuo, tens, units;
-char slave01, slave02, slave03;
+char slave01, slave02, slave03, sum, dec1, dec2, dec3;
+
 
 
 
@@ -2932,6 +2935,17 @@ void LCD_Send(void);
 void __attribute__((picinterrupt(("")))) isr(void)
 {
 
+    if (ADIF == 1){
+        if (ADCON0bits.CHS == 0){
+            CCPR1L = (ADRESH>>1)+124;
+            CCP1CONbits.DC1B1 = ADRESH & 0b01;
+            CCP1CONbits.DC1B0 = ADRESL>>7;
+
+            }
+
+
+            ADIF = 0;
+    }
 }
 
 
@@ -2946,15 +2960,14 @@ void main(void) {
     {
 
 
-
-
+        LCD_Send();
 
 
         I2C_Comunication();
 
 
-        LCD_Send();
-
+         _delay((unsigned long)((100)*(8000000/4000000.0)));
+        ADCON0bits.GO = 1;
 
     }
     return;
@@ -2967,7 +2980,7 @@ void main(void) {
 
 void setup(void){
 
-    ANSEL = 0;
+    ANSEL = 0b00000001;
     ANSELH = 0;
 
 
@@ -2991,6 +3004,44 @@ void setup(void){
     OSCCONbits.IRCF1 = 1;
     OSCCONbits.IRCF2 = 1;
     OSCCONbits.SCS = 1;
+
+
+    ADCON0bits.CHS = 0;
+    _delay((unsigned long)((100)*(8000000/4000000.0)));
+
+    ADCON0bits.ADCS0 = 0;
+    ADCON0bits.ADCS1 = 1;
+    ADCON0bits.ADON = 1;
+    ADCON1bits.ADFM = 0;
+    ADCON1bits.VCFG1 = 0;
+    ADCON1bits.VCFG0 = 0;
+
+
+    TRISCbits.TRISC2 = 1;
+    TRISCbits.TRISC1 = 1;
+    PR2 = 250;
+    CCP1CONbits.P1M = 0;
+    CCP2CONbits.CCP2M = 0b1111;
+    CCP1CONbits.CCP1M = 0b00001100;
+
+
+    CCPR1L = 0x0F;
+    CCP1CONbits.DC1B = 0;
+    CCPR2L = 0x0F;
+    CCP2CONbits.DC2B0 = 0;
+    CCP2CONbits.DC2B1 = 0;
+
+
+    PIR1bits.TMR2IF = 0;
+    T2CONbits.T2CKPS0 = 0;
+    T2CONbits.T2CKPS1 = 1;
+    T2CONbits.TMR2ON = 1;
+    while (PIR1bits.TMR2IF == 0);
+    PIR1bits.TMR2IF = 0;
+    TRISCbits.TRISC2 = 0;
+    TRISCbits.TRISC1 = 0;
+    PIE1bits.ADIE = 1;
+    PIR1bits.ADIF = 0;
 
 
     PORTA = 0x00;
@@ -3042,19 +3093,20 @@ void Text(void){
 
 void I2C_Comunication(void){
 
-    I2C_Master_Write(0x51);
+    I2C_Master_Start();
+    I2C_Master_Write(0x61);
     slave01 = I2C_Read_Byte();
     I2C_Master_Stop();
     _delay((unsigned long)((200)*(8000000/4000.0)));
 
     I2C_Master_Start();
-    I2C_Master_Write(0x61);
+    I2C_Master_Write(0x71);
     slave02 = I2C_Read_Byte();
     I2C_Master_Stop();
     _delay((unsigned long)((200)*(8000000/4000.0)));
 
     I2C_Master_Start();
-    I2C_Master_Write(0x71);
+    I2C_Master_Write(0x81);
     slave03 = I2C_Read_Byte();
     I2C_Master_Stop();
     _delay((unsigned long)((200)*(8000000/4000.0)));
@@ -3066,34 +3118,54 @@ void LCD_Start(void){
     LCD_Init(0x4E);
 
     LCD_Set_Cursor(1, 1);
-    LCD_Write_String(" Monedas de Q1: ");
+    LCD_Write_String(" Q1.00:");
     LCD_Set_Cursor(2, 1);
-    LCD_Write_String(" Monedas de Q0.50: ");
+    LCD_Write_String(" Q0.50:");
     LCD_Set_Cursor(3, 1);
-    LCD_Write_String(" Monedas de Q0.25: ");
+    LCD_Write_String(" Q0.25:");
     LCD_Set_Cursor(4, 1);
-    LCD_Write_String(" El total es de : Q");
+    LCD_Write_String(" Total:Q");
     _delay((unsigned long)((2500)*(8000000/4000.0)));
 }
 
 
 void LCD_Send(void){
+    _delay((unsigned long)((2500)*(8000000/4000.0)));
 
-    LCD_Set_Cursor(1, 5);
+    LCD_Set_Cursor(1, 9);
     LCD_Write_String(converted01);
 
 
-    LCD_Set_Cursor(2, 5);
+    LCD_Set_Cursor(2, 9);
     LCD_Write_String(converted02);
 
 
-    LCD_Set_Cursor(3, 5);
+    LCD_Set_Cursor(3, 9);
     LCD_Write_String(converted03);
+
+
+
 
 
     ADC_convert(converted01, slave01, 2);
     ADC_convert(converted02, slave02, 2);
     ADC_convert(converted03, slave03, 2);
+
+    dec1 = slave02 * 50;
+    dec2 = slave03 * 25;
+    dec3 = slave01 * 100;
+    sum = dec3 + dec1 + dec2;
+
+    division(sum);
+    LCD_Set_Cursor(4, 9);
+    LCD_Write_Char(hundreds);
+    LCD_Set_Cursor(4, 10);
+    LCD_Write_Char(46);
+    LCD_Set_Cursor(4, 11);
+    LCD_Write_Char(tens);
+    LCD_Set_Cursor(4, 12);
+    LCD_Write_Char(units);
+
 }
 
 
