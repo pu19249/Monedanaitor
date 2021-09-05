@@ -77,6 +77,7 @@ unsigned char I2C_Read_Byte(void)
 	SSPIF = 0;		  // Clear The Interrupt Flag Bit
     I2C_Master_Wait();
     return SSPBUF;	  // Return The Received Byte
+    
 }
 
 unsigned short I2C_Master_Read(unsigned short a)

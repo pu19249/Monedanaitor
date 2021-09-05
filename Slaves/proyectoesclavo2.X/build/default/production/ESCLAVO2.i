@@ -2707,12 +2707,19 @@ void I2C_Slave_Init(uint8_t address);
 uint8_t C;
 uint8_t CONT;
 char counter;
+int quetzal;
+char M = 0;
 
 
 
 
 void setup(void);
 void infrared(void);
+void servo_1_1(void);
+void servo_1_2(void);
+void servo_1_3(void);
+void servo_1_4(void);
+void servo_1_5(void);
 
 
 
@@ -2749,6 +2756,47 @@ void __attribute__((picinterrupt(("")))) isr(void){
 
         PIR1bits.SSPIF = 0;
     }
+
+
+    if (PIR1bits.ADIF == 1)
+    {
+        if (ADCON0bits.CHS == 0)
+        {
+            M = ADRESH;
+            if(M<=169)
+            {
+                RB6 = 0;
+                RB5 = 0;
+                RB4 = 1;
+            }
+            if((M<=225)&&(M>=170))
+            {
+               RB6 = 0;
+               RB5 = 1;
+               RB4 = 0;
+            }
+            if(M>=226)
+            {
+               RB6 = 1;
+               RB5 = 0;
+               RB4 = 0;
+            }
+        }
+        _delay((unsigned long)((50)*(8000000/4000000.0)));
+        PIR1bits.ADIF = 0;
+    }
+
+
+     if(RBIF){
+        if(RB1 == 0){
+            servo_1_5();
+            _delay((unsigned long)((2000)*(8000000/4000.0)));
+            servo_1_1();
+            quetzal++;
+        }
+
+        RBIF = 0;
+    }
 }
 
 
@@ -2760,9 +2808,10 @@ void main(void) {
 
     while(1){
 
+    infrared();
 
-
-        infrared();
+    _delay((unsigned long)((100)*(8000000/4000000.0)));
+    ADCON0bits.GO = 1;
     }
     return;
 }
@@ -2770,7 +2819,7 @@ void main(void) {
 
 
 void setup(void){
-    ANSEL = 0;
+    ANSEL = 0b00000001;
     ANSELH = 0;
 
 
@@ -2781,17 +2830,45 @@ void setup(void){
     TRISBbits.TRISB7 = 0;
 
 
+
+
+
     OSCCONbits.IRCF2 = 1;
     OSCCONbits.IRCF1 = 1;
     OSCCONbits.IRCF0 = 1;
     OSCCONbits.SCS = 1;
-    I2C_Slave_Init(0x60);
 
 
     INTCONbits.GIE = 1;
+    INTCONbits.PEIE = 1;
+    INTCONbits.RBIE = 1;
+    INTCONbits.RBIF = 0;
+    PIR1bits.ADIF = 0;
+    PIE1bits.ADIE = 1;
 
 
+    OPTION_REGbits.nRBPU = 0;
+    WPUB = 0b00000010;
+    IOCBbits.IOCB1 = 1;
+
+
+    ADCON0bits.CHS = 0;
+    ADCON0bits.ADCS1 = 1;
+    ADCON0bits.ADCS0 = 1;
+    ADCON0bits.ADON = 1;
+    ADCON1bits.ADFM = 0;
+    ADCON1bits.VCFG0 = 0;
+    ADCON1bits.VCFG1 = 0;
+
+
+    PORTA = 0x00;
+    PORTB = 0x00;
+    PORTC = 0x00;
     PORTD = 0x00;
+    PORTE = 0x00;
+
+
+    I2C_Slave_Init(0x70);
 }
 
 void infrared(void){
@@ -2804,4 +2881,39 @@ void infrared(void){
     else{
         RB7 = 0;
     }
+}
+
+void servo_1_1(void){
+    RD0 = 1;
+    _delay((unsigned long)((0.7)*(8000000/4000.0)));
+    RD0 = 0;
+    _delay((unsigned long)((19.3)*(8000000/4000.0)));
+}
+
+void servo_1_2(void){
+    RD0 = 1;
+    _delay((unsigned long)((1.25)*(8000000/4000.0)));
+    RD0 = 0;
+    _delay((unsigned long)((18.75)*(8000000/4000.0)));
+}
+
+void servo_1_3(void){
+    RD0 = 1;
+    _delay((unsigned long)((1.5)*(8000000/4000.0)));
+    RD0 = 0;
+    _delay((unsigned long)((18.5)*(8000000/4000.0)));
+}
+
+void servo_1_4(void){
+    RD0 = 1;
+    _delay((unsigned long)((1.75)*(8000000/4000.0)));
+    RD0 = 0;
+    _delay((unsigned long)((18.25)*(8000000/4000.0)));
+}
+
+void servo_1_5(void){
+    RD0 = 1;
+    _delay((unsigned long)((2)*(8000000/4000.0)));
+    RD0 = 0;
+    _delay((unsigned long)((18)*(8000000/4000.0)));
 }

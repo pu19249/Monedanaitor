@@ -2704,9 +2704,11 @@ void I2C_Slave_Init(uint8_t address);
 
 
 
-uint8_t C, infra, quetzal;
+uint8_t C;
 uint8_t CONT;
 char counter;
+int quetzal;
+char M = 0;
 
 
 
@@ -2718,7 +2720,6 @@ void servo_1_2(void);
 void servo_1_3(void);
 void servo_1_4(void);
 void servo_1_5(void);
-
 
 
 
@@ -2747,8 +2748,6 @@ void __attribute__((picinterrupt(("")))) isr(void){
         }else if(!SSPSTATbits.D_nA && SSPSTATbits.R_nW){
             C = SSPBUF;
             BF = 0;
-            SSPBUF = CONT;
-            _delay((unsigned long)((250)*(8000000/4000.0)));
             SSPBUF = counter;
             SSPCONbits.CKP = 1;
             _delay((unsigned long)((250)*(8000000/4000000.0)));
@@ -2757,19 +2756,48 @@ void __attribute__((picinterrupt(("")))) isr(void){
 
         PIR1bits.SSPIF = 0;
     }
-   if(RBIF){
+
+
+    if (PIR1bits.ADIF == 1)
+    {
+        if (ADCON0bits.CHS == 0)
+        {
+            M = ADRESH;
+            if(M<=169)
+            {
+                RB6 = 0;
+                RB5 = 0;
+                RB4 = 1;
+            }
+            if((M<=225)&&(M>=170))
+            {
+               RB6 = 0;
+               RB5 = 1;
+               RB4 = 0;
+            }
+            if(M>=226)
+            {
+               RB6 = 1;
+               RB5 = 0;
+               RB4 = 0;
+            }
+        }
+        _delay((unsigned long)((50)*(8000000/4000000.0)));
+        PIR1bits.ADIF = 0;
+    }
+
+
+     if(RBIF){
         if(RB1 == 0){
             servo_1_5();
-            _delay((unsigned long)((1000)*(8000000/4000.0)));
+            _delay((unsigned long)((2000)*(8000000/4000.0)));
             servo_1_1();
             quetzal++;
         }
 
         RBIF = 0;
     }
-
-   }
-
+}
 
 
 
@@ -2780,16 +2808,68 @@ void main(void) {
 
     while(1){
 
-
-
         infrared();
 
+        _delay((unsigned long)((100)*(8000000/4000000.0)));
+        ADCON0bits.GO = 1;
     }
     return;
 }
 
 
 
+void setup(void){
+    ANSEL = 0b00000001;
+    ANSELH = 0;
+
+
+    TRISA0 = 1;
+
+
+    TRISB0 = 1;
+    TRISBbits.TRISB7 = 0;
+
+
+
+
+
+    OSCCONbits.IRCF2 = 1;
+    OSCCONbits.IRCF1 = 1;
+    OSCCONbits.IRCF0 = 1;
+    OSCCONbits.SCS = 1;
+
+
+    INTCONbits.GIE = 1;
+    INTCONbits.PEIE = 1;
+    INTCONbits.RBIE = 1;
+    INTCONbits.RBIF = 0;
+    PIR1bits.ADIF = 0;
+    PIE1bits.ADIE = 1;
+
+
+    OPTION_REGbits.nRBPU = 0;
+    WPUB = 0b00000010;
+    IOCBbits.IOCB1 = 1;
+
+
+    ADCON0bits.CHS = 0;
+    ADCON0bits.ADCS1 = 1;
+    ADCON0bits.ADCS0 = 1;
+    ADCON0bits.ADON = 1;
+    ADCON1bits.ADFM = 0;
+    ADCON1bits.VCFG0 = 0;
+    ADCON1bits.VCFG1 = 0;
+
+
+    PORTA = 0x00;
+    PORTB = 0x00;
+    PORTC = 0x00;
+    PORTD = 0x00;
+    PORTE = 0x00;
+
+
+    I2C_Slave_Init(0x60);
+}
 
 void infrared(void){
     if(RA0 == 0){
@@ -2804,83 +2884,36 @@ void infrared(void){
 }
 
 void servo_1_1(void){
-    RE0 = 1;
+    RD0 = 1;
     _delay((unsigned long)((0.7)*(8000000/4000.0)));
-    RE0 = 0;
+    RD0 = 0;
     _delay((unsigned long)((19.3)*(8000000/4000.0)));
 }
 
 void servo_1_2(void){
-    RE0 = 1;
+    RD0 = 1;
     _delay((unsigned long)((1.25)*(8000000/4000.0)));
-    RE0 = 0;
+    RD0 = 0;
     _delay((unsigned long)((18.75)*(8000000/4000.0)));
 }
 
 void servo_1_3(void){
-    RE0 = 1;
+    RD0 = 1;
     _delay((unsigned long)((1.5)*(8000000/4000.0)));
-    RE0 = 0;
+    RD0 = 0;
     _delay((unsigned long)((18.5)*(8000000/4000.0)));
 }
 
 void servo_1_4(void){
-    RE0 = 1;
+    RD0 = 1;
     _delay((unsigned long)((1.75)*(8000000/4000.0)));
-    RE0 = 0;
+    RD0 = 0;
     _delay((unsigned long)((18.25)*(8000000/4000.0)));
 }
 
 void servo_1_5(void){
-    RE0 = 1;
+    RD0 = 1;
     _delay((unsigned long)((2)*(8000000/4000.0)));
-    RE0 = 0;
+    RD0 = 0;
     _delay((unsigned long)((18)*(8000000/4000.0)));
-}
-
-void setup(void){
-    ANSEL = 0;
-    ANSELH = 0;
-
-
-    TRISA0 = 1;
-
-
-    TRISB0 = 1;
-    TRISBbits.TRISB7 = 0;
-
-    TRISD = 0X00;
-
-
-    INTCONbits.GIE = 1;
-    INTCONbits.PEIE = 1;
-
-
-    TRISB1 = 1;
-    TRISE0 = 0;
-    OPTION_REGbits.nRBPU = 0;
-    WPUB = 0b00000010;
-    IOCBbits.IOCB1 = 1;
-
-
-
-
-    OSCCONbits.IRCF2 = 1;
-    OSCCONbits.IRCF1 = 1;
-    OSCCONbits.IRCF0 = 1;
-    OSCCONbits.SCS = 1;
-    I2C_Slave_Init(0x50);
-
-
-    INTCONbits.GIE = 1;
-
-    INTCONbits.RBIE = 1;
-    INTCONbits.RBIF = 0;
-    INTCONbits.PEIE = 1;
-
-    PORTA = 0x00;
-    PORTC = 0x00;
-    PORTB = 0X00;
-    PORTD = 0x00;
-    PORTE = 0x00;
 }

@@ -36,12 +36,19 @@
 uint8_t C;
 uint8_t CONT;//variable para guardar el valor de adresh
 char counter;
+int quetzal;
+char M = 0;
 //*****************************************************************************
 // Definición de funciones para que se puedan colocar después del main de lo 
 // contrario hay que colocarlos todas las funciones antes del main
 //*****************************************************************************
 void setup(void);
 void infrared(void);
+void servo_1_1(void);
+void servo_1_2(void);
+void servo_1_3(void);
+void servo_1_4(void);
+void servo_1_5(void);
 //*****************************************************************************
 // Código de Interrupción 
 //*****************************************************************************
@@ -78,6 +85,47 @@ void __interrupt() isr(void){
        
         PIR1bits.SSPIF = 0;    
     }
+   
+   //Interrupcion del ADC 
+    if (PIR1bits.ADIF == 1)
+    {
+        if (ADCON0bits.CHS == 0)//si se esta en este canal que haga lo siguiente
+        {
+            M = ADRESH;
+            if(M<=169)
+            {
+                RB6 = 0; 
+                RB5 = 0;
+                RB4 = 1;  
+            }
+            if((M<=225)&&(M>=170))
+            {
+               RB6 = 0;
+               RB5 = 1;
+               RB4 = 0;
+            }
+            if(M>=226)
+            {
+               RB6 = 1;
+               RB5 = 0;
+               RB4 = 0;
+            }
+        }               
+        __delay_us(50);//tiempo necesario para el cambio de canal 
+        PIR1bits.ADIF = 0;//Se apaga el valor de la bandera de interrupcion ADC
+    }
+   
+   // Interrupcion Puerto Bif(RBIF){
+     if(RBIF){
+        if(RB1 == 0){
+            servo_1_5();
+            __delay_ms(2000);
+            servo_1_1();
+            quetzal++;
+        }
+       
+        RBIF = 0;
+    }
 }
 //*****************************************************************************
 // Main
@@ -88,10 +136,11 @@ void main(void) {
     // Loop infinito
     //*************************************************************************
     while(1){
-//        PORTD --;
-//        CONT = PORTD;
-//        __delay_ms(750);
-        infrared();
+
+    infrared();
+        
+    __delay_us(100);
+    ADCON0bits.GO = 1; //inicia la conversion otra vez
     }
     return;
 }
@@ -99,7 +148,7 @@ void main(void) {
 // Función de Inicialización
 //*****************************************************************************
 void setup(void){
-    ANSEL = 0;
+    ANSEL = 0b00000001; //RA0 tiene la entrada analogica del FRS
     ANSELH = 0;
     
     // Puerto A
@@ -109,6 +158,9 @@ void setup(void){
     TRISB0 = 1;
     TRISBbits.TRISB7 = 0;
     
+    // Puerto C
+
+    
     // configuracion del oscilador 
     OSCCONbits.IRCF2 = 1;
     OSCCONbits.IRCF1 = 1;
@@ -116,13 +168,36 @@ void setup(void){
     OSCCONbits.SCS = 1;
     
     // configuracion de interrupciones
-    INTCONbits.GIE = 1;
- 
+    INTCONbits.GIE = 1;     //habilita las interrupciones globales
+    INTCONbits.PEIE = 1;    //periferical interrupts
+    INTCONbits.RBIE = 1;
+    INTCONbits.RBIF = 0;    //limpiar bandera de interrupcion
+    PIR1bits.ADIF = 0; // BANDERA de interrupcion del ADC
+    PIE1bits.ADIE = 1; // Habilita la interrupcion del ADC
     
+    //CONFIGURACION PARA SERVOMOTOR
+    OPTION_REGbits.nRBPU = 0; //internal pull-ups are enabled
+    WPUB = 0b00000010;
+    IOCBbits.IOCB1 = 1;     //Boton de inc
+    
+    //CONFIGURACION DEL ADC
+    ADCON0bits.CHS = 0; // CANAL AN0
+    ADCON0bits.ADCS1 = 1;
+    ADCON0bits.ADCS0 = 1; //Frc que trabaja con el oscilador interno
+    ADCON0bits.ADON = 1; //Activa el modulo ADC
+    ADCON1bits.ADFM = 0; // justificacion a la izquierda.
+    ADCON1bits.VCFG0 = 0;
+    ADCON1bits.VCFG1 = 0;  //Vss y Vcc
+ 
+    //limpiar puertos
+    PORTA = 0x00;
+    PORTB = 0x00;
+    PORTC = 0x00;
     PORTD = 0x00;
+    PORTE = 0x00;
     
     // I2C configuracion esclavo
-    I2C_Slave_Init(0x60);   
+    I2C_Slave_Init(0x70);   
 }
 // Funcion para el contador del Infrarojo
 void infrared(void){
@@ -135,4 +210,39 @@ void infrared(void){
     else{
         RB7 = 0;        
     }
+}
+
+void servo_1_1(void){           //rango de posicion 1 para el servo1
+    RD0 = 1;
+    __delay_ms(0.7);            //siempre suman 20ms el periodo del servo
+    RD0 = 0;
+    __delay_ms(19.3);
+}
+
+void servo_1_2(void){           //rango de posicion 2 para el servo1
+    RD0 = 1;
+    __delay_ms(1.25);
+    RD0 = 0;
+    __delay_ms(18.75);
+}
+
+void servo_1_3(void){           //rango de posicion 3 para el servo1
+    RD0 = 1;
+    __delay_ms(1.5);
+    RD0 = 0;
+    __delay_ms(18.5);
+}
+
+void servo_1_4(void){           //rango de posicion 4 para el servo1
+    RD0 = 1;
+    __delay_ms(1.75);
+    RD0 = 0;
+    __delay_ms(18.25);
+}
+
+void servo_1_5(void){           //rango de posicion 5 para el servo1
+    RD0 = 1;
+    __delay_ms(2);
+    RD0 = 0;
+    __delay_ms(18);
 }
