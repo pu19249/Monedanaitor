@@ -2942,8 +2942,6 @@ void __attribute__((picinterrupt(("")))) isr(void)
             CCP1CONbits.DC1B0 = ADRESL>>7;
 
             }
-
-
             ADIF = 0;
     }
 }
@@ -2985,21 +2983,7 @@ void setup(void){
 
 
     TRISA0 = 1;
-
-
-    TRISB0 = 1;
-    TRISBbits.TRISB7 = 0;
-
-
-
-
-    TRISD = 0;
-
-
-
-
-
-
+# 137 "Master_PIC.c"
     OSCCONbits.IRCF0 = 1;
     OSCCONbits.IRCF1 = 1;
     OSCCONbits.IRCF2 = 1;
@@ -3040,8 +3024,12 @@ void setup(void){
     PIR1bits.TMR2IF = 0;
     TRISCbits.TRISC2 = 0;
     TRISCbits.TRISC1 = 0;
-    PIE1bits.ADIE = 1;
-    PIR1bits.ADIF = 0;
+
+
+    INTCONbits.GIE = 1;
+    INTCONbits.PEIE = 1;
+
+
 
 
     PORTA = 0x00;
@@ -3118,13 +3106,13 @@ void LCD_Start(void){
     LCD_Init(0x4E);
 
     LCD_Set_Cursor(1, 1);
-    LCD_Write_String(" Q1.00:");
+    LCD_Write_String(" Q1.00->");
     LCD_Set_Cursor(2, 1);
-    LCD_Write_String(" Q0.50:");
+    LCD_Write_String(" Q0.50->");
     LCD_Set_Cursor(3, 1);
-    LCD_Write_String(" Q0.25:");
+    LCD_Write_String(" Q0.25->");
     LCD_Set_Cursor(4, 1);
-    LCD_Write_String(" Total:Q");
+    LCD_Write_String(" Total->Q");
     _delay((unsigned long)((2500)*(8000000/4000.0)));
 }
 
@@ -3132,20 +3120,16 @@ void LCD_Start(void){
 void LCD_Send(void){
     _delay((unsigned long)((2500)*(8000000/4000.0)));
 
-    LCD_Set_Cursor(1, 9);
+    LCD_Set_Cursor(1, 10);
     LCD_Write_String(converted01);
 
 
-    LCD_Set_Cursor(2, 9);
+    LCD_Set_Cursor(2, 10);
     LCD_Write_String(converted02);
 
 
-    LCD_Set_Cursor(3, 9);
+    LCD_Set_Cursor(3, 10);
     LCD_Write_String(converted03);
-
-
-
-
 
     ADC_convert(converted01, slave01, 2);
     ADC_convert(converted02, slave02, 2);
@@ -3157,13 +3141,13 @@ void LCD_Send(void){
     sum = dec3 + dec1 + dec2;
 
     division(sum);
-    LCD_Set_Cursor(4, 9);
-    LCD_Write_Char(hundreds);
     LCD_Set_Cursor(4, 10);
-    LCD_Write_Char(46);
+    LCD_Write_Char(hundreds);
     LCD_Set_Cursor(4, 11);
-    LCD_Write_Char(tens);
+    LCD_Write_Char(46);
     LCD_Set_Cursor(4, 12);
+    LCD_Write_Char(tens);
+    LCD_Set_Cursor(4, 13);
     LCD_Write_Char(units);
 
 }

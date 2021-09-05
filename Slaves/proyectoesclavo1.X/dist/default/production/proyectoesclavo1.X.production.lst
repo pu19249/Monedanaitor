@@ -1,7 +1,7 @@
 
 
 Microchip MPLAB XC8 Assembler V2.32 build 20210201212658 
-                                                                                               Sun Sep 05 01:29:10 2021
+                                                                                               Sun Sep 05 03:11:16 2021
 
 Microchip MPLAB XC8 C Compiler v2.32 (Free license) build 20210201212658 Og1 
      1                           	processor	16F887
@@ -312,7 +312,7 @@ Microchip MPLAB XC8 C Compiler v2.32 (Free license) build 20210201212658 Og1
    298  0014                     _SSPCON	set	20
    299  0040                     _RD0	set	64
    300  0037                     _RB7	set	55
-   301  0028                     _RA0	set	40
+   301  0029                     _RA1	set	41
    302  0031                     _RB1	set	49
    303  0058                     _RBIF	set	88
    304  0034                     _RB4	set	52
@@ -826,10 +826,10 @@ Microchip MPLAB XC8 C Compiler v2.32 (Free license) build 20210201212658 Og1
    811                           ; Regs used in _infrared: [wreg+status,2+status,0]
    812                           
    813                           
-   814                           ;ESCLAVO1.c: 204:     if(RA0 == 0){
+   814                           ;ESCLAVO1.c: 204:     if(RA1 == 0){
    815  011C  1283               	bcf	3,5	;RP0=0, select bank0
    816  011D  1303               	bcf	3,6	;RP1=0, select bank0
-   817  011E  1805               	btfsc	5,0	;volatile
+   817  011E  1885               	btfsc	5,1	;volatile
    818  011F  2921               	goto	u231
    819  0120  2922               	goto	u230
    820  0121                     u231:
@@ -1636,12 +1636,12 @@ DATA                 0      0      11      12        0.0%
 
 
 Microchip Technology PIC Macro Assembler V2.32 build 20210201212658 
-Symbol Table                                                                                   Sun Sep 05 01:29:10 2021
+Symbol Table                                                                                   Sun Sep 05 03:11:16 2021
 
                       _C 007C                        _M 0079              _SSPSTATbits 0094  
                      _BF 04A0                       l55 0154                      l171 018C  
                     l182 0138                      l177 011B                      _GIE 005F  
-                    _RA0 0028                      _RB1 0031                      _RB4 0034  
+                    _RA1 0029                      _RB1 0031                      _RB4 0034  
                     _RD0 0040                      _RB5 0035                      _RB6 0036  
                     _RB7 0037                      u230 0122                      u231 0121  
                     u247 0195                      u257 012F                      _isr 0019  

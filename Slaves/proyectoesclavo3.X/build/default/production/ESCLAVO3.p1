@@ -252,9 +252,9 @@ Version 4.0 HI-TECH Software Intermediate Code
 "64 ./I2C.h
 [; ;./I2C.h: 64: void I2C_Slave_Init(uint8_t address);
 [v _I2C_Slave_Init `(v ~T0 @X0 0 ef1`uc ]
-"4079 D:/Program File/MicroChip/MPLABX/v5.50/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h
-[; ;D:/Program File/MicroChip/MPLABX/v5.50/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h: 4079: extern volatile __bit RA0 __attribute__((address(0x28)));
-[v _RA0 `Vb ~T0 @X0 0 e@40 ]
+"4082 D:/Program File/MicroChip/MPLABX/v5.50/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h
+[; ;D:/Program File/MicroChip/MPLABX/v5.50/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h: 4082: extern volatile __bit RA1 __attribute__((address(0x29)));
+[v _RA1 `Vb ~T0 @X0 0 e@41 ]
 "4124
 [; ;D:/Program File/MicroChip/MPLABX/v5.50/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h: 4124: extern volatile __bit RB7 __attribute__((address(0x37)));
 [v _RB7 `Vb ~T0 @X0 0 e@55 ]
@@ -911,8 +911,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e :U _infrared ]
 [f ]
 "205
-[; ;ESCLAVO3.c: 205:     if(RA0 == 0){
-[e $ ! == -> _RA0 `i -> 0 `i 163  ]
+[; ;ESCLAVO3.c: 205:     if(RA1 == 0){
+[e $ ! == -> _RA1 `i -> 0 `i 163  ]
 {
 "206
 [; ;ESCLAVO3.c: 206:         RB7 = 1;

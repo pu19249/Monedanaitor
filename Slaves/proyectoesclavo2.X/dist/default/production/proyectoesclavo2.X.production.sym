@@ -3,7 +3,7 @@ _M 79 0 COMMON 1
 __end_of_servo_1_1 187 0 CODE 0
 __end_of_servo_1_5 16E 0 CODE 0
 _BF 4A0 0 ABS 0
-_RA0 28 0 ABS 0
+_RA1 29 0 ABS 0
 _RB1 31 0 ABS 0
 _RD0 40 0 ABS 0
 _RB4 34 0 ABS 0
@@ -180,7 +180,7 @@ cstackCOMMON 70 7C COMMON 70 1
 cstackBANK0 20 23 BANK0 20 1
 %locals
 dist/default/production\proyectoesclavo2.X.production.o
-C:\Users\marco\AppData\Local\Temp\xcAs1gk.s
+C:\Users\marco\AppData\Local\Temp\xcAsgjo.s
 681 F 0 CODE 0
 684 F 0 CODE 0
 707 F 0 CODE 0

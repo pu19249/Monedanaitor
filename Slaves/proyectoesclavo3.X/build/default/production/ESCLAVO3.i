@@ -2873,7 +2873,7 @@ void setup(void){
 }
 
 void infrared(void){
-    if(RA0 == 0){
+    if(RA1 == 0){
         RB7 = 1;
         counter++;
         _delay((unsigned long)((500)*(8000000/4000.0)));

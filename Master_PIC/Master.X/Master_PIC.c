@@ -82,8 +82,6 @@ void __interrupt() isr(void)
             CCP1CONbits.DC1B0 = ADRESL>>7; //para el otro bit
 
             }
-
-        
             ADIF = 0;           //apaga la bandera
     }
 }
@@ -125,15 +123,11 @@ void setup(void){
     
     // Puerto A
     TRISA0 = 1;
-   
     // Puerto B
-    TRISB0 = 1;
-    TRISBbits.TRISB7 = 0;
-    
+
     // Puerto C
 
     // Puerto D
-    TRISD = 0;
         
     // Puerto E
   
@@ -180,8 +174,12 @@ void setup(void){
     PIR1bits.TMR2IF = 0;    //limpiar nuevamente
     TRISCbits.TRISC2 = 0;   //regresar el pin a salida
     TRISCbits.TRISC1 = 0;
-    PIE1bits.ADIE = 1;      //enable de la int del ADC
-    PIR1bits.ADIF = 0;      //limpiar la interrupcion del ADC
+    
+    // configuracion de interrupciones
+    INTCONbits.GIE = 1;     //habilita las interrupciones globales
+    INTCONbits.PEIE = 1;    //periferical interrupts
+//    PIE1bits.ADIE = 1;      //enable de la int del ADC
+//    PIR1bits.ADIF = 0;      //limpiar la interrupcion del ADC
     
     //limpiar puertos
     PORTA = 0x00;
@@ -258,13 +256,13 @@ void LCD_Start(void){
     LCD_Init(0x4E);    // Initialize LCD module with I2C address = 0x4E
  
     LCD_Set_Cursor(1, 1);
-    LCD_Write_String(" Q1.00:");
+    LCD_Write_String(" Q1.00->");
     LCD_Set_Cursor(2, 1);  
-    LCD_Write_String(" Q0.50:");
+    LCD_Write_String(" Q0.50->");
     LCD_Set_Cursor(3, 1);  
-    LCD_Write_String(" Q0.25:");
+    LCD_Write_String(" Q0.25->");
     LCD_Set_Cursor(4, 1);  
-    LCD_Write_String(" Total:Q");
+    LCD_Write_String(" Total->Q");
     __delay_ms(2500);
 }
 
@@ -272,20 +270,16 @@ void LCD_Start(void){
 void LCD_Send(void){
     __delay_ms(2500);
     // Se despliega el sensor de las monedas de 1 quetzal
-    LCD_Set_Cursor(1, 9);  
+    LCD_Set_Cursor(1, 10);  
     LCD_Write_String(converted01);
     
     // Se despliega el sensor de las monedas de 0.5 quetzales
-    LCD_Set_Cursor(2, 9);  
+    LCD_Set_Cursor(2, 10);  
     LCD_Write_String(converted02);
     
     // Se despliega el sensor de las monedas de 0.25 quetzales
-    LCD_Set_Cursor(3, 9);  
+    LCD_Set_Cursor(3, 10);  
     LCD_Write_String(converted03);
-    
-    // Se despliega el total del dinero que se tiene
-//    LCD_Set_Cursor(4, 9);  
-//    LCD_Write_String(converted04);
     
     ADC_convert(converted01, slave01, 2);
     ADC_convert(converted02, slave02, 2);
@@ -297,13 +291,13 @@ void LCD_Send(void){
     sum = dec3 + dec1 + dec2;
     
     division(sum);
-    LCD_Set_Cursor(4, 9);
-    LCD_Write_Char(hundreds);
     LCD_Set_Cursor(4, 10);
-    LCD_Write_Char(46);
+    LCD_Write_Char(hundreds);
     LCD_Set_Cursor(4, 11);
-    LCD_Write_Char(tens);
+    LCD_Write_Char(46);
     LCD_Set_Cursor(4, 12);
+    LCD_Write_Char(tens);
+    LCD_Set_Cursor(4, 13);
     LCD_Write_Char(units);
    
 }
