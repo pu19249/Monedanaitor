@@ -918,36 +918,6 @@ Version 4.0 HI-TECH Software Intermediate Code
 "238
 [; ;Master_PIC.c: 238:     _delay((unsigned long)((200)*(8000000/4000.0)));
 [e ( __delay (1 -> * -> -> 200 `i `d / -> -> 8000000 `l `d .4000.0 `ul ]
-"240
-[; ;Master_PIC.c: 240:     I2C_Master_Start();
-[e ( _I2C_Master_Start ..  ]
-"241
-[; ;Master_PIC.c: 241:     I2C_Master_Write(0x71);
-[e ( _I2C_Master_Write (1 -> -> 113 `i `uc ]
-"242
-[; ;Master_PIC.c: 242:     slave02 = I2C_Read_Byte();
-[e = _slave02 -> ( _I2C_Read_Byte ..  `uc ]
-"243
-[; ;Master_PIC.c: 243:     I2C_Master_Stop();
-[e ( _I2C_Master_Stop ..  ]
-"244
-[; ;Master_PIC.c: 244:     _delay((unsigned long)((200)*(8000000/4000.0)));
-[e ( __delay (1 -> * -> -> 200 `i `d / -> -> 8000000 `l `d .4000.0 `ul ]
-"246
-[; ;Master_PIC.c: 246:     I2C_Master_Start();
-[e ( _I2C_Master_Start ..  ]
-"247
-[; ;Master_PIC.c: 247:     I2C_Master_Write(0x81);
-[e ( _I2C_Master_Write (1 -> -> 129 `i `uc ]
-"248
-[; ;Master_PIC.c: 248:     slave03 = I2C_Read_Byte();
-[e = _slave03 -> ( _I2C_Read_Byte ..  `uc ]
-"249
-[; ;Master_PIC.c: 249:     I2C_Master_Stop();
-[e ( _I2C_Master_Stop ..  ]
-"250
-[; ;Master_PIC.c: 250:     _delay((unsigned long)((200)*(8000000/4000.0)));
-[e ( __delay (1 -> * -> -> 200 `i `d / -> -> 8000000 `l `d .4000.0 `ul ]
 "251
 [; ;Master_PIC.c: 251: }
 [e :UE 162 ]
