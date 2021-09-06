@@ -53,9 +53,12 @@ float converted04[10];
 uint16_t temp;
 uint8_t CONT;
 uint8_t POT;
+uint8_t contador;
 char valor, hundreds, residuo, tens, units;
-char slave01, slave02, slave03, sum, dec1, dec2, dec3;
+char slave01, slave02, slave03, sum, dec3;
 char resta;
+int send;
+float dec1, dec2;
 
 //-----------------------------------------------------------------------------
 //                            Prototipos 
@@ -184,16 +187,16 @@ void setup(void){
     INTCONbits.PEIE = 1;    //periferical interrupts
     PIE1bits.ADIE = 1;      //enable de la int del ADC
     PIR1bits.ADIF = 0;      //limpiar la interrupcion del ADC
-    PIE1bits.RCIE = 0;      // Interrupcion rx
-    PIE1bits.TXIE = 0;      // Interrupcion TX
+    //PIE1bits.RCIE = 0;      // Interrupcion rx
+    //PIE1bits.TXIE = 0;      // Interrupcion TX
     
      // Configuraciones TX y RX
     TXSTAbits.SYNC = 0;
     TXSTAbits.BRGH = 1;
-    BAUDCTLbits.BRG16 = 0;
+    BAUDCTLbits.BRG16 = 1;
     
-    SPBRG = 25;
-    SPBRGH = 1;
+    SPBRG = 103;
+    SPBRGH = 0;
     
     RCSTAbits.SPEN = 1;
     RCSTAbits.RX9 = 0;
@@ -231,51 +234,29 @@ void infrared(void){
 
 // Funcion para enviar por USART
 void Text(void){
-     __delay_ms(250); //Tiempos para el despliegue de los caracteres
-     division(sum);
+//    if (RCREG == 'b'){
+    __delay_ms(50);
+    division(slave01);
+    __delay_ms(50);
+    TXREG = hundreds; 
+    __delay_ms(50);
+    TXREG = tens; 
+    __delay_ms(50);
+    TXREG = units; 
+    __delay_ms(50); 
+    
+    __delay_ms(50);
+    division(sum);
+    __delay_ms(50);
+    TXREG = hundreds; 
+    __delay_ms(50);
+    TXREG = tens; 
+    __delay_ms(50);
+    TXREG = units; 
+    __delay_ms(50); 
         
-     if (RCREG == 'b'){  
-     // Se manda la cantidad de monedas de Q1
-//     division(dec3);    
-//     __delay_ms(50);
-//    if(TXIF == 1){
-//        TXREG = slave01; // Monedas de Q1
-//    }
-//    __delay_ms(50);
-//    if(TXIF == 1){
-//        TXREG = slave02; // Monedas de Q0.50
-//       }
-//    __delay_ms(50);
-//    if(TXIF == 1){
-//        TXREG = slave03; // Monedas de Q0.25
-//       }
-//    __delay_ms(50);
-//    if(TXIF == 1){
-//        TXREG = sum; 
-//    }
-//    __delay_ms(50);
-         
-         if (RCREG == 'b'){              
-     __delay_ms(50);
-    if(TXIF == 1){
-        TXREG = hundreds; 
-    }
-//     __delay_ms(50);
-//    if(TXIF == 1){
-//        TXREG = 46; 
-//       }
-    __delay_ms(50);
-    if(TXIF == 1){
-        TXREG = tens; 
-       }
-    __delay_ms(50);
-    if(TXIF == 1){
-        TXREG = units; 
-       }
-    __delay_ms(50);
-        
-     }        
-     }
+//     }        
+     
 }
 
 // Se configura la comunicacion I2C
@@ -338,7 +319,7 @@ void LCD_Send(void){
     dec1 = slave02 * 50;
     dec2 = slave03 * 25;
     dec3 = slave01 * 100;
-    sum = dec3 + dec1 + dec2;
+    sum = (dec3 + dec1 + dec2);
     
     division(sum);
     LCD_Set_Cursor(4, 10);
@@ -431,3 +412,30 @@ void putch(char data){      // Funcion especifica de libreria stdio.h
     TXREG = data; // lo que se muestra de la cadena
     return;
 }   
+
+// Funcion para concatenar
+int concat(int a, int b, int d)
+{
+ 
+    char s1[20];
+    char s2[20];
+    char s3[20];
+
+ 
+    // Convert both the integers to string
+    sprintf(s1, "%d", a);
+    sprintf(s2, "%d", b);
+    sprintf(s3, "%d", d);
+
+ 
+    // Concatenate both strings
+    strcat(s1, s2);
+    strcat(s1, s3);
+ 
+    // Convert the concatenated string
+    // to integer
+    int c = atoi(s1);
+ 
+    // return the formed integer
+    return c;
+}
