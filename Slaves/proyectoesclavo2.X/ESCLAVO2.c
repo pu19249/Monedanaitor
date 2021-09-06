@@ -156,9 +156,15 @@ void setup(void){
    
     // Puerto B
     TRISB0 = 1;
+    TRISBbits.TRISB4 = 0;
+    TRISBbits.TRISB5 = 0;
+    TRISBbits.TRISB6 = 0;
     TRISBbits.TRISB7 = 0;
     
     // Puerto C
+    
+    // Puerto D
+    TRISD0 = 0;
 
     
     // configuracion del oscilador 

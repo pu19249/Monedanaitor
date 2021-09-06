@@ -55,6 +55,7 @@ uint8_t CONT;
 uint8_t POT;
 char valor, hundreds, residuo, tens, units;
 char slave01, slave02, slave03, sum, dec1, dec2, dec3;
+char resta;
 
 //-----------------------------------------------------------------------------
 //                            Prototipos 
@@ -106,6 +107,9 @@ void main(void) {
         // Reinicio de lector ADC
          __delay_us(100);
         ADCON0bits.GO = 1; //inicia la conversion otra vez
+        
+        // Se mandan los datos via USART
+        Text();
 
     }
     return;
@@ -178,8 +182,28 @@ void setup(void){
     // configuracion de interrupciones
     INTCONbits.GIE = 1;     //habilita las interrupciones globales
     INTCONbits.PEIE = 1;    //periferical interrupts
-//    PIE1bits.ADIE = 1;      //enable de la int del ADC
-//    PIR1bits.ADIF = 0;      //limpiar la interrupcion del ADC
+    PIE1bits.ADIE = 1;      //enable de la int del ADC
+    PIR1bits.ADIF = 0;      //limpiar la interrupcion del ADC
+    PIE1bits.RCIE = 0;      // Interrupcion rx
+    PIE1bits.TXIE = 0;      // Interrupcion TX
+    
+     // Configuraciones TX y RX
+    TXSTAbits.SYNC = 0;
+    TXSTAbits.BRGH = 1;
+    BAUDCTLbits.BRG16 = 0;
+    
+    SPBRG = 25;
+    SPBRGH = 1;
+    
+    RCSTAbits.SPEN = 1;
+    RCSTAbits.RX9 = 0;
+    RCSTAbits.CREN = 1;
+    TXSTAbits.TX9 = 0;          // 8 bits
+    
+    TXSTAbits.TXEN = 1;
+    
+    PIR1bits.RCIF = 0;  // Bandera rx
+    PIR1bits.TXIF = 0;  // bandera tx
     
     //limpiar puertos
     PORTA = 0x00;
@@ -189,7 +213,7 @@ void setup(void){
     PORTE = 0x00;
     
     // I2C configuracion Maestro
-    I2C_Master_Init();        // Inicializar Comuncaci�n I2C
+    I2C_Master_Init();        // Inicializar Comuncacion I2C
 }
 
 // Funcion para el contador del Infrarojo
@@ -208,13 +232,38 @@ void infrared(void){
 // Funcion para enviar por USART
 void Text(void){
      __delay_ms(250); //Tiempos para el despliegue de los caracteres
-     division(counter);
+     division(sum);
         
-     if (RCREG == 'a'){              
+     if (RCREG == 'b'){  
+     // Se manda la cantidad de monedas de Q1
+//     division(dec3);    
+//     __delay_ms(50);
+//    if(TXIF == 1){
+//        TXREG = slave01; // Monedas de Q1
+//    }
+//    __delay_ms(50);
+//    if(TXIF == 1){
+//        TXREG = slave02; // Monedas de Q0.50
+//       }
+//    __delay_ms(50);
+//    if(TXIF == 1){
+//        TXREG = slave03; // Monedas de Q0.25
+//       }
+//    __delay_ms(50);
+//    if(TXIF == 1){
+//        TXREG = sum; 
+//    }
+//    __delay_ms(50);
+         
+         if (RCREG == 'b'){              
      __delay_ms(50);
     if(TXIF == 1){
         TXREG = hundreds; 
     }
+//     __delay_ms(50);
+//    if(TXIF == 1){
+//        TXREG = 46; 
+//       }
     __delay_ms(50);
     if(TXIF == 1){
         TXREG = tens; 
@@ -225,6 +274,7 @@ void Text(void){
        }
     __delay_ms(50);
         
+     }        
      }
 }
 
@@ -235,19 +285,19 @@ void I2C_Comunication(void){
     I2C_Master_Write(0x61); // Direccion del SLAVE 1
     slave01 = I2C_Read_Byte();
     I2C_Master_Stop();
-    __delay_ms(200);
+    __delay_ms(250);
         
-//    I2C_Master_Start();
-//    I2C_Master_Write(0x71); // Direccion del SLAVE 2
-//    slave02 = I2C_Read_Byte();
-//    I2C_Master_Stop();
-//    __delay_ms(200);
-//       
-//    I2C_Master_Start();
-//    I2C_Master_Write(0x81); // Direccion del SLAVE 3
-//    slave03 = I2C_Read_Byte();
-//    I2C_Master_Stop();
-//    __delay_ms(200);
+    I2C_Master_Start();
+    I2C_Master_Write(0x71); // Direccion del SLAVE 2
+    slave02 = I2C_Read_Byte();
+    I2C_Master_Stop();
+    __delay_ms(250);
+       
+    I2C_Master_Start();
+    I2C_Master_Write(0x81); // Direccion del SLAVE 3
+    slave03 = I2C_Read_Byte();
+    I2C_Master_Stop();
+    __delay_ms(250);
 }
 
 // Funcion para inicializar la LCD
@@ -374,30 +424,6 @@ char division (char valor){
     tens = tens + 48;
     units = units + 48;
 } 
-
-// Funcion para poder concatenar
-int concat(int a, int b)
-{
- 
-    char s1[20];
-    char s2[20];
-
- 
-    // Convert both the integers to string
-    sprintf(s1, "%d", a);
-    sprintf(s2, "%d", b);
-
- 
-    // Concatenate both strings
-    strcat(s1, s2);
- 
-    // Convert the concatenated string
-    // to integer
-    int c = atoi(s1);
- 
-    // return the formed integer
-    return c;
-}
 
 // Funcion para que funcione el USART
 void putch(char data){      // Funcion especifica de libreria stdio.h

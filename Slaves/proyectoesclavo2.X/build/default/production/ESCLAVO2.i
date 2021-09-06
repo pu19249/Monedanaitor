@@ -2827,9 +2827,15 @@ void setup(void){
 
 
     TRISB0 = 1;
+    TRISBbits.TRISB4 = 0;
+    TRISBbits.TRISB5 = 0;
+    TRISBbits.TRISB6 = 0;
     TRISBbits.TRISB7 = 0;
 
 
+
+
+    TRISD0 = 0;
 
 
 
