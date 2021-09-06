@@ -1,0 +1,1442 @@
+
+
+Microchip MPLAB XC8 Assembler V2.31 build 20201012212115 
+                                                                                               Sat Sep 04 23:51:33 2021
+
+Microchip MPLAB XC8 C Compiler v2.31 (Free license) build 20201012212115 Og1 
+     1                           	processor	16F887
+     2                           	pagewidth 120
+     3                           	opt	flic
+     4                           	psect	cinit,global,class=CODE,merge=1,delta=2
+     5                           	psect	bssCOMMON,global,class=COMMON,space=1,delta=1,noexec
+     6                           	psect	cstackCOMMON,global,class=COMMON,space=1,delta=1,noexec
+     7                           	psect	cstackBANK0,global,class=BANK0,space=1,delta=1,noexec
+     8                           	psect	maintext,global,class=CODE,split=1,delta=2
+     9                           	psect	text1,local,class=CODE,merge=1,delta=2
+    10                           	psect	text2,local,class=CODE,merge=1,delta=2
+    11                           	psect	text3,local,class=CODE,merge=1,delta=2
+    12                           	psect	intentry,global,class=CODE,delta=2
+    13                           	psect	text4,local,class=CODE,merge=1,delta=2
+    14                           	psect	text5,local,class=CODE,merge=1,delta=2
+    15                           	psect	config,global,abs,ovrld,class=CONFIG,space=4,delta=2,noexec
+    16                           	dabs	1,0x7E,2
+    17  0000                     
+    18                           ; Version 2.20
+    19                           ; Generated 12/02/2020 GMT
+    20                           ; 
+    21                           ; Copyright © 2020, Microchip Technology Inc. and its subsidiaries ("Microchip")
+    22                           ; All rights reserved.
+    23                           ; 
+    24                           ; This software is developed by Microchip Technology Inc. and its subsidiaries ("Microch
+      +                          ip").
+    25                           ; 
+    26                           ; Redistribution and use in source and binary forms, with or without modification, are
+    27                           ; permitted provided that the following conditions are met:
+    28                           ; 
+    29                           ;     1. Redistributions of source code must retain the above copyright notice, this lis
+      +                          t of
+    30                           ;        conditions and the following disclaimer.
+    31                           ; 
+    32                           ;     2. Redistributions in binary form must reproduce the above copyright notice, this 
+      +                          list
+    33                           ;        of conditions and the following disclaimer in the documentation and/or other
+    34                           ;        materials provided with the distribution.
+    35                           ; 
+    36                           ;     3. Microchip's name may not be used to endorse or promote products derived from th
+      +                          is
+    37                           ;        software without specific prior written permission.
+    38                           ; 
+    39                           ; THIS SOFTWARE IS PROVIDED BY MICROCHIP "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES,
+    40                           ; INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS F
+      +                          OR
+    41                           ; PURPOSE ARE DISCLAIMED.  IN NO EVENT SHALL MICROCHIP BE LIABLE FOR ANY DIRECT, INDIREC
+      +                          T,
+    42                           ; INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING BUT NOT LIMITED TO
+    43                           ; PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA OR PROFITS; OR BUSINESS
+    44                           ; INTERRUPTION) HOWSOEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, ST
+      +                          RICT
+    45                           ; LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE U
+      +                          SE OF
+    46                           ; THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+    47                           ; 
+    48                           ; 
+    49                           ; Code-generator required, PIC16F887 Definitions
+    50                           ; 
+    51                           ; SFR Addresses
+    52  0000                     	;# 
+    53  0001                     	;# 
+    54  0002                     	;# 
+    55  0003                     	;# 
+    56  0004                     	;# 
+    57  0005                     	;# 
+    58  0006                     	;# 
+    59  0007                     	;# 
+    60  0008                     	;# 
+    61  0009                     	;# 
+    62  000A                     	;# 
+    63  000B                     	;# 
+    64  000C                     	;# 
+    65  000D                     	;# 
+    66  000E                     	;# 
+    67  000E                     	;# 
+    68  000F                     	;# 
+    69  0010                     	;# 
+    70  0011                     	;# 
+    71  0012                     	;# 
+    72  0013                     	;# 
+    73  0014                     	;# 
+    74  0015                     	;# 
+    75  0015                     	;# 
+    76  0016                     	;# 
+    77  0017                     	;# 
+    78  0018                     	;# 
+    79  0019                     	;# 
+    80  001A                     	;# 
+    81  001B                     	;# 
+    82  001B                     	;# 
+    83  001C                     	;# 
+    84  001D                     	;# 
+    85  001E                     	;# 
+    86  001F                     	;# 
+    87  0081                     	;# 
+    88  0085                     	;# 
+    89  0086                     	;# 
+    90  0087                     	;# 
+    91  0088                     	;# 
+    92  0089                     	;# 
+    93  008C                     	;# 
+    94  008D                     	;# 
+    95  008E                     	;# 
+    96  008F                     	;# 
+    97  0090                     	;# 
+    98  0091                     	;# 
+    99  0092                     	;# 
+   100  0093                     	;# 
+   101  0093                     	;# 
+   102  0093                     	;# 
+   103  0094                     	;# 
+   104  0095                     	;# 
+   105  0096                     	;# 
+   106  0097                     	;# 
+   107  0098                     	;# 
+   108  0099                     	;# 
+   109  009A                     	;# 
+   110  009B                     	;# 
+   111  009C                     	;# 
+   112  009D                     	;# 
+   113  009E                     	;# 
+   114  009F                     	;# 
+   115  0105                     	;# 
+   116  0107                     	;# 
+   117  0108                     	;# 
+   118  0109                     	;# 
+   119  010C                     	;# 
+   120  010C                     	;# 
+   121  010D                     	;# 
+   122  010E                     	;# 
+   123  010F                     	;# 
+   124  0185                     	;# 
+   125  0187                     	;# 
+   126  0188                     	;# 
+   127  0189                     	;# 
+   128  018C                     	;# 
+   129  018D                     	;# 
+   130  0000                     	;# 
+   131  0001                     	;# 
+   132  0002                     	;# 
+   133  0003                     	;# 
+   134  0004                     	;# 
+   135  0005                     	;# 
+   136  0006                     	;# 
+   137  0007                     	;# 
+   138  0008                     	;# 
+   139  0009                     	;# 
+   140  000A                     	;# 
+   141  000B                     	;# 
+   142  000C                     	;# 
+   143  000D                     	;# 
+   144  000E                     	;# 
+   145  000E                     	;# 
+   146  000F                     	;# 
+   147  0010                     	;# 
+   148  0011                     	;# 
+   149  0012                     	;# 
+   150  0013                     	;# 
+   151  0014                     	;# 
+   152  0015                     	;# 
+   153  0015                     	;# 
+   154  0016                     	;# 
+   155  0017                     	;# 
+   156  0018                     	;# 
+   157  0019                     	;# 
+   158  001A                     	;# 
+   159  001B                     	;# 
+   160  001B                     	;# 
+   161  001C                     	;# 
+   162  001D                     	;# 
+   163  001E                     	;# 
+   164  001F                     	;# 
+   165  0081                     	;# 
+   166  0085                     	;# 
+   167  0086                     	;# 
+   168  0087                     	;# 
+   169  0088                     	;# 
+   170  0089                     	;# 
+   171  008C                     	;# 
+   172  008D                     	;# 
+   173  008E                     	;# 
+   174  008F                     	;# 
+   175  0090                     	;# 
+   176  0091                     	;# 
+   177  0092                     	;# 
+   178  0093                     	;# 
+   179  0093                     	;# 
+   180  0093                     	;# 
+   181  0094                     	;# 
+   182  0095                     	;# 
+   183  0096                     	;# 
+   184  0097                     	;# 
+   185  0098                     	;# 
+   186  0099                     	;# 
+   187  009A                     	;# 
+   188  009B                     	;# 
+   189  009C                     	;# 
+   190  009D                     	;# 
+   191  009E                     	;# 
+   192  009F                     	;# 
+   193  0105                     	;# 
+   194  0107                     	;# 
+   195  0108                     	;# 
+   196  0109                     	;# 
+   197  010C                     	;# 
+   198  010C                     	;# 
+   199  010D                     	;# 
+   200  010E                     	;# 
+   201  010F                     	;# 
+   202  0185                     	;# 
+   203  0187                     	;# 
+   204  0188                     	;# 
+   205  0189                     	;# 
+   206  018C                     	;# 
+   207  018D                     	;# 
+   208  0000                     	;# 
+   209  0001                     	;# 
+   210  0002                     	;# 
+   211  0003                     	;# 
+   212  0004                     	;# 
+   213  0005                     	;# 
+   214  0006                     	;# 
+   215  0007                     	;# 
+   216  0008                     	;# 
+   217  0009                     	;# 
+   218  000A                     	;# 
+   219  000B                     	;# 
+   220  000C                     	;# 
+   221  000D                     	;# 
+   222  000E                     	;# 
+   223  000E                     	;# 
+   224  000F                     	;# 
+   225  0010                     	;# 
+   226  0011                     	;# 
+   227  0012                     	;# 
+   228  0013                     	;# 
+   229  0014                     	;# 
+   230  0015                     	;# 
+   231  0015                     	;# 
+   232  0016                     	;# 
+   233  0017                     	;# 
+   234  0018                     	;# 
+   235  0019                     	;# 
+   236  001A                     	;# 
+   237  001B                     	;# 
+   238  001B                     	;# 
+   239  001C                     	;# 
+   240  001D                     	;# 
+   241  001E                     	;# 
+   242  001F                     	;# 
+   243  0081                     	;# 
+   244  0085                     	;# 
+   245  0086                     	;# 
+   246  0087                     	;# 
+   247  0088                     	;# 
+   248  0089                     	;# 
+   249  008C                     	;# 
+   250  008D                     	;# 
+   251  008E                     	;# 
+   252  008F                     	;# 
+   253  0090                     	;# 
+   254  0091                     	;# 
+   255  0092                     	;# 
+   256  0093                     	;# 
+   257  0093                     	;# 
+   258  0093                     	;# 
+   259  0094                     	;# 
+   260  0095                     	;# 
+   261  0096                     	;# 
+   262  0097                     	;# 
+   263  0098                     	;# 
+   264  0099                     	;# 
+   265  009A                     	;# 
+   266  009B                     	;# 
+   267  009C                     	;# 
+   268  009D                     	;# 
+   269  009E                     	;# 
+   270  009F                     	;# 
+   271  0105                     	;# 
+   272  0107                     	;# 
+   273  0108                     	;# 
+   274  0109                     	;# 
+   275  010C                     	;# 
+   276  010C                     	;# 
+   277  010D                     	;# 
+   278  010E                     	;# 
+   279  010F                     	;# 
+   280  0185                     	;# 
+   281  0187                     	;# 
+   282  0188                     	;# 
+   283  0189                     	;# 
+   284  018C                     	;# 
+   285  018D                     	;# 
+   286  0009                     _PORTE	set	9
+   287  0008                     _PORTD	set	8
+   288  0006                     _PORTB	set	6
+   289  0007                     _PORTC	set	7
+   290  0005                     _PORTA	set	5
+   291  000B                     _INTCONbits	set	11
+   292  001E                     _ADRESH	set	30
+   293  001F                     _ADCON0bits	set	31
+   294  000C                     _PIR1bits	set	12
+   295  0013                     _SSPBUF	set	19
+   296  0014                     _SSPCON	set	20
+   297  0040                     _RD0	set	64
+   298  0037                     _RB7	set	55
+   299  0029                     _RA1	set	41
+   300  0034                     _RB4	set	52
+   301  0035                     _RB5	set	53
+   302  0036                     _RB6	set	54
+   303  0031                     _RB1	set	49
+   304  0058                     _RBIF	set	88
+   305  0063                     _SSPIF	set	99
+   306  005E                     _PEIE	set	94
+   307  005F                     _GIE	set	95
+   308  009F                     _ADCON1bits	set	159
+   309  008F                     _OSCCONbits	set	143
+   310  0096                     _IOCBbits	set	150
+   311  0095                     _WPUB	set	149
+   312  0081                     _OPTION_REGbits	set	129
+   313  008C                     _PIE1bits	set	140
+   314  0086                     _TRISBbits	set	134
+   315  0091                     _SSPCON2bits	set	145
+   316  0087                     _TRISCbits	set	135
+   317  0094                     _SSPSTAT	set	148
+   318  0093                     _SSPADD	set	147
+   319  0091                     _SSPCON2	set	145
+   320  0440                     _TRISD0	set	1088
+   321  0428                     _TRISA0	set	1064
+   322  0429                     _TRISA1	set	1065
+   323  0431                     _TRISB1	set	1073
+   324  0463                     _SSPIE	set	1123
+   325  043C                     _TRISC4	set	1084
+   326  043B                     _TRISC3	set	1083
+   327  0189                     _ANSELH	set	393
+   328  0188                     _ANSEL	set	392
+   329                           
+   330                           	psect	cinit
+   331  000F                     start_initialization:	
+   332                           ; #config settings
+   333                           
+   334  000F                     __initialization:
+   335                           
+   336                           ; Clear objects allocated to COMMON
+   337  000F  01F7               	clrf	__pbssCOMMON& (0+127)
+   338  0010  01F8               	clrf	(__pbssCOMMON+1)& (0+127)
+   339  0011  01F9               	clrf	(__pbssCOMMON+2)& (0+127)
+   340  0012  01FA               	clrf	(__pbssCOMMON+3)& (0+127)
+   341  0013  01FB               	clrf	(__pbssCOMMON+4)& (0+127)
+   342  0014                     end_of_initialization:	
+   343                           ;End of C runtime variable initialization code
+   344                           
+   345  0014                     __end_of__initialization:
+   346  0014  0183               	clrf	3
+   347  0015  120A  118A  28B7   	ljmp	_main	;jump to C main() function
+   348                           
+   349                           	psect	bssCOMMON
+   350  0077                     __pbssCOMMON:
+   351  0077                     _M:
+   352  0077                     	ds	1
+   353  0078                     _CONT:
+   354  0078                     	ds	1
+   355  0079                     _quetzal:
+   356  0079                     	ds	1
+   357  007A                     _infra:
+   358  007A                     	ds	1
+   359  007B                     _C:
+   360  007B                     	ds	1
+   361                           
+   362                           	psect	cstackCOMMON
+   363  0070                     __pcstackCOMMON:
+   364  0070                     ?_servo_1_5:
+   365  0070                     ??_servo_1_5:	
+   366                           ; 1 bytes @ 0x0
+   367                           
+   368  0070                     ?_servo_1_1:	
+   369                           ; 1 bytes @ 0x0
+   370                           
+   371  0070                     ??_servo_1_1:	
+   372                           ; 1 bytes @ 0x0
+   373                           
+   374  0070                     ?_setup:	
+   375                           ; 1 bytes @ 0x0
+   376                           
+   377  0070                     ?_infrared:	
+   378                           ; 1 bytes @ 0x0
+   379                           
+   380  0070                     ?_isr:	
+   381                           ; 1 bytes @ 0x0
+   382                           
+   383  0070                     ?_main:	
+   384                           ; 1 bytes @ 0x0
+   385                           
+   386                           
+   387                           ; 1 bytes @ 0x0
+   388  0070                     	ds	2
+   389  0072                     ??_isr:
+   390                           
+   391                           ; 1 bytes @ 0x2
+   392  0072                     	ds	5
+   393                           
+   394                           	psect	cstackBANK0
+   395  0020                     __pcstackBANK0:
+   396  0020                     ??_setup:
+   397  0020                     ??_infrared:	
+   398                           ; 1 bytes @ 0x0
+   399                           
+   400                           
+   401                           ; 1 bytes @ 0x0
+   402  0020                     	ds	3
+   403  0023                     ??_main:
+   404                           
+   405                           ; 1 bytes @ 0x3
+   406  0023                     	ds	3
+   407                           
+   408                           	psect	maintext
+   409  00B7                     __pmaintext:	
+   410 ;;
+   411 ;;Main: autosize = 0, tempsize = 3, incstack = 0, save=0
+   412 ;;
+   413 ;; *************** function _main *****************
+   414 ;; Defined at:
+   415 ;;		line 139 in file "ESCLAVO1.c"
+   416 ;; Parameters:    Size  Location     Type
+   417 ;;		None
+   418 ;; Auto vars:     Size  Location     Type
+   419 ;;		None
+   420 ;; Return value:  Size  Location     Type
+   421 ;;                  1    wreg      void 
+   422 ;; Registers used:
+   423 ;;		wreg, status,2, status,0, pclath, cstack
+   424 ;; Tracked objects:
+   425 ;;		On entry : B00/0
+   426 ;;		On exit  : 0/0
+   427 ;;		Unchanged: 0/0
+   428 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+   429 ;;      Params:         0       0       0       0       0
+   430 ;;      Locals:         0       0       0       0       0
+   431 ;;      Temps:          0       3       0       0       0
+   432 ;;      Totals:         0       3       0       0       0
+   433 ;;Total ram usage:        3 bytes
+   434 ;; Hardware stack levels required when called:    3
+   435 ;; This function calls:
+   436 ;;		_infrared
+   437 ;;		_setup
+   438 ;; This function is called by:
+   439 ;;		Startup code after reset
+   440 ;; This function uses a non-reentrant model
+   441 ;;
+   442                           
+   443                           
+   444                           ;psect for function _main
+   445  00B7                     _main:
+   446  00B7                     l1067:	
+   447                           ;incstack = 0
+   448                           ; Regs used in _main: [wreg+status,2+status,0+pclath+cstack]
+   449                           
+   450                           
+   451                           ;ESCLAVO1.c: 140:     setup();
+   452  00B7  120A  118A  2080  120A  118A  	fcall	_setup
+   453  00BC                     l1069:
+   454                           
+   455                           ;ESCLAVO1.c: 146:         _delay((unsigned long)((750)*(8000000/4000.0)));
+   456  00BC  3008               	movlw	8
+   457  00BD  1283               	bcf	3,5	;RP0=0, select bank0
+   458  00BE  1303               	bcf	3,6	;RP1=0, select bank0
+   459  00BF  00A5               	movwf	??_main+2
+   460  00C0  309D               	movlw	157
+   461  00C1  00A4               	movwf	??_main+1
+   462  00C2  3005               	movlw	5
+   463  00C3  00A3               	movwf	??_main
+   464  00C4                     u177:
+   465  00C4  0BA3               	decfsz	??_main,f
+   466  00C5  28C4               	goto	u177
+   467  00C6  0BA4               	decfsz	??_main+1,f
+   468  00C7  28C4               	goto	u177
+   469  00C8  0BA5               	decfsz	??_main+2,f
+   470  00C9  28C4               	goto	u177
+   471  00CA                     l1071:
+   472                           
+   473                           ;ESCLAVO1.c: 147:         infrared();
+   474  00CA  120A  118A  20DD  120A  118A  	fcall	_infrared
+   475                           
+   476                           ;ESCLAVO1.c: 148:          _delay((unsigned long)((100)*(8000000/4000000.0)));
+   477  00CF  3041               	movlw	65
+   478  00D0  1283               	bcf	3,5	;RP0=0, select bank0
+   479  00D1  1303               	bcf	3,6	;RP1=0, select bank0
+   480  00D2  00A3               	movwf	??_main
+   481  00D3                     u187:
+   482  00D3  0BA3               	decfsz	??_main,f
+   483  00D4  28D3               	goto	u187
+   484  00D5  28D6               	nop2
+   485  00D6                     l1073:
+   486                           
+   487                           ;ESCLAVO1.c: 149:         ADCON0bits.GO = 1;
+   488  00D6  1283               	bcf	3,5	;RP0=0, select bank0
+   489  00D7  1303               	bcf	3,6	;RP1=0, select bank0
+   490  00D8  149F               	bsf	31,1	;volatile
+   491  00D9  28BC               	goto	l1069
+   492  00DA  120A  118A  280C   	ljmp	start
+   493  00DD                     __end_of_main:
+   494                           
+   495                           	psect	text1
+   496  0080                     __ptext1:	
+   497 ;; *************** function _setup *****************
+   498 ;; Defined at:
+   499 ;;		line 204 in file "ESCLAVO1.c"
+   500 ;; Parameters:    Size  Location     Type
+   501 ;;		None
+   502 ;; Auto vars:     Size  Location     Type
+   503 ;;		None
+   504 ;; Return value:  Size  Location     Type
+   505 ;;                  1    wreg      void 
+   506 ;; Registers used:
+   507 ;;		wreg, status,2, status,0
+   508 ;; Tracked objects:
+   509 ;;		On entry : 0/0
+   510 ;;		On exit  : 0/0
+   511 ;;		Unchanged: 0/0
+   512 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+   513 ;;      Params:         0       0       0       0       0
+   514 ;;      Locals:         0       0       0       0       0
+   515 ;;      Temps:          0       0       0       0       0
+   516 ;;      Totals:         0       0       0       0       0
+   517 ;;Total ram usage:        0 bytes
+   518 ;; Hardware stack levels used:    1
+   519 ;; Hardware stack levels required when called:    2
+   520 ;; This function calls:
+   521 ;;		Nothing
+   522 ;; This function is called by:
+   523 ;;		_main
+   524 ;; This function uses a non-reentrant model
+   525 ;;
+   526                           
+   527                           
+   528                           ;psect for function _setup
+   529  0080                     _setup:
+   530  0080                     l1001:	
+   531                           ;incstack = 0
+   532                           ; Regs used in _setup: [wreg+status,2+status,0]
+   533                           
+   534                           
+   535                           ;ESCLAVO1.c: 206:     TRISB1 = 1;
+   536  0080  1683               	bsf	3,5	;RP0=1, select bank1
+   537  0081  1303               	bcf	3,6	;RP1=0, select bank1
+   538  0082  1486               	bsf	6,1	;volatile
+   539                           
+   540                           ;ESCLAVO1.c: 207:     TRISA1 = 1;
+   541  0083  1485               	bsf	5,1	;volatile
+   542                           
+   543                           ;ESCLAVO1.c: 208:     TRISA0 = 1;
+   544  0084  1405               	bsf	5,0	;volatile
+   545  0085                     l1003:
+   546                           
+   547                           ;ESCLAVO1.c: 209:     ANSEL = 0b00000001;
+   548  0085  3001               	movlw	1
+   549  0086  1683               	bsf	3,5	;RP0=1, select bank3
+   550  0087  1703               	bsf	3,6	;RP1=1, select bank3
+   551  0088  0088               	movwf	8	;volatile
+   552  0089                     l1005:
+   553                           
+   554                           ;ESCLAVO1.c: 210:     ANSELH = 0;
+   555  0089  0189               	clrf	9	;volatile
+   556  008A                     l1007:
+   557                           
+   558                           ;ESCLAVO1.c: 213:     TRISBbits.TRISB7 = 0;
+   559  008A  1683               	bsf	3,5	;RP0=1, select bank1
+   560  008B  1303               	bcf	3,6	;RP1=0, select bank1
+   561  008C  1386               	bcf	6,7	;volatile
+   562  008D                     l1009:
+   563                           
+   564                           ;ESCLAVO1.c: 214:     TRISBbits.TRISB6 = 0;
+   565  008D  1306               	bcf	6,6	;volatile
+   566  008E                     l1011:
+   567                           
+   568                           ;ESCLAVO1.c: 215:     TRISBbits.TRISB5 = 0;
+   569  008E  1286               	bcf	6,5	;volatile
+   570  008F                     l1013:
+   571                           
+   572                           ;ESCLAVO1.c: 216:     TRISBbits.TRISB4 = 0;
+   573  008F  1206               	bcf	6,4	;volatile
+   574  0090                     l1015:
+   575                           
+   576                           ;ESCLAVO1.c: 217:     TRISD0 = 0;
+   577  0090  1008               	bcf	8,0	;volatile
+   578  0091                     l1017:
+   579                           
+   580                           ;ESCLAVO1.c: 220:     INTCONbits.GIE = 1;
+   581  0091  178B               	bsf	11,7	;volatile
+   582  0092                     l1019:
+   583                           
+   584                           ;ESCLAVO1.c: 221:     INTCONbits.PEIE = 1;
+   585  0092  170B               	bsf	11,6	;volatile
+   586  0093                     l1021:
+   587                           
+   588                           ;ESCLAVO1.c: 222:     INTCONbits.RBIE = 1;
+   589  0093  158B               	bsf	11,3	;volatile
+   590  0094                     l1023:
+   591                           
+   592                           ;ESCLAVO1.c: 223:     INTCONbits.RBIF = 0;
+   593  0094  100B               	bcf	11,0	;volatile
+   594  0095                     l1025:
+   595                           
+   596                           ;ESCLAVO1.c: 224:     PIR1bits.ADIF = 0;
+   597  0095  1283               	bcf	3,5	;RP0=0, select bank0
+   598  0096  1303               	bcf	3,6	;RP1=0, select bank0
+   599  0097  130C               	bcf	12,6	;volatile
+   600  0098                     l1027:
+   601                           
+   602                           ;ESCLAVO1.c: 225:     PIE1bits.ADIE = 1;
+   603  0098  1683               	bsf	3,5	;RP0=1, select bank1
+   604  0099  1303               	bcf	3,6	;RP1=0, select bank1
+   605  009A  170C               	bsf	12,6	;volatile
+   606  009B                     l1029:
+   607                           
+   608                           ;ESCLAVO1.c: 229:     OPTION_REGbits.nRBPU = 0;
+   609  009B  1381               	bcf	1,7	;volatile
+   610  009C                     l1031:
+   611                           
+   612                           ;ESCLAVO1.c: 230:     WPUB = 0b00000010;
+   613  009C  3002               	movlw	2
+   614  009D  0095               	movwf	21	;volatile
+   615  009E                     l1033:
+   616                           
+   617                           ;ESCLAVO1.c: 231:     IOCBbits.IOCB1 = 1;
+   618  009E  1496               	bsf	22,1	;volatile
+   619  009F                     l1035:
+   620                           
+   621                           ;ESCLAVO1.c: 234:     OSCCONbits.IRCF2 = 1;
+   622  009F  170F               	bsf	15,6	;volatile
+   623  00A0                     l1037:
+   624                           
+   625                           ;ESCLAVO1.c: 235:     OSCCONbits.IRCF1 = 1;
+   626  00A0  168F               	bsf	15,5	;volatile
+   627  00A1                     l1039:
+   628                           
+   629                           ;ESCLAVO1.c: 236:     OSCCONbits.IRCF0 = 1;
+   630  00A1  160F               	bsf	15,4	;volatile
+   631  00A2                     l1041:
+   632                           
+   633                           ;ESCLAVO1.c: 237:     OSCCONbits.SCS = 1;
+   634  00A2  140F               	bsf	15,0	;volatile
+   635  00A3                     l1043:
+   636                           
+   637                           ;ESCLAVO1.c: 241:     ADCON0bits.CHS = 0;
+   638  00A3  30C3               	movlw	-61
+   639  00A4  1283               	bcf	3,5	;RP0=0, select bank0
+   640  00A5  1303               	bcf	3,6	;RP1=0, select bank0
+   641  00A6  059F               	andwf	31,f	;volatile
+   642  00A7                     l1045:
+   643                           
+   644                           ;ESCLAVO1.c: 242:     ADCON0bits.ADCS1 = 1;
+   645  00A7  179F               	bsf	31,7	;volatile
+   646  00A8                     l1047:
+   647                           
+   648                           ;ESCLAVO1.c: 243:     ADCON0bits.ADCS0 = 1;
+   649  00A8  171F               	bsf	31,6	;volatile
+   650  00A9                     l1049:
+   651                           
+   652                           ;ESCLAVO1.c: 244:     ADCON0bits.ADON = 1;
+   653  00A9  141F               	bsf	31,0	;volatile
+   654  00AA                     l1051:
+   655                           
+   656                           ;ESCLAVO1.c: 245:     ADCON1bits.ADFM = 0;
+   657  00AA  1683               	bsf	3,5	;RP0=1, select bank1
+   658  00AB  1303               	bcf	3,6	;RP1=0, select bank1
+   659  00AC  139F               	bcf	31,7	;volatile
+   660  00AD                     l1053:
+   661                           
+   662                           ;ESCLAVO1.c: 246:     ADCON1bits.VCFG0 = 0;
+   663  00AD  121F               	bcf	31,4	;volatile
+   664  00AE                     l1055:
+   665                           
+   666                           ;ESCLAVO1.c: 247:     ADCON1bits.VCFG1 = 0;
+   667  00AE  129F               	bcf	31,5	;volatile
+   668  00AF                     l1057:
+   669                           
+   670                           ;ESCLAVO1.c: 249:     PORTA = 0x00;
+   671  00AF  1283               	bcf	3,5	;RP0=0, select bank0
+   672  00B0  1303               	bcf	3,6	;RP1=0, select bank0
+   673  00B1  0185               	clrf	5	;volatile
+   674  00B2                     l1059:
+   675                           
+   676                           ;ESCLAVO1.c: 250:     PORTC = 0x00;
+   677  00B2  0187               	clrf	7	;volatile
+   678  00B3                     l1061:
+   679                           
+   680                           ;ESCLAVO1.c: 251:     PORTB = 0X00;
+   681  00B3  0186               	clrf	6	;volatile
+   682  00B4                     l1063:
+   683                           
+   684                           ;ESCLAVO1.c: 252:     PORTD = 0x00;
+   685  00B4  0188               	clrf	8	;volatile
+   686  00B5                     l1065:
+   687                           
+   688                           ;ESCLAVO1.c: 253:     PORTE = 0x00;
+   689  00B5  0189               	clrf	9	;volatile
+   690  00B6                     l179:
+   691  00B6  0008               	return
+   692  00B7                     __end_of_setup:
+   693                           
+   694                           	psect	text2
+   695  00DD                     __ptext2:	
+   696 ;; *************** function _infrared *****************
+   697 ;; Defined at:
+   698 ;;		line 156 in file "ESCLAVO1.c"
+   699 ;; Parameters:    Size  Location     Type
+   700 ;;		None
+   701 ;; Auto vars:     Size  Location     Type
+   702 ;;		None
+   703 ;; Return value:  Size  Location     Type
+   704 ;;                  1    wreg      void 
+   705 ;; Registers used:
+   706 ;;		wreg, status,2, status,0
+   707 ;; Tracked objects:
+   708 ;;		On entry : 0/0
+   709 ;;		On exit  : 0/0
+   710 ;;		Unchanged: 0/0
+   711 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+   712 ;;      Params:         0       0       0       0       0
+   713 ;;      Locals:         0       0       0       0       0
+   714 ;;      Temps:          0       3       0       0       0
+   715 ;;      Totals:         0       3       0       0       0
+   716 ;;Total ram usage:        3 bytes
+   717 ;; Hardware stack levels used:    1
+   718 ;; Hardware stack levels required when called:    2
+   719 ;; This function calls:
+   720 ;;		Nothing
+   721 ;; This function is called by:
+   722 ;;		_main
+   723 ;; This function uses a non-reentrant model
+   724 ;;
+   725                           
+   726                           
+   727                           ;psect for function _infrared
+   728  00DD                     _infrared:
+   729  00DD                     l981:	
+   730                           ;incstack = 0
+   731                           ; Regs used in _infrared: [wreg+status,2+status,0]
+   732                           
+   733                           
+   734                           ;ESCLAVO1.c: 157:     if(RA1 == 0){
+   735  00DD  1283               	bcf	3,5	;RP0=0, select bank0
+   736  00DE  1303               	bcf	3,6	;RP1=0, select bank0
+   737  00DF  1885               	btfsc	5,1	;volatile
+   738  00E0  28E2               	goto	u151
+   739  00E1  28E3               	goto	u150
+   740  00E2                     u151:
+   741  00E2  28FA               	goto	l158
+   742  00E3                     u150:
+   743  00E3                     l983:
+   744                           
+   745                           ;ESCLAVO1.c: 158:         RB7 = 1;
+   746  00E3  1786               	bsf	6,7	;volatile
+   747  00E4                     l985:
+   748                           
+   749                           ;ESCLAVO1.c: 159:         _delay((unsigned long)((500)*(8000000/4000.0)));
+   750  00E4  3006               	movlw	6
+   751  00E5  1283               	bcf	3,5	;RP0=0, select bank0
+   752  00E6  1303               	bcf	3,6	;RP1=0, select bank0
+   753  00E7  00A2               	movwf	??_infrared+2
+   754  00E8  3013               	movlw	19
+   755  00E9  00A1               	movwf	??_infrared+1
+   756  00EA  30AD               	movlw	173
+   757  00EB  00A0               	movwf	??_infrared
+   758  00EC                     u197:
+   759  00EC  0BA0               	decfsz	??_infrared,f
+   760  00ED  28EC               	goto	u197
+   761  00EE  0BA1               	decfsz	??_infrared+1,f
+   762  00EF  28EC               	goto	u197
+   763  00F0  0BA2               	decfsz	??_infrared+2,f
+   764  00F1  28EC               	goto	u197
+   765  00F2                     l987:
+   766                           
+   767                           ;ESCLAVO1.c: 160:         RB7 = 0;
+   768  00F2  1283               	bcf	3,5	;RP0=0, select bank0
+   769  00F3  1303               	bcf	3,6	;RP1=0, select bank0
+   770  00F4  1386               	bcf	6,7	;volatile
+   771  00F5                     l989:
+   772                           
+   773                           ;ESCLAVO1.c: 161:         CONT++;
+   774  00F5  3001               	movlw	1
+   775  00F6  00A0               	movwf	??_infrared
+   776  00F7  0820               	movf	??_infrared,w
+   777  00F8  07F8               	addwf	_CONT,f
+   778                           
+   779                           ;ESCLAVO1.c: 162:         }
+   780  00F9  28FF               	goto	l161
+   781  00FA                     l158:	
+   782                           ;ESCLAVO1.c: 164:     else if (RA1 == 0){
+   783                           
+   784  00FA  1885               	btfsc	5,1	;volatile
+   785  00FB  28FD               	goto	u161
+   786  00FC  28FE               	goto	u160
+   787  00FD                     u161:
+   788  00FD  28FF               	goto	l161
+   789  00FE                     u160:
+   790  00FE                     l991:
+   791                           
+   792                           ;ESCLAVO1.c: 165:         RB7 = 0;
+   793  00FE  1386               	bcf	6,7	;volatile
+   794  00FF                     l161:
+   795  00FF  0008               	return
+   796  0100                     __end_of_infrared:
+   797                           
+   798                           	psect	text3
+   799  0018                     __ptext3:	
+   800 ;; *************** function _isr *****************
+   801 ;; Defined at:
+   802 ;;		line 60 in file "ESCLAVO1.c"
+   803 ;; Parameters:    Size  Location     Type
+   804 ;;		None
+   805 ;; Auto vars:     Size  Location     Type
+   806 ;;		None
+   807 ;; Return value:  Size  Location     Type
+   808 ;;                  1    wreg      void 
+   809 ;; Registers used:
+   810 ;;		wreg, status,2, status,0, pclath, cstack
+   811 ;; Tracked objects:
+   812 ;;		On entry : 0/0
+   813 ;;		On exit  : 0/0
+   814 ;;		Unchanged: 0/0
+   815 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+   816 ;;      Params:         0       0       0       0       0
+   817 ;;      Locals:         0       0       0       0       0
+   818 ;;      Temps:          5       0       0       0       0
+   819 ;;      Totals:         5       0       0       0       0
+   820 ;;Total ram usage:        5 bytes
+   821 ;; Hardware stack levels used:    1
+   822 ;; Hardware stack levels required when called:    1
+   823 ;; This function calls:
+   824 ;;		_servo_1_1
+   825 ;;		_servo_1_5
+   826 ;; This function is called by:
+   827 ;;		Interrupt level 1
+   828 ;; This function uses a non-reentrant model
+   829 ;;
+   830                           
+   831                           
+   832                           ;psect for function _isr
+   833  0018                     _isr:
+   834  0018                     i1l919:
+   835                           
+   836                           ;ESCLAVO1.c: 95:    if(RBIF){
+   837  0018  1C0B               	btfss	11,0	;volatile
+   838  0019  281B               	goto	u7_21
+   839  001A  281C               	goto	u7_20
+   840  001B                     u7_21:
+   841  001B  283E               	goto	i1l933
+   842  001C                     u7_20:
+   843  001C                     i1l921:
+   844                           
+   845                           ;ESCLAVO1.c: 96:         if(RB1 == 0){
+   846  001C  1283               	bcf	3,5	;RP0=0, select bank0
+   847  001D  1303               	bcf	3,6	;RP1=0, select bank0
+   848  001E  1886               	btfsc	6,1	;volatile
+   849  001F  2821               	goto	u8_21
+   850  0020  2822               	goto	u8_20
+   851  0021                     u8_21:
+   852  0021  283D               	goto	i1l931
+   853  0022                     u8_20:
+   854  0022                     i1l923:
+   855                           
+   856                           ;ESCLAVO1.c: 97:             servo_1_5();
+   857  0022  120A  118A  2100  120A  118A  	fcall	_servo_1_5
+   858  0027                     i1l925:
+   859                           
+   860                           ;ESCLAVO1.c: 98:             _delay((unsigned long)((2000)*(8000000/4000.0)));
+   861  0027  3015               	movlw	21
+   862  0028  00F4               	movwf	??_isr+2
+   863  0029  304B               	movlw	75
+   864  002A  00F3               	movwf	??_isr+1
+   865  002B  30BE               	movlw	190
+   866  002C  00F2               	movwf	??_isr
+   867  002D                     u20_27:
+   868  002D  0BF2               	decfsz	??_isr,f
+   869  002E  282D               	goto	u20_27
+   870  002F  0BF3               	decfsz	??_isr+1,f
+   871  0030  282D               	goto	u20_27
+   872  0031  0BF4               	decfsz	??_isr+2,f
+   873  0032  282D               	goto	u20_27
+   874  0033  0000               	nop
+   875  0034                     i1l927:
+   876                           
+   877                           ;ESCLAVO1.c: 99:             servo_1_1();
+   878  0034  120A  118A  2119  120A  118A  	fcall	_servo_1_1
+   879  0039                     i1l929:
+   880                           
+   881                           ;ESCLAVO1.c: 100:             quetzal++;
+   882  0039  3001               	movlw	1
+   883  003A  00F2               	movwf	??_isr
+   884  003B  0872               	movf	??_isr,w
+   885  003C  07F9               	addwf	_quetzal,f
+   886  003D                     i1l931:
+   887                           
+   888                           ;ESCLAVO1.c: 103:         RBIF = 0;
+   889  003D  100B               	bcf	11,0	;volatile
+   890  003E                     i1l933:
+   891                           
+   892                           ;ESCLAVO1.c: 106:    if (PIR1bits.ADIF == 1)
+   893  003E  1283               	bcf	3,5	;RP0=0, select bank0
+   894  003F  1303               	bcf	3,6	;RP1=0, select bank0
+   895  0040  1F0C               	btfss	12,6	;volatile
+   896  0041  2843               	goto	u9_21
+   897  0042  2844               	goto	u9_20
+   898  0043                     u9_21:
+   899  0043  2879               	goto	i1l147
+   900  0044                     u9_20:
+   901  0044                     i1l935:
+   902                           
+   903                           ;ESCLAVO1.c: 107:     {;ESCLAVO1.c: 108:         if (ADCON0bits.CHS == 0)
+   904  0044  0C1F               	rrf	31,w	;volatile
+   905  0045  00F2               	movwf	??_isr
+   906  0046  0C72               	rrf	??_isr,w
+   907  0047  390F               	andlw	15
+   908  0048  3A00               	xorlw	0
+   909  0049  1D03               	skipz
+   910  004A  284C               	goto	u10_21
+   911  004B  284D               	goto	u10_20
+   912  004C                     u10_21:
+   913  004C  2872               	goto	i1l951
+   914  004D                     u10_20:
+   915  004D                     i1l937:
+   916                           
+   917                           ;ESCLAVO1.c: 109:         {;ESCLAVO1.c: 110:             M = ADRESH;
+   918  004D  081E               	movf	30,w	;volatile
+   919  004E  00F2               	movwf	??_isr
+   920  004F  0872               	movf	??_isr,w
+   921  0050  00F7               	movwf	_M
+   922                           
+   923                           ;ESCLAVO1.c: 111:             if(M<=169)
+   924  0051  30AA               	movlw	170
+   925  0052  0277               	subwf	_M,w
+   926  0053  1803               	skipnc
+   927  0054  2856               	goto	u11_21
+   928  0055  2857               	goto	u11_20
+   929  0056                     u11_21:
+   930  0056  285A               	goto	i1l941
+   931  0057                     u11_20:
+   932  0057                     i1l939:
+   933                           
+   934                           ;ESCLAVO1.c: 112:             {;ESCLAVO1.c: 113:                 RB6 = 0;
+   935  0057  1306               	bcf	6,6	;volatile
+   936                           
+   937                           ;ESCLAVO1.c: 114:                 RB5 = 0;
+   938  0058  1286               	bcf	6,5	;volatile
+   939                           
+   940                           ;ESCLAVO1.c: 115:                 RB4 = 1;
+   941  0059  1606               	bsf	6,4	;volatile
+   942  005A                     i1l941:
+   943                           
+   944                           ;ESCLAVO1.c: 117:             if((M<=225)&&(M>=170))
+   945  005A  30E2               	movlw	226
+   946  005B  0277               	subwf	_M,w
+   947  005C  1803               	skipnc
+   948  005D  285F               	goto	u12_21
+   949  005E  2860               	goto	u12_20
+   950  005F                     u12_21:
+   951  005F  2869               	goto	i1l947
+   952  0060                     u12_20:
+   953  0060                     i1l943:
+   954  0060  30AA               	movlw	170
+   955  0061  0277               	subwf	_M,w
+   956  0062  1C03               	skipc
+   957  0063  2865               	goto	u13_21
+   958  0064  2866               	goto	u13_20
+   959  0065                     u13_21:
+   960  0065  2869               	goto	i1l947
+   961  0066                     u13_20:
+   962  0066                     i1l945:
+   963                           
+   964                           ;ESCLAVO1.c: 118:             {;ESCLAVO1.c: 119:                RB6 = 0;
+   965  0066  1306               	bcf	6,6	;volatile
+   966                           
+   967                           ;ESCLAVO1.c: 120:                RB5 = 1;
+   968  0067  1686               	bsf	6,5	;volatile
+   969                           
+   970                           ;ESCLAVO1.c: 121:                RB4 = 0;
+   971  0068  1206               	bcf	6,4	;volatile
+   972  0069                     i1l947:
+   973                           
+   974                           ;ESCLAVO1.c: 123:             if(M>=226)
+   975  0069  30E2               	movlw	226
+   976  006A  0277               	subwf	_M,w
+   977  006B  1C03               	skipc
+   978  006C  286E               	goto	u14_21
+   979  006D  286F               	goto	u14_20
+   980  006E                     u14_21:
+   981  006E  2872               	goto	i1l951
+   982  006F                     u14_20:
+   983  006F                     i1l949:
+   984                           
+   985                           ;ESCLAVO1.c: 124:             {;ESCLAVO1.c: 125:                RB6 = 1;
+   986  006F  1706               	bsf	6,6	;volatile
+   987                           
+   988                           ;ESCLAVO1.c: 126:                RB5 = 0;
+   989  0070  1286               	bcf	6,5	;volatile
+   990                           
+   991                           ;ESCLAVO1.c: 127:                RB4 = 0;
+   992  0071  1206               	bcf	6,4	;volatile
+   993  0072                     i1l951:
+   994                           
+   995                           ;ESCLAVO1.c: 130:         _delay((unsigned long)((50)*(8000000/4000000.0)));
+   996  0072  3021               	movlw	33
+   997  0073  00F2               	movwf	??_isr
+   998  0074                     u21_27:
+   999  0074  0BF2               	decfsz	??_isr,f
+  1000  0075  2874               	goto	u21_27
+  1001  0076                     i1l953:
+  1002                           
+  1003                           ;ESCLAVO1.c: 131:         PIR1bits.ADIF = 0;
+  1004  0076  1283               	bcf	3,5	;RP0=0, select bank0
+  1005  0077  1303               	bcf	3,6	;RP1=0, select bank0
+  1006  0078  130C               	bcf	12,6	;volatile
+  1007  0079                     i1l147:
+  1008  0079  0876               	movf	??_isr+4,w
+  1009  007A  008A               	movwf	10
+  1010  007B  0E75               	swapf	??_isr+3,w
+  1011  007C  0083               	movwf	3
+  1012  007D  0EFE               	swapf	btemp,f
+  1013  007E  0E7E               	swapf	btemp,w
+  1014  007F  0009               	retfie
+  1015  0080                     __end_of_isr:
+  1016                           
+  1017                           	psect	intentry
+  1018  0004                     __pintentry:	
+  1019                           ;incstack = 0
+  1020                           ; Regs used in _isr: [wreg+status,2+status,0+pclath+cstack]
+  1021                           
+  1022  0004                     interrupt_function:
+  1023  007E                     saved_w	set	btemp
+  1024  0004  00FE               	movwf	btemp
+  1025  0005  0E03               	swapf	3,w
+  1026  0006  00F5               	movwf	??_isr+3
+  1027  0007  080A               	movf	10,w
+  1028  0008  00F6               	movwf	??_isr+4
+  1029  0009  120A  118A  2818   	ljmp	_isr
+  1030                           
+  1031                           	psect	text4
+  1032  0100                     __ptext4:	
+  1033 ;; *************** function _servo_1_5 *****************
+  1034 ;; Defined at:
+  1035 ;;		line 197 in file "ESCLAVO1.c"
+  1036 ;; Parameters:    Size  Location     Type
+  1037 ;;		None
+  1038 ;; Auto vars:     Size  Location     Type
+  1039 ;;		None
+  1040 ;; Return value:  Size  Location     Type
+  1041 ;;                  1    wreg      void 
+  1042 ;; Registers used:
+  1043 ;;		wreg
+  1044 ;; Tracked objects:
+  1045 ;;		On entry : 0/0
+  1046 ;;		On exit  : 0/0
+  1047 ;;		Unchanged: 0/0
+  1048 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+  1049 ;;      Params:         0       0       0       0       0
+  1050 ;;      Locals:         0       0       0       0       0
+  1051 ;;      Temps:          2       0       0       0       0
+  1052 ;;      Totals:         2       0       0       0       0
+  1053 ;;Total ram usage:        2 bytes
+  1054 ;; Hardware stack levels used:    1
+  1055 ;; This function calls:
+  1056 ;;		Nothing
+  1057 ;; This function is called by:
+  1058 ;;		_isr
+  1059 ;; This function uses a non-reentrant model
+  1060 ;;
+  1061                           
+  1062                           
+  1063                           ;psect for function _servo_1_5
+  1064  0100                     _servo_1_5:
+  1065  0100                     i1l775:	
+  1066                           ;incstack = 0
+  1067                           ; Regs used in _servo_1_5: [wreg]
+  1068                           
+  1069                           
+  1070                           ;ESCLAVO1.c: 198:     RD0 = 1;
+  1071  0100  1283               	bcf	3,5	;RP0=0, select bank0
+  1072  0101  1303               	bcf	3,6	;RP1=0, select bank0
+  1073  0102  1408               	bsf	8,0	;volatile
+  1074  0103                     i1l777:
+  1075                           
+  1076                           ;ESCLAVO1.c: 199:     _delay((unsigned long)((2)*(8000000/4000.0)));
+  1077  0103  3006               	movlw	6
+  1078  0104  00F1               	movwf	??_servo_1_5+1
+  1079  0105  3030               	movlw	48
+  1080  0106  00F0               	movwf	??_servo_1_5
+  1081  0107                     u22_27:
+  1082  0107  0BF0               	decfsz	??_servo_1_5,f
+  1083  0108  2907               	goto	u22_27
+  1084  0109  0BF1               	decfsz	??_servo_1_5+1,f
+  1085  010A  2907               	goto	u22_27
+  1086  010B  0000               	nop
+  1087  010C                     i1l779:
+  1088                           
+  1089                           ;ESCLAVO1.c: 200:     RD0 = 0;
+  1090  010C  1283               	bcf	3,5	;RP0=0, select bank0
+  1091  010D  1303               	bcf	3,6	;RP1=0, select bank0
+  1092  010E  1008               	bcf	8,0	;volatile
+  1093                           
+  1094                           ;ESCLAVO1.c: 201:     _delay((unsigned long)((18)*(8000000/4000.0)));
+  1095  010F  302F               	movlw	47
+  1096  0110  00F1               	movwf	??_servo_1_5+1
+  1097  0111  30BF               	movlw	191
+  1098  0112  00F0               	movwf	??_servo_1_5
+  1099  0113                     u23_27:
+  1100  0113  0BF0               	decfsz	??_servo_1_5,f
+  1101  0114  2913               	goto	u23_27
+  1102  0115  0BF1               	decfsz	??_servo_1_5+1,f
+  1103  0116  2913               	goto	u23_27
+  1104  0117  2918               	nop2
+  1105  0118                     i1l176:
+  1106  0118  0008               	return
+  1107  0119                     __end_of_servo_1_5:
+  1108                           
+  1109                           	psect	text5
+  1110  0119                     __ptext5:	
+  1111 ;; *************** function _servo_1_1 *****************
+  1112 ;; Defined at:
+  1113 ;;		line 169 in file "ESCLAVO1.c"
+  1114 ;; Parameters:    Size  Location     Type
+  1115 ;;		None
+  1116 ;; Auto vars:     Size  Location     Type
+  1117 ;;		None
+  1118 ;; Return value:  Size  Location     Type
+  1119 ;;                  1    wreg      void 
+  1120 ;; Registers used:
+  1121 ;;		wreg
+  1122 ;; Tracked objects:
+  1123 ;;		On entry : 0/0
+  1124 ;;		On exit  : 0/0
+  1125 ;;		Unchanged: 0/0
+  1126 ;; Data sizes:     COMMON   BANK0   BANK1   BANK3   BANK2
+  1127 ;;      Params:         0       0       0       0       0
+  1128 ;;      Locals:         0       0       0       0       0
+  1129 ;;      Temps:          2       0       0       0       0
+  1130 ;;      Totals:         2       0       0       0       0
+  1131 ;;Total ram usage:        2 bytes
+  1132 ;; Hardware stack levels used:    1
+  1133 ;; This function calls:
+  1134 ;;		Nothing
+  1135 ;; This function is called by:
+  1136 ;;		_isr
+  1137 ;; This function uses a non-reentrant model
+  1138 ;;
+  1139                           
+  1140                           
+  1141                           ;psect for function _servo_1_1
+  1142  0119                     _servo_1_1:
+  1143  0119                     i1l781:	
+  1144                           ;incstack = 0
+  1145                           ; Regs used in _servo_1_1: [wreg]
+  1146                           
+  1147                           
+  1148                           ;ESCLAVO1.c: 170:     RD0 = 1;
+  1149  0119  1283               	bcf	3,5	;RP0=0, select bank0
+  1150  011A  1303               	bcf	3,6	;RP1=0, select bank0
+  1151  011B  1408               	bsf	8,0	;volatile
+  1152  011C                     i1l783:
+  1153                           
+  1154                           ;ESCLAVO1.c: 171:     _delay((unsigned long)((0.7)*(8000000/4000.0)));
+  1155  011C  30C7               	movlw	199
+  1156  011D  00F0               	movwf	??_servo_1_1
+  1157  011E                     u24_27:
+  1158  011E  291F               	nop2
+  1159  011F  2920               	nop2
+  1160  0120  0BF0               	decfsz	??_servo_1_1,f
+  1161  0121  291E               	goto	u24_27
+  1162  0122  2923               	nop2
+  1163  0123  2924               	nop2
+  1164  0124  2925               	nop2
+  1165  0125                     i1l785:
+  1166                           
+  1167                           ;ESCLAVO1.c: 172:     RD0 = 0;
+  1168  0125  1283               	bcf	3,5	;RP0=0, select bank0
+  1169  0126  1303               	bcf	3,6	;RP1=0, select bank0
+  1170  0127  1008               	bcf	8,0	;volatile
+  1171                           
+  1172                           ;ESCLAVO1.c: 173:     _delay((unsigned long)((19.3)*(8000000/4000.0)));
+  1173  0128  3033               	movlw	51
+  1174  0129  00F1               	movwf	??_servo_1_1+1
+  1175  012A  301F               	movlw	31
+  1176  012B  00F0               	movwf	??_servo_1_1
+  1177  012C                     u25_27:
+  1178  012C  0BF0               	decfsz	??_servo_1_1,f
+  1179  012D  292C               	goto	u25_27
+  1180  012E  0BF1               	decfsz	??_servo_1_1+1,f
+  1181  012F  292C               	goto	u25_27
+  1182  0130  2931               	nop2
+  1183  0131                     i1l164:
+  1184  0131  0008               	return
+  1185  0132                     __end_of_servo_1_1:
+  1186  007E                     btemp	set	126	;btemp
+  1187  007E                     wtemp0	set	126
+  1188                           
+  1189                           	psect	config
+  1190                           
+  1191                           ;Config register CONFIG1 @ 0x2007
+  1192                           ;	Oscillator Selection bits
+  1193                           ;	FOSC = INTRC_NOCLKOUT, INTOSCIO oscillator: I/O function on RA6/OSC2/CLKOUT pin, I/O f
+      +                          unction on RA7/OSC1/CLKIN
+  1194                           ;	Watchdog Timer Enable bit
+  1195                           ;	WDTE = OFF, WDT disabled and can be enabled by SWDTEN bit of the WDTCON register
+  1196                           ;	Power-up Timer Enable bit
+  1197                           ;	PWRTE = OFF, PWRT disabled
+  1198                           ;	RE3/MCLR pin function select bit
+  1199                           ;	MCLRE = OFF, RE3/MCLR pin function is digital input, MCLR internally tied to VDD
+  1200                           ;	Code Protection bit
+  1201                           ;	CP = OFF, Program memory code protection is disabled
+  1202                           ;	Data Code Protection bit
+  1203                           ;	CPD = OFF, Data memory code protection is disabled
+  1204                           ;	Brown Out Reset Selection bits
+  1205                           ;	BOREN = OFF, BOR disabled
+  1206                           ;	Internal External Switchover bit
+  1207                           ;	IESO = OFF, Internal/External Switchover mode is disabled
+  1208                           ;	Fail-Safe Clock Monitor Enabled bit
+  1209                           ;	FCMEN = OFF, Fail-Safe Clock Monitor is disabled
+  1210                           ;	Low Voltage Programming Enable bit
+  1211                           ;	LVP = OFF, RB3 pin has digital I/O, HV on MCLR must be used for programming
+  1212                           ;	In-Circuit Debugger Mode bit
+  1213                           ;	DEBUG = 0x1, unprogrammed default
+  1214  2007                     	org	8199
+  1215  2007  20D4               	dw	8404
+  1216                           
+  1217                           ;Config register CONFIG2 @ 0x2008
+  1218                           ;	Brown-out Reset Selection bit
+  1219                           ;	BOR4V = BOR40V, Brown-out Reset set to 4.0V
+  1220                           ;	Flash Program Memory Self Write Enable bits
+  1221                           ;	WRT = OFF, Write protection off
+  1222  2008                     	org	8200
+  1223  2008  3FFF               	dw	16383
+
+Data Sizes:
+    Strings     0
+    Constant    0
+    Data        0
+    BSS         5
+    Persistent  0
+    Stack       0
+
+Auto Spaces:
+    Space          Size  Autos    Used
+    COMMON           14      7      12
+    BANK0            80      6       6
+    BANK1            80      0       0
+    BANK3            96      0       0
+    BANK2            96      0       0
+
+Pointer List with Targets:
+
+    None.
+
+Critical Paths under _main in COMMON
+
+    None.
+
+Critical Paths under _isr in COMMON
+
+    _isr->_servo_1_1
+    _isr->_servo_1_5
+
+Critical Paths under _main in BANK0
+
+    _main->_infrared
+
+Critical Paths under _isr in BANK0
+
+    None.
+
+Critical Paths under _main in BANK1
+
+    None.
+
+Critical Paths under _isr in BANK1
+
+    None.
+
+Critical Paths under _main in BANK3
+
+    None.
+
+Critical Paths under _isr in BANK3
+
+    None.
+
+Critical Paths under _main in BANK2
+
+    None.
+
+Critical Paths under _isr in BANK2
+
+    None.
+
+Call Graph Tables:
+
+ ---------------------------------------------------------------------------------
+ (Depth) Function   	        Calls       Base Space   Used Autos Params    Refs
+ ---------------------------------------------------------------------------------
+ (0) _main                                                 3     3      0       0
+                                              3 BANK0      3     3      0
+                           _infrared
+                              _setup
+ ---------------------------------------------------------------------------------
+ (1) _setup                                                0     0      0       0
+ ---------------------------------------------------------------------------------
+ (1) _infrared                                             3     3      0       0
+                                              0 BANK0      3     3      0
+ ---------------------------------------------------------------------------------
+ Estimated maximum stack depth 1
+ ---------------------------------------------------------------------------------
+ (Depth) Function   	        Calls       Base Space   Used Autos Params    Refs
+ ---------------------------------------------------------------------------------
+ (2) _isr                                                  5     5      0       0
+                                              2 COMMON     5     5      0
+                          _servo_1_1
+                          _servo_1_5
+ ---------------------------------------------------------------------------------
+ (3) _servo_1_5                                            2     2      0       0
+                                              0 COMMON     2     2      0
+ ---------------------------------------------------------------------------------
+ (3) _servo_1_1                                            2     2      0       0
+                                              0 COMMON     2     2      0
+ ---------------------------------------------------------------------------------
+ Estimated maximum stack depth 3
+ ---------------------------------------------------------------------------------
+
+ Call Graph Graphs:
+
+ _main (ROOT)
+   _infrared
+   _setup
+
+ _isr (ROOT)
+   _servo_1_1
+   _servo_1_5
+
+ Address spaces:
+Name               Size   Autos  Total    Cost      Usage
+BITCOMMON            E      0       0       0        0.0%
+EEDATA             100      0       0       0        0.0%
+NULL                 0      0       0       0        0.0%
+CODE                 0      0       0       0        0.0%
+COMMON               E      7       C       1       85.7%
+BITSFR0              0      0       0       1        0.0%
+SFR0                 0      0       0       1        0.0%
+BITSFR1              0      0       0       2        0.0%
+SFR1                 0      0       0       2        0.0%
+STACK                0      0       0       2        0.0%
+ABS                  0      0      12       3        0.0%
+BITBANK0            50      0       0       4        0.0%
+BITSFR3              0      0       0       4        0.0%
+SFR3                 0      0       0       4        0.0%
+BANK0               50      6       6       5        7.5%
+BITSFR2              0      0       0       5        0.0%
+SFR2                 0      0       0       5        0.0%
+BITBANK1            50      0       0       6        0.0%
+BANK1               50      0       0       7        0.0%
+BITBANK3            60      0       0       8        0.0%
+BANK3               60      0       0       9        0.0%
+BITBANK2            60      0       0      10        0.0%
+BANK2               60      0       0      11        0.0%
+DATA                 0      0      12      12        0.0%
+
+
+Microchip Technology PIC Macro Assembler V2.31 build 20201012212115 
+Symbol Table                                                                                   Sat Sep 04 23:51:33 2021
+
+                      _C 007B                        _M 0077                      l161 00FF  
+                    l158 00FA                      l179 00B6                      l981 00DD  
+                    l991 00FE                      l983 00E3                      l985 00E4  
+                    l987 00F2                      _GIE 005F                      l989 00F5  
+                    _RA1 0029                      _RB1 0031                      _RB4 0034  
+                    _RD0 0040                      _RB5 0035                      _RB6 0036  
+                    _RB7 0037                      u150 00E3                      u151 00E2  
+                    u160 00FE                      u161 00FD                      u177 00C4  
+                    u187 00D3                      u197 00EC                      _isr 0018  
+                   l1001 0080                     l1011 008E                     l1003 0085  
+                   l1021 0093                     l1013 008F                     l1005 0089  
+                   l1031 009C                     l1023 0094                     l1015 0090  
+                   l1007 008A                     l1041 00A2                     l1033 009E  
+                   l1025 0095                     l1017 0091                     l1009 008D  
+                   l1051 00AA                     l1043 00A3                     l1035 009F  
+                   l1027 0098                     l1019 0092                     l1061 00B3  
+                   l1053 00AD                     l1045 00A7                     l1037 00A0  
+                   l1029 009B                     l1063 00B4                     l1055 00AE  
+                   l1047 00A8                     l1039 00A1                     l1071 00CA  
+                   l1065 00B5                     l1057 00AF                     l1049 00A9  
+                   l1073 00D6                     l1059 00B2                     l1067 00B7  
+                   l1069 00BC                     ?_isr 0070                     _CONT 0078  
+                   _PEIE 005E                     _RBIF 0058                     _WPUB 0095  
+                   u7_20 001C                     u7_21 001B                     u8_20 0022  
+                   u8_21 0021                     u9_20 0044                     u9_21 0043  
+                   _main 00B7                     btemp 007E                     start 000C  
+                  ??_isr 0072                    ?_main 0070                    _ANSEL 0188  
+                  i1l147 0079                    i1l164 0131                    i1l176 0118  
+                  i1l921 001C                    i1l923 0022                    i1l931 003D  
+                  i1l781 0119                    i1l941 005A                    i1l925 0027  
+                  i1l933 003E                    i1l783 011C                    i1l775 0100  
+                  i1l943 0060                    i1l951 0072                    i1l935 0044  
+                  i1l927 0034                    i1l919 0018                    i1l785 0125  
+                  i1l777 0103                    i1l953 0076                    i1l945 0066  
+                  i1l937 004D                    i1l929 0039                    i1l779 010C  
+                  i1l947 0069                    i1l939 0057                    i1l949 006F  
+                  u10_20 004D                    u10_21 004C                    u11_20 0057  
+                  u11_21 0056                    u12_20 0060                    u12_21 005F  
+                  u20_27 002D                    u13_20 0066                    u13_21 0065  
+                  u21_27 0074                    u14_20 006F                    u14_21 006E  
+                  u22_27 0107                    u23_27 0113                    u24_27 011E  
+                  u25_27 012C                    _PORTA 0005                    _PORTB 0006  
+                  _PORTC 0007                    _PORTD 0008                    _PORTE 0009  
+                  _SSPIE 0463                    _SSPIF 0063                    _infra 007A  
+                  _setup 0080                    pclath 000A                    status 0003  
+                  wtemp0 007E          __initialization 000F             __end_of_main 00DD  
+                 ??_main 0023                   _ADRESH 001E                   ?_setup 0070  
+                 _ANSELH 0189                   _SSPADD 0093                   _TRISA0 0428  
+                 _TRISA1 0429                   _TRISB1 0431                   _TRISD0 0440  
+                 _TRISC3 043B                   _TRISC4 043C                   _SSPCON 0014  
+                 _SSPBUF 0013         __end_of_infrared 0100                   saved_w 007E  
+__end_of__initialization 0014           __pcstackCOMMON 0070            __end_of_setup 00B7  
+         _OPTION_REGbits 0081                  ??_setup 0020               __pmaintext 00B7  
+             __pintentry 0004       __size_of_servo_1_1 0019       __size_of_servo_1_5 0019  
+                _SSPCON2 0091                  _SSPSTAT 0094                ?_infrared 0070  
+                __ptext1 0080                  __ptext2 00DD                  __ptext3 0018  
+                __ptext4 0100                  __ptext5 0119             __size_of_isr 0068  
+                _quetzal 0079     end_of_initialization 0014               ??_infrared 0020  
+      __end_of_servo_1_1 0132        __end_of_servo_1_5 0119                _TRISBbits 0086  
+              _TRISCbits 0087      start_initialization 000F              __end_of_isr 0080  
+            __pbssCOMMON 0077                ___latbits 0002            __pcstackBANK0 0020  
+      __size_of_infrared 0023           __size_of_setup 0037        interrupt_function 0004  
+               _IOCBbits 0096                 _PIE1bits 008C                 _PIR1bits 000C  
+              _servo_1_1 0119                _servo_1_5 0100               _ADCON0bits 001F  
+             _ADCON1bits 009F               ?_servo_1_1 0070               ?_servo_1_5 0070  
+               _infrared 00DD            __size_of_main 0026               _INTCONbits 000B  
+               intlevel1 0000               _OSCCONbits 008F              ??_servo_1_1 0070  
+            ??_servo_1_5 0070              _SSPCON2bits 0091  

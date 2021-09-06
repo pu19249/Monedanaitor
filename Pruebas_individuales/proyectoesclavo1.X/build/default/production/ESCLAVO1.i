@@ -7,12 +7,7 @@
 # 1 "C:/Program Files/Microchip/MPLABX/v5.45/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\\pic\\include\\language_support.h" 1 3
 # 2 "<built-in>" 2
 # 1 "ESCLAVO1.c" 2
-
-
-
-
-
-
+# 13 "ESCLAVO1.c"
 #pragma config FOSC = INTRC_NOCLKOUT
 #pragma config WDTE = OFF
 #pragma config PWRTE = OFF
@@ -168,7 +163,7 @@ typedef int16_t intptr_t;
 
 
 typedef uint16_t uintptr_t;
-# 28 "ESCLAVO1.c" 2
+# 34 "ESCLAVO1.c" 2
 
 # 1 "C:/Program Files/Microchip/MPLABX/v5.45/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\\pic\\include\\proc\\pic16f887.h" 1 3
 # 44 "C:/Program Files/Microchip/MPLABX/v5.45/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\\pic\\include\\proc\\pic16f887.h" 3
@@ -2580,7 +2575,7 @@ extern volatile __bit nW __attribute__((address(0x4A2)));
 
 
 extern volatile __bit nWRITE __attribute__((address(0x4A2)));
-# 29 "ESCLAVO1.c" 2
+# 35 "ESCLAVO1.c" 2
 
 # 1 "./I2C.h" 1
 # 18 "./I2C.h"
@@ -2694,7 +2689,7 @@ unsigned short I2C_Master_Read(unsigned short a);
 
 
 void I2C_Slave_Init(uint8_t address);
-# 30 "ESCLAVO1.c" 2
+# 36 "ESCLAVO1.c" 2
 
 
 
@@ -2703,6 +2698,7 @@ void I2C_Slave_Init(uint8_t address);
 
 uint8_t C, infra, quetzal;
 uint8_t CONT;
+char M = 0;
 
 
 
@@ -2719,44 +2715,11 @@ void servo_1_5(void);
 
 
 void __attribute__((picinterrupt(("")))) isr(void){
-   if(PIR1bits.SSPIF == 1){
-
-        SSPCONbits.CKP = 0;
-
-        if ((SSPCONbits.SSPOV) || (SSPCONbits.WCOL)){
-            C = SSPBUF;
-            SSPCONbits.SSPOV = 0;
-            SSPCONbits.WCOL = 0;
-            SSPCONbits.CKP = 1;
-        }
-
-        if(!SSPSTATbits.D_nA && !SSPSTATbits.R_nW) {
-            _delay((unsigned long)((7)*(8000000/4000000.0)));
-            C = SSPBUF;
-            _delay((unsigned long)((2)*(8000000/4000000.0)));
-            PIR1bits.SSPIF = 0;
-            SSPCONbits.CKP = 1;
-            while(!SSPSTATbits.BF);
-            CONT = SSPBUF;
-            _delay((unsigned long)((250)*(8000000/4000000.0)));
-
-        }else if(!SSPSTATbits.D_nA && SSPSTATbits.R_nW){
-            C = SSPBUF;
-            BF = 0;
-            SSPBUF = CONT;
-            _delay((unsigned long)((250)*(8000000/4000.0)));
-            SSPBUF = quetzal;
-            SSPCONbits.CKP = 1;
-            _delay((unsigned long)((250)*(8000000/4000000.0)));
-            while(SSPSTATbits.BF);
-        }
-
-        PIR1bits.SSPIF = 0;
-    }
+# 95 "ESCLAVO1.c"
    if(RBIF){
         if(RB1 == 0){
             servo_1_5();
-            _delay((unsigned long)((1000)*(8000000/4000.0)));
+            _delay((unsigned long)((2000)*(8000000/4000.0)));
             servo_1_1();
             quetzal++;
         }
@@ -2764,7 +2727,35 @@ void __attribute__((picinterrupt(("")))) isr(void){
         RBIF = 0;
     }
 
-   }
+   if (PIR1bits.ADIF == 1)
+    {
+        if (ADCON0bits.CHS == 0)
+        {
+            M = ADRESH;
+            if(M<=169)
+            {
+                RB6 = 0;
+                RB5 = 0;
+                RB4 = 1;
+            }
+            if((M<=225)&&(M>=170))
+            {
+               RB6 = 0;
+               RB5 = 1;
+               RB4 = 0;
+            }
+            if(M>=226)
+            {
+               RB6 = 1;
+               RB5 = 0;
+               RB4 = 0;
+            }
+        }
+        _delay((unsigned long)((50)*(8000000/4000000.0)));
+        PIR1bits.ADIF = 0;
+    }
+
+ }
 
 
 
@@ -2775,11 +2766,11 @@ void main(void) {
 
 
     while(1){
-         PORTD = CONT;
+
         _delay((unsigned long)((750)*(8000000/4000.0)));
-
         infrared();
-
+         _delay((unsigned long)((100)*(8000000/4000000.0)));
+        ADCON0bits.GO = 1;
     }
     return;
 }
@@ -2787,87 +2778,97 @@ void main(void) {
 
 
 void infrared(void){
-    if(RA0 == 1){
+    if(RA1 == 0){
         RB7 = 1;
         _delay((unsigned long)((500)*(8000000/4000.0)));
         RB7 = 0;
         CONT++;
         }
 
-    else if (RA0 == 0){
+    else if (RA1 == 0){
         RB7 = 0;
     }
 }
 
 void servo_1_1(void){
-    RE0 = 1;
+    RD0 = 1;
     _delay((unsigned long)((0.7)*(8000000/4000.0)));
-    RE0 = 0;
+    RD0 = 0;
     _delay((unsigned long)((19.3)*(8000000/4000.0)));
 }
 
 void servo_1_2(void){
-    RE0 = 1;
+    RD0 = 1;
     _delay((unsigned long)((1.25)*(8000000/4000.0)));
-    RE0 = 0;
+    RD0 = 0;
     _delay((unsigned long)((18.75)*(8000000/4000.0)));
 }
 
 void servo_1_3(void){
-    RE0 = 1;
+    RD0 = 1;
     _delay((unsigned long)((1.5)*(8000000/4000.0)));
-    RE0 = 0;
+    RD0 = 0;
     _delay((unsigned long)((18.5)*(8000000/4000.0)));
 }
 
 void servo_1_4(void){
-    RE0 = 1;
+    RD0 = 1;
     _delay((unsigned long)((1.75)*(8000000/4000.0)));
-    RE0 = 0;
+    RD0 = 0;
     _delay((unsigned long)((18.25)*(8000000/4000.0)));
 }
 
 void servo_1_5(void){
-    RE0 = 1;
+    RD0 = 1;
     _delay((unsigned long)((2)*(8000000/4000.0)));
-    RE0 = 0;
+    RD0 = 0;
     _delay((unsigned long)((18)*(8000000/4000.0)));
 }
 
 void setup(void){
-    ANSEL = 0;
-    ANSELH = 0;
+
+    TRISB1 = 1;
+    TRISA1 = 1;
     TRISA0 = 1;
-    TRISA7 = 0;
+    ANSEL = 0b00000001;
+    ANSELH = 0;
+
+
     TRISBbits.TRISB7 = 0;
-    TRISD = 0X00;
+    TRISBbits.TRISB6 = 0;
+    TRISBbits.TRISB5 = 0;
+    TRISBbits.TRISB4 = 0;
+    TRISD0 = 0;
 
 
     INTCONbits.GIE = 1;
     INTCONbits.PEIE = 1;
+    INTCONbits.RBIE = 1;
+    INTCONbits.RBIF = 0;
+    PIR1bits.ADIF = 0;
+    PIE1bits.ADIE = 1;
 
 
-    TRISB1 = 1;
-    TRISE0 = 0;
+
     OPTION_REGbits.nRBPU = 0;
     WPUB = 0b00000010;
     IOCBbits.IOCB1 = 1;
-
-
 
 
     OSCCONbits.IRCF2 = 1;
     OSCCONbits.IRCF1 = 1;
     OSCCONbits.IRCF0 = 1;
     OSCCONbits.SCS = 1;
-    I2C_Slave_Init(0x50);
 
 
-    INTCONbits.GIE = 1;
 
-    INTCONbits.RBIE = 1;
-    INTCONbits.RBIF = 0;
-    INTCONbits.PEIE = 1;
+    ADCON0bits.CHS = 0;
+    ADCON0bits.ADCS1 = 1;
+    ADCON0bits.ADCS0 = 1;
+    ADCON0bits.ADON = 1;
+    ADCON1bits.ADFM = 0;
+    ADCON1bits.VCFG0 = 0;
+    ADCON1bits.VCFG1 = 0;
 
     PORTA = 0x00;
     PORTC = 0x00;

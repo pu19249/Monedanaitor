@@ -13,22 +13,20 @@
 [v ___eecpymem __eecpymem `(v  1 e 1 0 ]
 "39
 [v ___memcpyee __memcpyee `(v  1 e 1 0 ]
-"53 C:\Users\jpu20\Documents\GitHub\Monedanaitor\proyectoesclavo1.X\ESCLAVO1.c
+"60 C:\Users\jpu20\Documents\GitHub\Monedanaitor\proyectoesclavo1.X\ESCLAVO1.c
 [v _isr isr `II(v  1 e 1 0 ]
-"104
+"139
 [v _main main `(v  1 e 1 0 ]
-"121
+"156
 [v _infrared infrared `(v  1 e 1 0 ]
-"134
-[v _servo_1_1 servo_1_1 `(v  1 e 1 0 ]
-"162
-[v _servo_1_5 servo_1_5 `(v  1 e 1 0 ]
 "169
+[v _servo_1_1 servo_1_1 `(v  1 e 1 0 ]
+"197
+[v _servo_1_5 servo_1_5 `(v  1 e 1 0 ]
+"204
 [v _setup setup `(v  1 e 1 0 ]
 "27 C:\Users\jpu20\Documents\GitHub\Monedanaitor\proyectoesclavo1.X\I2C.c
 [v _I2C_Master_Wait I2C_Master_Wait `(v  1 e 1 0 ]
-"88
-[v _I2C_Slave_Init I2C_Slave_Init `(v  1 e 1 0 ]
 "166 C:/Program Files/Microchip/MPLABX/v5.45/packs/Microchip/PIC16Fxxx_DFP/1.2.33/xc8\pic\include\proc\pic16f887.h
 [v _PORTA PORTA `VEuc  1 e 1 @5 ]
 "228
@@ -39,7 +37,7 @@
 [v _PORTD PORTD `VEuc  1 e 1 @8 ]
 "414
 [v _PORTE PORTE `VEuc  1 e 1 @9 ]
-[s S295 . 1 `uc 1 RBIF 1 0 :1:0 
+[s S228 . 1 `uc 1 RBIF 1 0 :1:0 
 `uc 1 INTF 1 0 :1:1 
 `uc 1 T0IF 1 0 :1:2 
 `uc 1 RBIE 1 0 :1:3 
@@ -49,14 +47,14 @@
 `uc 1 GIE 1 0 :1:7 
 ]
 "482
-[s S304 . 1 `uc 1 . 1 0 :2:0 
+[s S237 . 1 `uc 1 . 1 0 :2:0 
 `uc 1 TMR0IF 1 0 :1:2 
 `uc 1 . 1 0 :2:3 
 `uc 1 TMR0IE 1 0 :1:5 
 ]
-[u S309 . 1 `S295 1 . 1 0 `S304 1 . 1 0 ]
-[v _INTCONbits INTCONbits `VES309  1 e 1 @11 ]
-[s S105 . 1 `uc 1 TMR1IF 1 0 :1:0 
+[u S242 . 1 `S228 1 . 1 0 `S237 1 . 1 0 ]
+[v _INTCONbits INTCONbits `VES242  1 e 1 @11 ]
+[s S121 . 1 `uc 1 TMR1IF 1 0 :1:0 
 `uc 1 TMR2IF 1 0 :1:1 
 `uc 1 CCP1IF 1 0 :1:2 
 `uc 1 SSPIF 1 0 :1:3 
@@ -65,27 +63,38 @@
 `uc 1 ADIF 1 0 :1:6 
 ]
 "553
-[u S113 . 1 `S105 1 . 1 0 ]
-[v _PIR1bits PIR1bits `VES113  1 e 1 @12 ]
+[u S129 . 1 `S121 1 . 1 0 ]
+[v _PIR1bits PIR1bits `VES129  1 e 1 @12 ]
 "843
 [v _SSPBUF SSPBUF `VEuc  1 e 1 @19 ]
 "850
 [v _SSPCON SSPCON `VEuc  1 e 1 @20 ]
-[s S124 . 1 `uc 1 SSPM 1 0 :4:0 
-`uc 1 CKP 1 0 :1:4 
-`uc 1 SSPEN 1 0 :1:5 
-`uc 1 SSPOV 1 0 :1:6 
-`uc 1 WCOL 1 0 :1:7 
+"1238
+[v _ADRESH ADRESH `VEuc  1 e 1 @30 ]
+[s S140 . 1 `uc 1 ADON 1 0 :1:0 
+`uc 1 GO_nDONE 1 0 :1:1 
+`uc 1 CHS 1 0 :4:2 
+`uc 1 ADCS 1 0 :2:6 
 ]
-"870
-[s S130 . 1 `uc 1 SSPM0 1 0 :1:0 
-`uc 1 SSPM1 1 0 :1:1 
-`uc 1 SSPM2 1 0 :1:2 
-`uc 1 SSPM3 1 0 :1:3 
+"1276
+[s S145 . 1 `uc 1 . 1 0 :1:0 
+`uc 1 GO 1 0 :1:1 
+`uc 1 CHS0 1 0 :1:2 
+`uc 1 CHS1 1 0 :1:3 
+`uc 1 CHS2 1 0 :1:4 
+`uc 1 CHS3 1 0 :1:5 
+`uc 1 ADCS0 1 0 :1:6 
+`uc 1 ADCS1 1 0 :1:7 
 ]
-[u S135 . 1 `S124 1 . 1 0 `S130 1 . 1 0 ]
-[v _SSPCONbits SSPCONbits `VES135  1 e 1 @20 ]
-[s S329 . 1 `uc 1 PS 1 0 :3:0 
+[s S154 . 1 `uc 1 . 1 0 :1:0 
+`uc 1 nDONE 1 0 :1:1 
+]
+[s S157 . 1 `uc 1 . 1 0 :1:0 
+`uc 1 GO_DONE 1 0 :1:1 
+]
+[u S160 . 1 `S140 1 . 1 0 `S145 1 . 1 0 `S154 1 . 1 0 `S157 1 . 1 0 ]
+[v _ADCON0bits ADCON0bits `VES160  1 e 1 @31 ]
+[s S279 . 1 `uc 1 PS 1 0 :3:0 
 `uc 1 PSA 1 0 :1:3 
 `uc 1 T0SE 1 0 :1:4 
 `uc 1 T0CS 1 0 :1:5 
@@ -93,13 +102,13 @@
 `uc 1 nRBPU 1 0 :1:7 
 ]
 "1366
-[s S336 . 1 `uc 1 PS0 1 0 :1:0 
+[s S286 . 1 `uc 1 PS0 1 0 :1:0 
 `uc 1 PS1 1 0 :1:1 
 `uc 1 PS2 1 0 :1:2 
 ]
-[u S340 . 1 `S329 1 . 1 0 `S336 1 . 1 0 ]
-[v _OPTION_REGbits OPTION_REGbits `VES340  1 e 1 @129 ]
-[s S273 . 1 `uc 1 TRISB0 1 0 :1:0 
+[u S290 . 1 `S279 1 . 1 0 `S286 1 . 1 0 ]
+[v _OPTION_REGbits OPTION_REGbits `VES290  1 e 1 @129 ]
+[s S206 . 1 `uc 1 TRISB0 1 0 :1:0 
 `uc 1 TRISB1 1 0 :1:1 
 `uc 1 TRISB2 1 0 :1:2 
 `uc 1 TRISB3 1 0 :1:3 
@@ -109,8 +118,8 @@
 `uc 1 TRISB7 1 0 :1:7 
 ]
 "1495
-[u S282 . 1 `S273 1 . 1 0 ]
-[v _TRISBbits TRISBbits `VES282  1 e 1 @134 ]
+[u S215 . 1 `S206 1 . 1 0 ]
+[v _TRISBbits TRISBbits `VES215  1 e 1 @134 ]
 [s S26 . 1 `uc 1 TRISC0 1 0 :1:0 
 `uc 1 TRISC1 1 0 :1:1 
 `uc 1 TRISC2 1 0 :1:2 
@@ -123,22 +132,31 @@
 "1557
 [u S35 . 1 `S26 1 . 1 0 ]
 [v _TRISCbits TRISCbits `VES35  1 e 1 @135 ]
-"1602
-[v _TRISD TRISD `VEuc  1 e 1 @136 ]
-[s S382 . 1 `uc 1 SCS 1 0 :1:0 
+[s S260 . 1 `uc 1 TMR1IE 1 0 :1:0 
+`uc 1 TMR2IE 1 0 :1:1 
+`uc 1 CCP1IE 1 0 :1:2 
+`uc 1 SSPIE 1 0 :1:3 
+`uc 1 TXIE 1 0 :1:4 
+`uc 1 RCIE 1 0 :1:5 
+`uc 1 ADIE 1 0 :1:6 
+]
+"1718
+[u S268 . 1 `S260 1 . 1 0 ]
+[v _PIE1bits PIE1bits `VES268  1 e 1 @140 ]
+[s S332 . 1 `uc 1 SCS 1 0 :1:0 
 `uc 1 LTS 1 0 :1:1 
 `uc 1 HTS 1 0 :1:2 
 `uc 1 OSTS 1 0 :1:3 
 `uc 1 IRCF 1 0 :3:4 
 ]
 "1882
-[s S388 . 1 `uc 1 . 1 0 :4:0 
+[s S338 . 1 `uc 1 . 1 0 :4:0 
 `uc 1 IRCF0 1 0 :1:4 
 `uc 1 IRCF1 1 0 :1:5 
 `uc 1 IRCF2 1 0 :1:6 
 ]
-[u S393 . 1 `S382 1 . 1 0 `S388 1 . 1 0 ]
-[v _OSCCONbits OSCCONbits `VES393  1 e 1 @143 ]
+[u S343 . 1 `S332 1 . 1 0 `S338 1 . 1 0 ]
+[v _OSCCONbits OSCCONbits `VES343  1 e 1 @143 ]
 "1979
 [v _SSPCON2 SSPCON2 `VEuc  1 e 1 @145 ]
 [s S47 . 1 `uc 1 SEN 1 0 :1:0 
@@ -157,55 +175,12 @@
 [v _SSPADD SSPADD `VEuc  1 e 1 @147 ]
 "2177
 [v _SSPSTAT SSPSTAT `VEuc  1 e 1 @148 ]
-[s S151 . 1 `uc 1 BF 1 0 :1:0 
-`uc 1 UA 1 0 :1:1 
-`uc 1 R_nW 1 0 :1:2 
-`uc 1 S 1 0 :1:3 
-`uc 1 P 1 0 :1:4 
-`uc 1 D_nA 1 0 :1:5 
-`uc 1 CKE 1 0 :1:6 
-`uc 1 SMP 1 0 :1:7 
-]
-"2231
-[s S160 . 1 `uc 1 . 1 0 :2:0 
-`uc 1 R 1 0 :1:2 
-`uc 1 . 1 0 :2:3 
-`uc 1 D 1 0 :1:5 
-]
-[s S165 . 1 `uc 1 . 1 0 :2:0 
-`uc 1 I2C_READ 1 0 :1:2 
-`uc 1 I2C_START 1 0 :1:3 
-`uc 1 I2C_STOP 1 0 :1:4 
-`uc 1 I2C_DATA 1 0 :1:5 
-]
-[s S171 . 1 `uc 1 . 1 0 :2:0 
-`uc 1 nW 1 0 :1:2 
-`uc 1 . 1 0 :2:3 
-`uc 1 nA 1 0 :1:5 
-]
-[s S176 . 1 `uc 1 . 1 0 :2:0 
-`uc 1 nWRITE 1 0 :1:2 
-`uc 1 . 1 0 :2:3 
-`uc 1 nADDRESS 1 0 :1:5 
-]
-[s S181 . 1 `uc 1 . 1 0 :2:0 
-`uc 1 R_W 1 0 :1:2 
-`uc 1 . 1 0 :2:3 
-`uc 1 D_A 1 0 :1:5 
-]
-[s S186 . 1 `uc 1 . 1 0 :2:0 
-`uc 1 READ_WRITE 1 0 :1:2 
-`uc 1 . 1 0 :2:3 
-`uc 1 DATA_ADDRESS 1 0 :1:5 
-]
-[u S191 . 1 `S151 1 . 1 0 `S160 1 . 1 0 `S165 1 . 1 0 `S171 1 . 1 0 `S176 1 . 1 0 `S181 1 . 1 0 `S186 1 . 1 0 ]
-[v _SSPSTATbits SSPSTATbits `VES191  1 e 1 @148 ]
 "2346
 [v _WPUB WPUB `VEuc  1 e 1 @149 ]
-[s S356 . 1 `uc 1 IOCB 1 0 :8:0 
+[s S306 . 1 `uc 1 IOCB 1 0 :8:0 
 ]
 "2436
-[s S358 . 1 `uc 1 IOCB0 1 0 :1:0 
+[s S308 . 1 `uc 1 IOCB0 1 0 :1:0 
 `uc 1 IOCB1 1 0 :1:1 
 `uc 1 IOCB2 1 0 :1:2 
 `uc 1 IOCB3 1 0 :1:3 
@@ -214,85 +189,90 @@
 `uc 1 IOCB6 1 0 :1:6 
 `uc 1 IOCB7 1 0 :1:7 
 ]
-[u S367 . 1 `S356 1 . 1 0 `S358 1 . 1 0 ]
-[v _IOCBbits IOCBbits `VES367  1 e 1 @150 ]
+[u S317 . 1 `S306 1 . 1 0 `S308 1 . 1 0 ]
+[v _IOCBbits IOCBbits `VES317  1 e 1 @150 ]
+[s S358 . 1 `uc 1 . 1 0 :4:0 
+`uc 1 VCFG0 1 0 :1:4 
+`uc 1 VCFG1 1 0 :1:5 
+`uc 1 . 1 0 :1:6 
+`uc 1 ADFM 1 0 :1:7 
+]
+"2991
+[u S364 . 1 `S358 1 . 1 0 ]
+[v _ADCON1bits ADCON1bits `VES364  1 e 1 @159 ]
 "3387
 [v _ANSEL ANSEL `VEuc  1 e 1 @392 ]
 "3449
 [v _ANSELH ANSELH `VEuc  1 e 1 @393 ]
-"3641
-[v _BF BF `VEb  1 e 0 @1184 ]
 "3896
 [v _GIE GIE `VEb  1 e 0 @95 ]
 "4040
 [v _PEIE PEIE `VEb  1 e 0 @94 ]
-"4079
-[v _RA0 RA0 `VEb  1 e 0 @40 ]
+"4082
+[v _RA1 RA1 `VEb  1 e 0 @41 ]
 "4106
 [v _RB1 RB1 `VEb  1 e 0 @49 ]
+"4115
+[v _RB4 RB4 `VEb  1 e 0 @52 ]
+"4118
+[v _RB5 RB5 `VEb  1 e 0 @53 ]
+"4121
+[v _RB6 RB6 `VEb  1 e 0 @54 ]
 "4124
 [v _RB7 RB7 `VEb  1 e 0 @55 ]
 "4130
 [v _RBIF RBIF `VEb  1 e 0 @88 ]
-"4205
-[v _RE0 RE0 `VEb  1 e 0 @72 ]
+"4181
+[v _RD0 RD0 `VEb  1 e 0 @64 ]
 "4274
 [v _SSPIE SSPIE `VEb  1 e 0 @1123 ]
 "4277
 [v _SSPIF SSPIF `VEb  1 e 0 @99 ]
 "4400
 [v _TRISA0 TRISA0 `VEb  1 e 0 @1064 ]
-"4421
-[v _TRISA7 TRISA7 `VEb  1 e 0 @1071 ]
+"4403
+[v _TRISA1 TRISA1 `VEb  1 e 0 @1065 ]
 "4427
 [v _TRISB1 TRISB1 `VEb  1 e 0 @1073 ]
 "4457
 [v _TRISC3 TRISC3 `VEb  1 e 0 @1083 ]
 "4460
 [v _TRISC4 TRISC4 `VEb  1 e 0 @1084 ]
-"4496
-[v _TRISE0 TRISE0 `VEb  1 e 0 @1096 ]
-"36 C:\Users\jpu20\Documents\GitHub\Monedanaitor\proyectoesclavo1.X\ESCLAVO1.c
-[v _C C `uc  1 e 1 0 ]
+"4472
+[v _TRISD0 TRISD0 `VEb  1 e 0 @1088 ]
+"42 C:\Users\jpu20\Documents\GitHub\Monedanaitor\proyectoesclavo1.X\ESCLAVO1.c
 [v _quetzal quetzal `uc  1 e 1 0 ]
-"37
+"43
 [v _CONT CONT `uc  1 e 1 0 ]
-"104
+"44
+[v _M M `uc  1 e 1 0 ]
+"139
 [v _main main `(v  1 e 1 0 ]
 {
-"117
+"152
 } 0
-"169
+"204
 [v _setup setup `(v  1 e 1 0 ]
 {
-"209
+"254
 } 0
-"88 C:\Users\jpu20\Documents\GitHub\Monedanaitor\proyectoesclavo1.X\I2C.c
-[v _I2C_Slave_Init I2C_Slave_Init `(v  1 e 1 0 ]
-{
-[v I2C_Slave_Init@address address `uc  1 a 1 wreg ]
-[v I2C_Slave_Init@address address `uc  1 a 1 wreg ]
-"90
-[v I2C_Slave_Init@address address `uc  1 a 1 0 ]
-"100
-} 0
-"121 C:\Users\jpu20\Documents\GitHub\Monedanaitor\proyectoesclavo1.X\ESCLAVO1.c
+"156
 [v _infrared infrared `(v  1 e 1 0 ]
-{
-"132
-} 0
-"53
-[v _isr isr `II(v  1 e 1 0 ]
-{
-"99
-} 0
-"162
-[v _servo_1_5 servo_1_5 `(v  1 e 1 0 ]
 {
 "167
 } 0
+"60
+[v _isr isr `II(v  1 e 1 0 ]
+{
 "134
+} 0
+"197
+[v _servo_1_5 servo_1_5 `(v  1 e 1 0 ]
+{
+"202
+} 0
+"169
 [v _servo_1_1 servo_1_1 `(v  1 e 1 0 ]
 {
-"139
+"174
 } 0
