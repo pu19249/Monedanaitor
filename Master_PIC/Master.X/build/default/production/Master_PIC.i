@@ -2913,9 +2913,12 @@ float converted04[10];
 uint16_t temp;
 uint8_t CONT;
 uint8_t POT;
+uint8_t contador;
 char valor, hundreds, residuo, tens, units;
-char slave01, slave02, slave03, sum, dec1, dec2, dec3;
+char slave01, slave02, slave03, sum, dec3;
 char resta;
+int send;
+float dec1, dec2;
 
 
 
@@ -2987,7 +2990,7 @@ void setup(void){
 
 
     TRISA0 = 1;
-# 141 "Master_PIC.c"
+# 144 "Master_PIC.c"
     OSCCONbits.IRCF0 = 1;
     OSCCONbits.IRCF1 = 1;
     OSCCONbits.IRCF2 = 1;
@@ -3034,16 +3037,16 @@ void setup(void){
     INTCONbits.PEIE = 1;
     PIE1bits.ADIE = 1;
     PIR1bits.ADIF = 0;
-    PIE1bits.RCIE = 0;
-    PIE1bits.TXIE = 0;
+
+
 
 
     TXSTAbits.SYNC = 0;
     TXSTAbits.BRGH = 1;
-    BAUDCTLbits.BRG16 = 0;
+    BAUDCTLbits.BRG16 = 1;
 
-    SPBRG = 25;
-    SPBRGH = 1;
+    SPBRG = 103;
+    SPBRGH = 0;
 
     RCSTAbits.SPEN = 1;
     RCSTAbits.RX9 = 0;
@@ -3081,32 +3084,29 @@ void infrared(void){
 
 
 void Text(void){
-     _delay((unsigned long)((250)*(8000000/4000.0)));
-     division(sum);
-
-     if (RCREG == 'b'){
-# 258 "Master_PIC.c"
-         if (RCREG == 'b'){
-     _delay((unsigned long)((50)*(8000000/4000.0)));
-    if(TXIF == 1){
-        TXREG = hundreds;
-    }
-
-
-
 
     _delay((unsigned long)((50)*(8000000/4000.0)));
-    if(TXIF == 1){
-        TXREG = tens;
-       }
+    division(slave01);
     _delay((unsigned long)((50)*(8000000/4000.0)));
-    if(TXIF == 1){
-        TXREG = units;
-       }
+    TXREG = hundreds;
+    _delay((unsigned long)((50)*(8000000/4000.0)));
+    TXREG = tens;
+    _delay((unsigned long)((50)*(8000000/4000.0)));
+    TXREG = units;
     _delay((unsigned long)((50)*(8000000/4000.0)));
 
-     }
-     }
+    _delay((unsigned long)((50)*(8000000/4000.0)));
+    division(sum);
+    _delay((unsigned long)((50)*(8000000/4000.0)));
+    TXREG = hundreds;
+    _delay((unsigned long)((50)*(8000000/4000.0)));
+    TXREG = tens;
+    _delay((unsigned long)((50)*(8000000/4000.0)));
+    TXREG = units;
+    _delay((unsigned long)((50)*(8000000/4000.0)));
+
+
+
 }
 
 
@@ -3169,7 +3169,7 @@ void LCD_Send(void){
     dec1 = slave02 * 50;
     dec2 = slave03 * 25;
     dec3 = slave01 * 100;
-    sum = dec3 + dec1 + dec2;
+    sum = (dec3 + dec1 + dec2);
 
     division(sum);
     LCD_Set_Cursor(4, 10);
@@ -3261,4 +3261,31 @@ void putch(char data){
     while(TXIF == 0);
     TXREG = data;
     return;
+}
+
+
+int concat(int a, int b, int d)
+{
+
+    char s1[20];
+    char s2[20];
+    char s3[20];
+
+
+
+    sprintf(s1, "%d", a);
+    sprintf(s2, "%d", b);
+    sprintf(s3, "%d", d);
+
+
+
+    strcat(s1, s2);
+    strcat(s1, s3);
+
+
+
+    int c = atoi(s1);
+
+
+    return c;
 }
