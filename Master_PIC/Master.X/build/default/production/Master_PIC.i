@@ -3086,18 +3086,7 @@ void I2C_Comunication(void){
     slave01 = I2C_Read_Byte();
     I2C_Master_Stop();
     _delay((unsigned long)((200)*(8000000/4000.0)));
-
-    I2C_Master_Start();
-    I2C_Master_Write(0x71);
-    slave02 = I2C_Read_Byte();
-    I2C_Master_Stop();
-    _delay((unsigned long)((200)*(8000000/4000.0)));
-
-    I2C_Master_Start();
-    I2C_Master_Write(0x81);
-    slave03 = I2C_Read_Byte();
-    I2C_Master_Stop();
-    _delay((unsigned long)((200)*(8000000/4000.0)));
+# 251 "Master_PIC.c"
 }
 
 

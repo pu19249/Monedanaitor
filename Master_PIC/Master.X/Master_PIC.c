@@ -237,17 +237,17 @@ void I2C_Comunication(void){
     I2C_Master_Stop();
     __delay_ms(200);
         
-    I2C_Master_Start();
-    I2C_Master_Write(0x71); // Direccion del SLAVE 2
-    slave02 = I2C_Read_Byte();
-    I2C_Master_Stop();
-    __delay_ms(200);
-       
-    I2C_Master_Start();
-    I2C_Master_Write(0x81); // Direccion del SLAVE 3
-    slave03 = I2C_Read_Byte();
-    I2C_Master_Stop();
-    __delay_ms(200);
+//    I2C_Master_Start();
+//    I2C_Master_Write(0x71); // Direccion del SLAVE 2
+//    slave02 = I2C_Read_Byte();
+//    I2C_Master_Stop();
+//    __delay_ms(200);
+//       
+//    I2C_Master_Start();
+//    I2C_Master_Write(0x81); // Direccion del SLAVE 3
+//    slave03 = I2C_Read_Byte();
+//    I2C_Master_Stop();
+//    __delay_ms(200);
 }
 
 // Funcion para inicializar la LCD
